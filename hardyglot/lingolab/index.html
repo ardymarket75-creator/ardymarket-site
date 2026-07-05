@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingo Lab - Hardyglot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../supabase-config.js"></script>
+    <script>
+        (async () => {
+            const { data } = await window.supabase.auth.getSession();
+            if (!data.session) window.location.href = '../../index.html';
+        })();
+    </script>
+    <style>
+        body { font-family: 'Urbanist', sans-serif; background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 30px 0; box-sizing: border-box; }
+        .container { background: white; padding: 60px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; max-width: 850px; width: 90%; position: relative; }
+        .volver { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #6b7280; font-weight: 600; font-size: 14px; }
+        .volver:hover { color: #10B981; }
+        h1 { font-size: 36px; margin-bottom: 5px; color: #1f2937; }
+        h1 i { color: #10B981; }
+        .intro { color: #6b7280; margin-bottom: 35px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .container { padding: 40px 25px; } }
+
+        .card { border: 2px solid #E5E7EB; border-radius: 15px; padding: 28px 18px; text-decoration: none; color: #374151; transition: 0.3s; display: block; }
+        .card:hover { border-color: #10B981; background: #f9fafb; transform: translateY(-5px); }
+        .card i { font-size: 36px; color: #3B82F6; margin-bottom: 16px; }
+        .card h2 { margin: 0 0 5px 0; font-size: 18px; color: #1f2937; }
+        .card p { margin: 0; font-size: 13px; color: #6b7280; }
+        .activo-badge { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 700; color: #065f46; background: #d1fae5; border-radius: 20px; padding: 3px 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="volver" href="../index.html"><i class="fa-solid fa-arrow-left"></i> Hardyglot</a>
+        <h1><i class="fa-solid fa-flask"></i> Lingo Lab</h1>
+        <p class="intro">Cada lab es un experimento con tu propio cerebro: un método concreto adaptado a un estilo de aprendizaje. Explora y descubre cuál es el tuyo.</p>
+        <div class="grid">
+            <a href="babys-lab.html" class="card">
+                <i class="fa-solid fa-baby"></i>
+                <h2>Baby's Lab</h2>
+                <p>Aprender como se aprende la lengua materna</p>
+            </a>
+            <a href="toddlers-lab.html" class="card">
+                <i class="fa-solid fa-child"></i>
+                <h2>Toddler's Lab</h2>
+                <p>Primeras frases, juego y repetición</p>
+            </a>
+            <a href="childrens-lab.html" class="card">
+                <i class="fa-solid fa-children"></i>
+                <h2>Children's Lab</h2>
+                <p>Curiosidad, historias y descubrimiento</p>
+            </a>
+            <a href="parents-lab.html" class="card">
+                <i class="fa-solid fa-people-roof"></i>
+                <h2>Parent's Lab</h2>
+                <p>Acompaña y aprende junto a los tuyos</p>
+            </a>
+            <a href="eris-lab.html" class="card">
+                <i class="fa-solid fa-flask-vial"></i>
+                <h2>Eri's Lab</h2>
+                <p>Inmersión trilingüe con audio y repetición espaciada</p>
+                <span class="activo-badge">Activo</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardy Store - ArdyMarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-config.js"></script>
+    <script>
+        (async () => {
+            const { data } = await window.supabase.auth.getSession();
+            if (!data.session) window.location.href = '../index.html';
+        })();
+    </script>
+    <style>
+        body { font-family: 'Urbanist', sans-serif; background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 60px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; max-width: 700px; width: 90%; position: relative; }
+        .volver { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #6b7280; font-weight: 600; font-size: 14px; }
+        .volver:hover { color: #10B981; }
+        h1 { font-size: 36px; margin-bottom: 5px; color: #1f2937; }
+        h1 span { color: #10B981; display: block; font-size: 20px; margin-top: 5px; font-weight: 600; }
+        .vacio { border: 2px dashed #E5E7EB; border-radius: 15px; padding: 50px 30px; margin-top: 30px; color: #6b7280; }
+        .vacio i { font-size: 46px; color: #3B82F6; margin-bottom: 18px; display: block; }
+        .vacio h2 { color: #1f2937; margin: 0 0 8px; font-size: 20px; }
+        .vacio p { margin: 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="volver" href="../hub.html"><i class="fa-solid fa-arrow-left"></i> Hub</a>
+        <h1>Hardy Store <span>Productos digitales</span></h1>
+        <div class="vacio">
+            <i class="fa-solid fa-store"></i>
+            <h2>La tienda abre pronto</h2>
+            <p>Aquí encontrarás los productos digitales de ArdyMarket: guías, cursos, material de estudio y más.</p>
+        </div>
+    </div>
+</body>
+</html>

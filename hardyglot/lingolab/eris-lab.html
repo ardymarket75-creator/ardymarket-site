@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eri's Lab - Hardyglot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fuentes recortadas: solo las que ofrece el Design Panel (antes eran ~30 familias) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Lora:wght@400;600&family=Rubik:wght@400;500;600&family=Heebo:wght@400;500;600&family=David+Libre:wght@400;500;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Alef:wght@400;700&family=Varela+Round&family=Secular+One&family=Suez+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Noto+Rashi+Hebrew&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --color-1: #1b7a63;
+            --color-2: #e74c3c;
+            --color-3: #6c5ce7;
+            --color-4: #2196f3;
+            --color-5: #f39c12;
+            --font-primary: 'Poppins', sans-serif;
+            --font-size-base: 16px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-primary);
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            font-size: var(--font-size-base);
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 90%;
+            max-width: 480px;
+            padding: 25px 35px 30px;
+            position: relative;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .btn-icon {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--color-2);
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon.gear { color: #bbb; }
+        .btn-icon.gear:hover { color: var(--color-1); }
+
+        .contador {
+            font-weight: 600;
+            color: #444;
+            font-size: 15px;
+            flex: 1;
+            text-align: center;
+        }
+
+        /* ===== CONTROLES PRINCIPALES (ahora ARRIBA) ===== */
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 5px 0 15px;
+        }
+
+        .btn-nav {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-play {
+            background: var(--color-1);
+            color: white;
+            border: none;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(27, 122, 99, 0.35);
+            transition: 0.2s;
+        }
+
+        .btn-play.playing { background: var(--color-5); }
+
+        .btn-design-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #bbb;
+        }
+        .btn-design-toggle:hover { color: var(--color-3); }
+
+        /* ===== BANNER DE REPASOS ===== */
+        .banner-repasos {
+            display: none;
+            background: #fff8e6;
+            border: 1px solid #f5d78e;
+            color: #8a6d1a;
+            border-radius: 12px;
+            padding: 8px 14px;
+            font-size: 13px;
+            margin-bottom: 14px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .banner-repasos button {
+            border: none;
+            background: var(--color-5);
+            color: white;
+            border-radius: 8px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ===== BLOQUES DE IDIOMA ===== */
+        .bloque { position: relative; }
+
+        .frase-box {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 6px;
+            position: relative;
+            text-align: center;
+        }
+
+        .texto-objetivo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-1);
+            line-height: 1.35;
+            transition: filter 0.3s, opacity 0.3s;
+        }
+
+        .texto-base {
+            font-size: 19px;
+            color: #444;
+            line-height: 1.35;
+            transition: filter 0.3s, opacity 0.3s;
+        }
+
+        .texto-oculto { filter: blur(8px); opacity: 0.5; }
+
+        .rtl { direction: rtl; }
+
+        .translit {
+            font-size: 15px;
+            color: #95a5a6;
+            font-style: italic;
+            margin-top: 6px;
+        }
+
+        .palabra { cursor: pointer; border-radius: 4px; padding: 0 1px; }
+        .palabra:hover { background: rgba(27, 122, 99, 0.12); }
+
+        .utility-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 26px;
+        }
+
+        .nikud-toggle, .base-toggle {
+            border: 1px solid #eee;
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 3px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            color: #777;
+        }
+        .nikud-toggle.activo, .base-toggle.activo { color: var(--color-3); border-color: var(--color-3); }
+
+        .progress-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .phrase-play-btn {
+            border: 1px solid #eee;
+            background: #fafafa;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--color-1);
+            font-size: 12px;
+        }
+
+        .btn-dominada {
+            border: none;
+            background: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+        }
+        .btn-dominada.hecha { color: var(--color-1); font-weight: 600; text-decoration: none; }
+
+        .stars { color: var(--color-5); font-size: 13px; letter-spacing: 2px; }
+        .stars .far { color: #ddd; }
+
+        .rep-counter { font-size: 12px; color: #999; min-width: 28px; }
+
+        .divider {
+            height: 2px;
+            background: #f0f0f0;
+            margin: 18px 0;
+            border-radius: 2px;
+        }
+
+        /* ===== POPUPS DE CONFIG POR BLOQUE ===== */
+        .config-popup {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 0;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            padding: 14px;
+            z-index: 50;
+            width: 230px;
+        }
+
+        .config-popup h4 {
+            margin: 0 0 10px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-close-popup { border: none; background: none; cursor: pointer; color: #999; }
+
+        .config-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .config-row label { flex: 1; color: #555; }
+        .config-row span { min-width: 26px; text-align: center; font-weight: 600; }
+
+        .btn-fs {
+            border: 1px solid #eee;
+            background: #fafafa;
+            border-radius: 6px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 13px;
+            line-height: 1;
+        }
+
+        .config-toggle {
+            border: 1px solid #eee;
+            background: #fafafa;
+            border-radius: 6px;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-size: 11px;
+            color: #777;
+        }
+        .config-toggle.activo { color: var(--color-1); border-color: var(--color-1); }
+
+        /* ===== MODAL USUARIO (idiomas + género) ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 360px;
+        }
+
+        .modal-content h3 { margin: 0 0 18px; font-size: 17px; color: #333; }
+
+        .form-row { margin-bottom: 16px; }
+        .form-row label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #777;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-row select {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: 14px;
+        }
+
+        .genero-opciones { display: flex; gap: 8px; }
+        .genero-btn {
+            flex: 1;
+            padding: 9px;
+            border: 1px solid #ddd;
+            background: #fafafa;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #666;
+        }
+        .genero-btn.activo {
+            border-color: var(--color-1);
+            color: var(--color-1);
+            background: rgba(27, 122, 99, 0.06);
+            font-weight: 600;
+        }
+
+        .nota-genero { font-size: 11px; color: #999; margin-top: 6px; line-height: 1.4; }
+
+        .btn-primario {
+            width: 100%;
+            padding: 11px;
+            background: var(--color-1);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: var(--font-primary);
+            margin-top: 5px;
+        }
+
+        /* ===== DESIGN PANEL ===== */
+        .design-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 280px;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.12);
+            padding: 20px;
+            z-index: 90;
+            overflow-y: auto;
+        }
+        .design-panel.visible { display: block; }
+
+        .design-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .design-row label { color: #555; }
+
+        .color-input {
+            width: 34px;
+            height: 26px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1px;
+            cursor: pointer;
+        }
+
+        .font-select {
+            padding: 4px;
+            font-size: 11px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .btn-close-design, .reset-btn {
+            border: none;
+            background: #eee;
+            border-radius: 8px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .reset-btn { color: #555; }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../supabase-config.js"></script>
+    <script>
+        async function checkAuth() {
+            const { data } = await window.supabase.auth.getSession();
+            if (!data.session) window.location.href = '../../index.html';
+        }
+        checkAuth();
+    </script>
+</head>
+
+<body>
+    <div class="card">
+        <!-- ===== BARRA SUPERIOR ===== -->
+        <div class="top-bar">
+            <button class="btn-icon" onclick="cerrarSesion()" title="Cerrar sesión"><i
+                    class="fas fa-sign-out-alt"></i></button>
+            <span class="contador" id="contador">Cargando...</span>
+            <button class="btn-icon gear" onclick="abrirModalUsuario()" title="Idiomas y perfil"><i
+                    class="fas fa-user-cog"></i></button>
+        </div>
+
+        <!-- ===== CONTROLES PRINCIPALES (PLAY ARRIBA) ===== -->
+        <div class="controls-row">
+            <button class="btn-nav" onclick="window.location.href='index.html'" title="Dashboard"><span
+                    class="material-symbols-outlined">home</span></button>
+            <button class="btn-nav" onclick="cambiarFrase(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="btn-play" id="btn-play" onclick="toggleAudio()"><i class="fas fa-play"
+                    id="play-icon"></i></button>
+            <button class="btn-nav" onclick="cambiarFrase(1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="btn-design-toggle" onclick="toggleDesignPanel()" title="Design"><i
+                    class="fas fa-palette"></i></button>
+        </div>
+
+        <!-- ===== BANNER DE REPASOS PENDIENTES ===== -->
+        <div class="banner-repasos" id="banner-repasos">
+            <span id="banner-texto">📚 Tienes repasos hoy</span>
+            <span>
+                <button onclick="filtrarRepasos()">Repasar</button>
+                <button onclick="verTodas()" style="background:#bbb;">Todas</button>
+            </span>
+        </div>
+
+        <!-- ===== BLOQUE IDIOMA OBJETIVO ===== -->
+        <div class="bloque">
+            <div class="utility-row">
+                <button class="nikud-toggle" id="btn-nikud-obj" onclick="toggleNikud('obj')" style="display:none;"><i
+                        class="fas fa-eye"></i> נקודים</button>
+                <button class="btn-icon gear" onclick="abrirConfig('obj')" title="Config" style="margin-left:auto;"><i
+                        class="fas fa-cog"></i></button>
+            </div>
+            <div class="frase-box">
+                <div>
+                    <div class="texto-objetivo" id="texto-obj">...</div>
+                    <div class="translit" id="translit-obj" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="progress-row">
+                <span class="rep-counter" id="rep-counter-obj">0/5</span>
+                <button class="phrase-play-btn" onclick="playPhrase('obj')" title="Play"><i
+                        class="fas fa-play"></i></button>
+                <button class="btn-dominada" id="btn-dominada-obj" onclick="marcarDominada('obj')">¡Ya!</button>
+                <span class="stars" id="stars-obj"></span>
+            </div>
+            <div class="config-popup" id="config-obj">
+                <h4><span id="config-titulo-obj">Objetivo</span> <button class="btn-close-popup"
+                        onclick="cerrarConfig('obj')">✕</button></h4>
+                <div class="config-row"><label>Reps:</label><button class="btn-fs"
+                        onclick="adjustReps('obj', -1)">−</button><span id="reps-display-obj">5</span><button
+                        class="btn-fs" onclick="adjustReps('obj', 1)">+</button></div>
+                <div class="config-row"><label>Silencio:</label><button class="btn-fs"
+                        onclick="adjustSilence('obj', -0.1)">−</button><span id="silence-display-obj">1.3</span><button
+                        class="btn-fs" onclick="adjustSilence('obj', 0.1)">+</button></div>
+                <div class="config-row"><label>Velocidad:</label><button class="btn-fs"
+                        onclick="adjustSpeed('obj', -1)">−</button><span id="speed-display-obj">0</span><button
+                        class="btn-fs" onclick="adjustSpeed('obj', 1)">+</button></div>
+                <div class="config-row"><label>Tamaño letra:</label><button class="btn-fs"
+                        onclick="adjustFontSize('obj', -1)">−</button><span id="fs-display-obj">26</span><button
+                        class="btn-fs" onclick="adjustFontSize('obj', 1)">+</button></div>
+                <div class="config-row" id="row-translit" style="display:none;"><label>Transliteración:</label><button
+                        class="config-toggle" id="toggle-trans" onclick="toggleTrans()">Show</button></div>
+                <div class="config-row"><label>Texto:</label><button class="config-toggle activo" id="toggle-text-obj"
+                        onclick="toggleTexto('obj')">Hide</button></div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ===== BLOQUE IDIOMA BASE ===== -->
+        <div class="bloque">
+            <div class="utility-row">
+                <button class="base-toggle activo" id="btn-blur-base" onclick="toggleBlurBase()"><i
+                        class="fas fa-eye"></i> <span id="nombre-base-toggle">Base</span></button>
+                <button class="nikud-toggle" id="btn-nikud-base" onclick="toggleNikud('base')"
+                    style="display:none;"><i class="fas fa-eye"></i> נקודים</button>
+                <button class="btn-icon gear" onclick="abrirConfig('base')" title="Config"
+                    style="margin-left:auto;"><i class="fas fa-cog"></i></button>
+            </div>
+            <div class="frase-box">
+                <div>
+                    <div class="texto-base" id="texto-base"></div>
+                    <div class="translit" id="translit-base" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="progress-row">
+                <span class="rep-counter" id="rep-counter-base">0/1</span>
+                <button class="phrase-play-btn" onclick="playPhrase('base')" title="Play"><i
+                        class="fas fa-play"></i></button>
+                <button class="btn-dominada" id="btn-dominada-base" onclick="marcarDominada('base')">¡Ya!</button>
+                <span class="stars" id="stars-base"></span>
+            </div>
+            <div class="config-popup" id="config-base">
+                <h4><span id="config-titulo-base">Base</span> <button class="btn-close-popup"
+                        onclick="cerrarConfig('base')">✕</button></h4>
+                <div class="config-row"><label>Reps:</label><button class="btn-fs"
+                        onclick="adjustReps('base', -1)">−</button><span id="reps-display-base">1</span><button
+                        class="btn-fs" onclick="adjustReps('base', 1)">+</button></div>
+                <div class="config-row"><label>Silencio:</label><button class="btn-fs"
+                        onclick="adjustSilence('base', -0.1)">−</button><span
+                        id="silence-display-base">0.0</span><button class="btn-fs"
+                        onclick="adjustSilence('base', 0.1)">+</button></div>
+                <div class="config-row"><label>Velocidad:</label><button class="btn-fs"
+                        onclick="adjustSpeed('base', -1)">−</button><span id="speed-display-base">0</span><button
+                        class="btn-fs" onclick="adjustSpeed('base', 1)">+</button></div>
+                <div class="config-row"><label>Tamaño letra:</label><button class="btn-fs"
+                        onclick="adjustFontSize('base', -1)">−</button><span id="fs-display-base">19</span><button
+                        class="btn-fs" onclick="adjustFontSize('base', 1)">+</button></div>
+                <div class="config-row"><label>Texto:</label><button class="config-toggle activo" id="toggle-text-base"
+                        onclick="toggleTexto('base')">Hide</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: IDIOMAS Y PERFIL ===== -->
+    <div class="modal" id="modal-usuario">
+        <div class="modal-content">
+            <h3><i class="fas fa-user-cog"></i> Mi configuración</h3>
+
+            <div class="form-row">
+                <label>Idioma que hablo (materno)</label>
+                <select id="select-base" onchange="renderListaObjetivos()"></select>
+            </div>
+
+            <div class="form-row">
+                <label>Idiomas que estudio (en orden)</label>
+                <div id="lista-objetivos" style="display:flex; flex-direction:column; gap:6px;"></div>
+                <div class="nota-genero">Toca los idiomas en el orden en que quieres estudiarlos. La sesión los
+                    encadena: al terminar el bloque de un idioma, sigue automáticamente el próximo.</div>
+            </div>
+
+            <div class="form-row">
+                <label>Expresión de género</label>
+                <div class="genero-opciones">
+                    <button class="genero-btn" id="genero-m" onclick="seleccionarGenero('m')">♂ Masculina</button>
+                    <button class="genero-btn" id="genero-f" onclick="seleccionarGenero('f')">♀ Femenina</button>
+                </div>
+                <div class="nota-genero">En idiomas con formas gramaticales por género (como el hebreo), verás y
+                    escucharás las frases en la forma que te corresponde.</div>
+            </div>
+
+            <button class="btn-primario" onclick="guardarPreferencias()">Guardar</button>
+        </div>
+    </div>
+
+    <!-- ===== DESIGN PANEL ===== -->
+    <div class="design-panel" id="design-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3 style="margin:0; font-size:16px;">🎨 Design Panel</h3>
+            <button class="btn-close-design" onclick="toggleDesignPanel()">✕</button>
+        </div>
+
+        <div style="border-bottom:1px solid #eee; padding-bottom:15px; margin-bottom:15px;">
+            <div class="design-row">
+                <label>Idioma objetivo</label>
+                <input type="color" class="color-input" id="dp-color-obj" value="#1b7a63"
+                    onchange="dpColor('obj', this.value)">
+            </div>
+            <div class="design-row">
+                <select class="font-select" id="dp-font-obj" onchange="dpFont('obj', this.value)"
+                    style="flex:1;"></select>
+            </div>
+
+            <div class="design-row" style="margin-top:10px;">
+                <label>Idioma base</label>
+                <input type="color" class="color-input" id="dp-color-base" value="#444444"
+                    onchange="dpColor('base', this.value)">
+            </div>
+            <div class="design-row">
+                <select class="font-select" id="dp-font-base" onchange="dpFont('base', this.value)"
+                    style="flex:1;"></select>
+            </div>
+        </div>
+
+        <div class="design-row"><label>Primary</label><input type="color" class="color-input" id="dp-color-1"
+                value="#1b7a63" onchange="dpVarColor(1, this.value)"></div>
+        <div class="design-row"><label>Accent</label><input type="color" class="color-input" id="dp-color-2"
+                value="#e74c3c" onchange="dpVarColor(2, this.value)"></div>
+        <div class="design-row"><label>Tertiary</label><input type="color" class="color-input" id="dp-color-3"
+                value="#6c5ce7" onchange="dpVarColor(3, this.value)"></div>
+        <div class="design-row"><label>Secondary</label><input type="color" class="color-input" id="dp-color-4"
+                value="#2196f3" onchange="dpVarColor(4, this.value)"></div>
+        <div class="design-row"><label>Highlight</label><input type="color" class="color-input" id="dp-color-5"
+                value="#f39c12" onchange="dpVarColor(5, this.value)"></div>
+
+        <div style="display:flex; gap:10px; margin-top:20px;">
+            <button class="reset-btn" onclick="resetDesign()" style="flex:1;">Reset</button>
+            <button class="reset-btn" onclick="toggleDesignPanel()"
+                style="flex:1; background:var(--color-1); color:white;">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/engine-v2.js"></script>
+    <script src="js/spaced-repetition.js"></script>
+    <script>
+        /* ============================================================
+           LANGUAGE LAB — núcleo de la app
+           Modelo: el alumno elige un PAR de idiomas (base + objetivo)
+           y una expresión de GÉNERO. Solo se cargan esos dos idiomas.
+           ============================================================ */
+
+        // ----- Catálogo de idiomas (agrega aquí los futuros) -----
+        const IDIOMAS_INFO = {
+            en: { nombre: 'Inglés', tts: 'en-US' },
+            es: { nombre: 'Español', tts: 'es-ES' },
+            he: { nombre: 'Hebreo', tts: 'he-IL', rtl: true, tieneNikud: true, tieneTranslit: true }
+        };
+
+        // 🔒 AUDIOS PROTEGIDOS: los MP3 monolíticos viven en Supabase Storage
+        // (bucket privado "audios"). Solo usuarios con sesión obtienen URLs
+        // firmadas y temporales. Si un audio no está, cae al fallback TTS.
+        const BUCKET_AUDIOS = 'audios';
+        const AUDIO_URL_TTL = 21600; // 6 horas
+        const AUDIO_MONOLITICO_ARCHIVOS = {
+            en: 'en_milo_rvcr_P1_v1.mp3',
+            es: 'sp_Bautista-rvcr_p1_v1.mp3',
+            he: 'he_Atlas_rvcr_p1_v1.mp3'
+        };
+        const AUDIO_MONOLITICO = {}; // lang -> URL firmada (se llena en iniciar)
+
+        async function cargarAudiosProtegidos() {
+            if (!window.supabase) return;
+            for (const [lang, archivo] of Object.entries(AUDIO_MONOLITICO_ARCHIVOS)) {
+                try {
+                    const { data, error } = await window.supabase
+                        .storage.from(BUCKET_AUDIOS)
+                        .createSignedUrl(archivo, AUDIO_URL_TTL);
+                    if (!error && data?.signedUrl) {
+                        AUDIO_MONOLITICO[lang] = data.signedUrl;
+                    } else {
+                        console.warn(`⚠️ Sin audio protegido para ${lang}:`, error?.message);
+                    }
+                } catch (err) {
+                    console.warn(`⚠️ Error firmando URL de ${lang}:`, err);
+                }
+            }
+        }
+
+        // Aviso visual no intrusivo
+        function mostrarToast(mensaje, esError = false) {
+            let toast = document.getElementById('hg-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'hg-toast';
+                toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:10px;color:#fff;font-weight:600;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.3);max-width:90%;text-align:center;';
+                document.body.appendChild(toast);
+            }
+            toast.style.background = esError ? '#e74c3c' : '#1b7a63';
+            toast.innerText = mensaje;
+            toast.style.display = 'block';
+            clearTimeout(toast._t);
+            toast._t = setTimeout(() => { toast.style.display = 'none'; }, 4000);
+        }
+
+        // ----- Claves de persistencia -----
+        const STORAGE_KEY = 'hardyglot_progreso_v3';   // misma clave: conserva tu progreso actual
+        const PREFS_KEY = 'hardyglot_prefs_v1';        // pareja de idiomas + género + config por idioma
+
+        // Cuando agregues las columnas next_review/review_level en Supabase
+        // (ver INSTRUCCIONES.md), cambia esto a true:
+        const SYNC_REPASOS = false;
+
+        // ----- Estado global -----
+        let frasesTodas = [];      // todas las frases normalizadas
+        let frasesActivas = [];    // las visibles (puede ser el filtro de repasos)
+        let indice = 0;
+        let isPlaying = false;
+        let modoRepaso = false;
+
+        let pareja = { base: 'es', objetivos: ['en'], activo: 0 };
+        let genero = 'm';
+        let objetivosSel = [];         // selección temporal en el modal (conserva el orden de elección)
+        let secuenciaEnCurso = false;  // guardia: evita dos secuencias simultáneas
+
+        const config = {};   // config por código de idioma (se crea bajo demanda)
+        let progreso = {};   // progreso por idioma: progreso[lang][id]
+        let vista = { blurBase: false, translitVisible: true, nikud: { obj: true, base: true } };
+
+        const audioCache = {}; // url -> objeto Audio (se reutiliza)
+
+        // ============================================================
+        // NORMALIZACIÓN DEL JSON
+        // Convierte el formato actual (idioma_objetivo + idiomas_soporte)
+        // en un mapa plano de idiomas iguales entre sí. Así el JSON de
+        // tu Apps Script sigue funcionando sin cambios.
+        // ============================================================
+        function normalizarFrase(f) {
+            const idiomas = {};
+            const o = f.idioma_objetivo;
+            idiomas[o.codigo] = {
+                frase: o.frase_completa,
+                audio_url: o.audio_frase_url || '',
+                sync: o.sincronizacion_audio || null,
+                variantes: o.variantes_genero || null
+            };
+            (f.idiomas_soporte || []).forEach(s => {
+                idiomas[s.codigo] = {
+                    frase: s.frase_traduccion,
+                    nikud: s.frase_traduccion_nikud || '',
+                    translit: s.transliteracion || '',
+                    audio_url: s.audio_url || '',
+                    sync: s.sincronizacion_audio || null,
+                    variantes: s.variantes_genero || null
+                };
+            });
+            return { id: f.id, categoria: f.categoria || [], idiomas };
+        }
+
+        // Devuelve los datos de un idioma APLICANDO la variante de género
+        // si existe (los campos de la variante pisan a los neutros).
+        function datosIdioma(f, lang) {
+            const d = f.idiomas[lang];
+            if (!d) return null;
+            const v = d.variantes && d.variantes[genero];
+            if (!v) return d;
+            return {
+                frase: v.frase_traduccion || v.frase_completa || d.frase,
+                nikud: v.frase_traduccion_nikud || d.nikud,
+                translit: v.transliteracion || d.translit,
+                audio_url: v.audio_url || d.audio_url,
+                sync: v.sincronizacion_audio || d.sync,
+                variantes: d.variantes
+            };
+        }
+
+        // ============================================================
+        // RESOLUCIÓN DE AUDIO (en orden de preferencia):
+        // 1. Audio individual de la frase (audio_url del JSON)
+        // 2. Segmento del MP3 monolítico (sync + archivo actual)
+        // 3. Voz sintética del navegador (para idiomas sin audio aún)
+        // ============================================================
+        function getAudioObj(url) {
+            if (!audioCache[url]) {
+                const a = new Audio(url);
+                a.addEventListener('error', () => {
+                    console.error('❌ No se pudo cargar el audio:', url);
+                    mostrarToast('⚠️ Un audio no cargó. Revisa tu conexión o tu sesión.', true);
+                });
+                audioCache[url] = a;
+            }
+            return audioCache[url];
+        }
+
+        function fuenteAudio(d, lang) {
+            if (d.audio_url) {
+                return { tipo: 'archivo', audio: getAudioObj(d.audio_url) };
+            }
+            if (d.sync && AUDIO_MONOLITICO[lang]) {
+                return { tipo: 'segmento', audio: getAudioObj(AUDIO_MONOLITICO[lang]), sync: d.sync };
+            }
+            return { tipo: 'tts', texto: d.frase, ttsLang: (IDIOMAS_INFO[lang] || {}).tts || 'en-US' };
+        }
+
+        // ============================================================
+        // CONFIG Y PROGRESO POR IDIOMA
+        // ============================================================
+        function getConfigIdioma(lang) {
+            if (!config[lang]) {
+                // Por defecto el base repite 1 vez y el objetivo 5
+                const esBase = lang === pareja.base;
+                config[lang] = {
+                    reps: esBase ? 1 : 5,
+                    intervalo: esBase ? 0.0 : 1.3,
+                    velocidad: 0,
+                    textoVisible: true,
+                    fontSize: esBase ? 19 : 26
+                };
+            }
+            return config[lang];
+        }
+
+        function getProgreso(lang) {
+            if (!progreso[lang]) progreso[lang] = {};
+            const f = frasesActivas[indice];
+            if (!f) return { reps: 0, stars: 0, dominada: false, lastStarDate: null };
+            const id = f.id;
+            if (!progreso[lang][id]) {
+                progreso[lang][id] = { reps: 0, stars: 0, dominada: false, lastStarDate: null };
+            }
+            return progreso[lang][id];
+        }
+
+        function objetivoActivo() {
+            return pareja.objetivos[pareja.activo] || pareja.objetivos[0];
+        }
+        function langDe(rol) { return rol === 'obj' ? objetivoActivo() : pareja.base; }
+        function rolDe(lang) {
+            if (lang === objetivoActivo()) return 'obj';
+            if (lang === pareja.base) return 'base';
+            return null;
+        }
+
+        // ============================================================
+        // PERSISTENCIA: localStorage + Supabase (batch)
+        // ============================================================
+        async function guardarProgreso() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(progreso));
+            } catch (e) {
+                console.warn('Error guardando en localStorage:', e);
+            }
+            if (navigator.onLine) sincronizarConSupabase();
+        }
+
+        // FIX: antes se hacía un upsert por frase (hasta 120 requests).
+        // Ahora se arma UNA sola llamada con todas las filas.
+        async function sincronizarConSupabase() {
+            if (!window.supabase) return;
+            try {
+                const { data: { session } } = await window.supabase.auth.getSession();
+                if (!session) return;
+                const user_id = session.user.id;
+
+                const filas = [];
+                for (const lang in progreso) {
+                    for (const id in progreso[lang]) {
+                        const p = progreso[lang][id];
+                        const fila = {
+                            user_id,
+                            phrase_id: parseInt(id),
+                            lang,
+                            reps: p.reps || 0,
+                            stars: p.stars || 0,
+                            dominada: p.dominada || false,
+                            updated_at: new Date().toISOString()
+                        };
+                        if (SYNC_REPASOS) {
+                            fila.review_level = p.nivel_repaso || 0;
+                            fila.next_review = p.proximo_repaso || null;
+                        }
+                        filas.push(fila);
+                    }
+                }
+                if (!filas.length) return;
+
+                const { error } = await window.supabase
+                    .from('progreso')
+                    .upsert(filas, { onConflict: 'user_id,phrase_id,lang' });
+
+                if (error) console.error('Error sincronizando:', error);
+                else console.log(`✅ Progreso sincronizado (${filas.length} filas, 1 request)`);
+            } catch (err) {
+                console.error('Error en sincronizarConSupabase:', err);
+            }
+        }
+
+        async function cargarProgreso() {
+            const deLocal = () => {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) try { progreso = JSON.parse(raw); } catch (e) { }
+            };
+            if (!window.supabase) return deLocal();
+            try {
+                const { data: { session } } = await window.supabase.auth.getSession();
+                if (!session) return deLocal();
+
+                const { data, error } = await window.supabase
+                    .from('progreso').select('*').eq('user_id', session.user.id);
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    progreso = {};
+                    data.forEach(row => {
+                        if (!progreso[row.lang]) progreso[row.lang] = {};
+                        progreso[row.lang][row.phrase_id.toString()] = {
+                            reps: row.reps, stars: row.stars, dominada: row.dominada,
+                            lastStarDate: null,
+                            nivel_repaso: row.review_level ?? undefined,
+                            proximo_repaso: row.next_review ?? undefined
+                        };
+                    });
+                    // Los datos de repaso viven en localStorage mientras
+                    // SYNC_REPASOS sea false: los mezclamos para no perderlos.
+                    if (!SYNC_REPASOS) mezclarRepasosLocales();
+                    console.log('✅ Progreso cargado de Supabase');
+                } else {
+                    deLocal();
+                }
+            } catch (err) {
+                console.error('Error cargando progreso:', err);
+                deLocal();
+            }
+        }
+
+        function mezclarRepasosLocales() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return;
+                const local = JSON.parse(raw);
+                for (const lang in local) {
+                    for (const id in local[lang]) {
+                        const l = local[lang][id];
+                        if (l.proximo_repaso && progreso[lang] && progreso[lang][id]) {
+                            progreso[lang][id].proximo_repaso = l.proximo_repaso;
+                            progreso[lang][id].nivel_repaso = l.nivel_repaso || 0;
+                        }
+                    }
+                }
+            } catch (e) { }
+        }
+
+        // ============================================================
+        // PREFERENCIAS DEL USUARIO (idiomas + género)
+        // ============================================================
+        function cargarPreferencias() {
+            try {
+                const raw = localStorage.getItem(PREFS_KEY);
+                if (raw) {
+                    const p = JSON.parse(raw);
+                    if (p.pareja) {
+                        // Migración: formato viejo { base, objetivo } → { base, objetivos: [...] }
+                        if (p.pareja.objetivo && !p.pareja.objetivos) {
+                            pareja = { base: p.pareja.base, objetivos: [p.pareja.objetivo], activo: 0 };
+                        } else {
+                            pareja = p.pareja;
+                            if (!Array.isArray(pareja.objetivos) || !pareja.objetivos.length) {
+                                pareja.objetivos = ['en'];
+                            }
+                            pareja.activo = 0; // cada sesión arranca por el primer idioma
+                        }
+                    }
+                    if (p.genero) genero = p.genero;
+                    if (p.config) Object.assign(config, p.config);
+                    if (p.vista) Object.assign(vista, p.vista);
+                }
+            } catch (e) { }
+        }
+
+        function persistirPreferencias() {
+            localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, config, vista }));
+        }
+
+        function idiomasDisponibles() {
+            const set = new Set();
+            frasesTodas.forEach(f => Object.keys(f.idiomas).forEach(c => set.add(c)));
+            return [...set];
+        }
+
+        function abrirModalUsuario() {
+            const disponibles = idiomasDisponibles();
+            const sel = document.getElementById('select-base');
+            sel.innerHTML = '';
+            disponibles.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = (IDIOMAS_INFO[c] || {}).nombre || c.toUpperCase();
+                if (c === pareja.base) opt.selected = true;
+                sel.appendChild(opt);
+            });
+            objetivosSel = [...pareja.objetivos];
+            renderListaObjetivos();
+            marcarGeneroUI();
+            document.getElementById('modal-usuario').style.display = 'flex';
+        }
+
+        // Lista de idiomas objetivo: clic agrega/quita conservando el ORDEN de elección
+        function renderListaObjetivos() {
+            const base = document.getElementById('select-base').value || pareja.base;
+            objetivosSel = objetivosSel.filter(c => c !== base); // el materno no puede ser objetivo
+            const cont = document.getElementById('lista-objetivos');
+            cont.innerHTML = '';
+            idiomasDisponibles().filter(c => c !== base).forEach(c => {
+                const pos = objetivosSel.indexOf(c);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'genero-btn' + (pos >= 0 ? ' activo' : '');
+                btn.style.cssText = 'display:flex; justify-content:space-between; align-items:center; width:100%;';
+                btn.innerHTML = `<span>${(IDIOMAS_INFO[c] || {}).nombre || c.toUpperCase()}</span>` +
+                    (pos >= 0 ? `<span style="font-weight:700;">${pos + 1}º</span>` : '<span style="opacity:.4;">—</span>');
+                btn.onclick = () => {
+                    const i = objetivosSel.indexOf(c);
+                    if (i >= 0) objetivosSel.splice(i, 1);
+                    else objetivosSel.push(c);
+                    renderListaObjetivos();
+                };
+                cont.appendChild(btn);
+            });
+        }
+
+        function seleccionarGenero(g) { genero = g; marcarGeneroUI(); }
+
+        function marcarGeneroUI() {
+            document.getElementById('genero-m').classList.toggle('activo', genero === 'm');
+            document.getElementById('genero-f').classList.toggle('activo', genero === 'f');
+        }
+
+        function guardarPreferencias() {
+            const base = document.getElementById('select-base').value;
+            if (!objetivosSel.length) {
+                alert('Elige al menos un idioma para estudiar 🙂');
+                return;
+            }
+            AudioEngine.reset();
+            setPlayUI(false);
+            pareja = { base, objetivos: [...objetivosSel], activo: 0 };
+            persistirPreferencias();
+            document.getElementById('modal-usuario').style.display = 'none';
+            aplicarPareja();
+            actualizarUI();
+            actualizarBannerRepasos();
+        }
+
+        // Ajusta la UI estática al par elegido (títulos, botones hebreos, etc.)
+        function aplicarPareja() {
+            const infoObj = IDIOMAS_INFO[objetivoActivo()] || {};
+            const infoBase = IDIOMAS_INFO[pareja.base] || {};
+
+            document.getElementById('config-titulo-obj').innerText = infoObj.nombre || objetivoActivo();
+            document.getElementById('config-titulo-base').innerText = infoBase.nombre || pareja.base;
+            document.getElementById('nombre-base-toggle').innerText = infoBase.nombre || pareja.base;
+
+            // Rasgos hebreos (nikud/translit/RTL) según dónde caiga el hebreo
+            document.getElementById('btn-nikud-obj').style.display = infoObj.tieneNikud ? 'inline-block' : 'none';
+            document.getElementById('btn-nikud-base').style.display = infoBase.tieneNikud ? 'inline-block' : 'none';
+            document.getElementById('row-translit').style.display = infoObj.tieneTranslit ? 'flex' : 'none';
+
+            document.getElementById('texto-obj').classList.toggle('rtl', !!infoObj.rtl);
+            document.getElementById('texto-base').classList.toggle('rtl', !!infoBase.rtl);
+
+            // Refrescar displays de los popups de config
+            ['obj', 'base'].forEach(rol => {
+                const c = getConfigIdioma(langDe(rol));
+                document.getElementById('reps-display-' + rol).innerText = c.reps;
+                document.getElementById('silence-display-' + rol).innerText = c.intervalo.toFixed(1);
+                document.getElementById('speed-display-' + rol).innerText = c.velocidad;
+                document.getElementById('fs-display-' + rol).innerText = c.fontSize;
+                const btn = document.getElementById('toggle-text-' + rol);
+                btn.classList.toggle('activo', c.textoVisible);
+                btn.innerText = c.textoVisible ? 'Hide' : 'Show';
+            });
+            aplicarDiseño();
+        }
+
+        // ============================================================
+        // RENDER PRINCIPAL
+        // ============================================================
+        function actualizarUI() {
+            const f = frasesActivas[indice];
+            if (!f) {
+                document.getElementById('contador').innerText = 'Sin frases';
+                document.getElementById('texto-obj').innerText = '—';
+                document.getElementById('texto-base').innerText = '';
+                return;
+            }
+            let etiqueta = (modoRepaso ? '📚 Repaso ' : 'Frase ') + `${indice + 1} de ${frasesActivas.length}`;
+            if (pareja.objetivos.length > 1) {
+                const nombre = (IDIOMAS_INFO[objetivoActivo()] || {}).nombre || objetivoActivo();
+                etiqueta += ` · ${nombre} (${pareja.activo + 1}/${pareja.objetivos.length})`;
+            }
+            document.getElementById('contador').innerText = etiqueta;
+
+            renderBloque('obj');
+            renderBloque('base');
+        }
+
+        function renderBloque(rol) {
+            const lang = langDe(rol);
+            const f = frasesActivas[indice];
+            const d = datosIdioma(f, lang);
+            const info = IDIOMAS_INFO[lang] || {};
+            const c = getConfigIdioma(lang);
+            const textoEl = document.getElementById('texto-' + rol);
+            const translitEl = document.getElementById('translit-' + rol);
+
+            if (!d) {
+                textoEl.innerText = '(sin datos para ' + lang + ')';
+                translitEl.style.display = 'none';
+                return;
+            }
+
+            // Texto (con nikud si aplica y está activo)
+            let texto = d.frase;
+            if (info.tieneNikud && vista.nikud[rol] && d.nikud) texto = d.nikud;
+
+            // En el bloque objetivo, cada palabra es clicable (TTS palabra a palabra)
+            if (rol === 'obj') {
+                textoEl.innerHTML = envolverPalabras(texto, lang);
+            } else {
+                textoEl.innerText = texto;
+            }
+            textoEl.style.fontSize = c.fontSize + 'px';
+
+            // Visibilidad del texto
+            textoEl.classList.toggle('texto-oculto', !c.textoVisible || (rol === 'base' && vista.blurBase));
+
+            // Transliteración (solo si el idioma la tiene)
+            if (info.tieneTranslit && d.translit && vista.translitVisible) {
+                translitEl.innerText = d.translit;
+                translitEl.style.display = 'block';
+            } else {
+                translitEl.style.display = 'none';
+            }
+
+            renderProgreso(rol);
+        }
+
+        function renderProgreso(rol) {
+            const lang = langDe(rol);
+            const starsEl = document.getElementById('stars-' + rol);
+            const repEl = document.getElementById('rep-counter-' + rol);
+            const btn = document.getElementById('btn-dominada-' + rol);
+
+            // 🎯 El bloque del idioma materno no muestra progreso (no se contabiliza)
+            if (rol === 'base') {
+                starsEl.style.display = 'none';
+                repEl.style.display = 'none';
+                btn.style.display = 'none';
+                return;
+            }
+            starsEl.style.display = '';
+            repEl.style.display = '';
+            btn.style.display = '';
+
+            const c = getConfigIdioma(lang);
+            const p = getProgreso(lang);
+
+            let html = '';
+            for (let i = 1; i <= 5; i++) html += `<i class="${i <= p.stars ? 'fas' : 'far'} fa-star"></i>`;
+            starsEl.innerHTML = html;
+            repEl.innerText = `${Math.min(p.reps, c.reps)}/${c.reps}`;
+
+            btn.classList.toggle('hecha', !!p.dominada);
+            btn.innerText = p.dominada ? '✓ Dominada' : '¡Ya!';
+        }
+
+        function envolverPalabras(texto, lang) {
+            return texto.split(' ').map(p =>
+                `<span class="palabra" onclick="reproducirPalabra('${p.replace(/'/g, "\\'")}','${lang}')">${p}</span>`
+            ).join(' ');
+        }
+
+        function reproducirPalabra(palabra, lang) {
+            const limpio = palabra.replace(/[.,!?¿¡":]/g, '');
+            if (!('speechSynthesis' in window)) return;
+            const u = new SpeechSynthesisUtterance(limpio);
+            u.lang = (IDIOMAS_INFO[lang] || {}).tts || 'en-US';
+            speechSynthesis.speak(u);
+        }
+
+        // ============================================================
+        // ESTRELLAS Y REPETICIONES
+        // Máximo una estrella nueva por día por frase (constancia real)
+        // ============================================================
+        function incrementarEstrella(lang) {
+            // 🎯 El idioma materno NO contabiliza: solo los idiomas en estudio
+            if (lang === pareja.base) return;
+
+            const c = getConfigIdioma(lang);
+            const p = getProgreso(lang);
+            p.reps = Math.min(p.reps + 1, c.reps);
+            if (p.reps === c.reps) {
+                const hoy = SpacedRepetition.hoy();
+                if (p.lastStarDate !== hoy && p.stars < 5) {
+                    p.stars++;
+                    p.lastStarDate = hoy;
+                }
+            }
+            const rol = rolDe(lang);
+            if (rol) renderProgreso(rol);
+            guardarProgreso();
+        }
+
+        function marcarDominada(rol) {
+            const lang = langDe(rol);
+            const p = getProgreso(lang);
+            if (!p.dominada) {
+                SpacedRepetition.programarPrimerRepaso(p);
+                console.log(`📅 Próximo repaso: ${p.proximo_repaso}`);
+            }
+            renderProgreso(rol);
+            guardarProgreso();
+            actualizarBannerRepasos();
+        }
+
+        // ============================================================
+        // REPASOS (repetición espaciada)
+        // ============================================================
+        function actualizarBannerRepasos() {
+            const ids = SpacedRepetition.repasosPendientes(progreso, objetivoActivo());
+            const banner = document.getElementById('banner-repasos');
+            if (ids.length > 0 && !modoRepaso) {
+                document.getElementById('banner-texto').innerText =
+                    `📚 Tienes ${ids.length} repaso${ids.length > 1 ? 's' : ''} hoy`;
+                banner.style.display = 'flex';
+            } else {
+                banner.style.display = 'none';
+            }
+        }
+
+        function filtrarRepasos() {
+            const ids = SpacedRepetition.repasosPendientes(progreso, objetivoActivo());
+            if (!ids.length) return;
+            AudioEngine.reset();
+            setPlayUI(false);
+            frasesActivas = frasesTodas.filter(f => ids.includes(f.id));
+            indice = 0;
+            modoRepaso = true;
+            document.getElementById('banner-repasos').style.display = 'none';
+            actualizarUI();
+        }
+
+        function verTodas() {
+            AudioEngine.reset();
+            setPlayUI(false);
+            frasesActivas = frasesTodas;
+            indice = 0;
+            modoRepaso = false;
+            actualizarUI();
+            actualizarBannerRepasos();
+        }
+
+        // Al completar la secuencia de una frase que estaba pendiente
+        // de repaso, se registra el repaso y se agenda el siguiente.
+        function registrarRepasoSiCorresponde() {
+            const lang = objetivoActivo();
+            const p = getProgreso(lang);
+            if (p.dominada && p.proximo_repaso && p.proximo_repaso <= SpacedRepetition.hoy()) {
+                SpacedRepetition.completarRepaso(p);
+                console.log(`✅ Repaso completado. Siguiente: ${p.proximo_repaso}`);
+                guardarProgreso();
+                actualizarBannerRepasos();
+            }
+        }
+
+        // ============================================================
+        // REPRODUCCIÓN
+        // ============================================================
+        function velocidadARate(inc) {
+            return Math.max(0.25, Math.min(1 + inc * 0.25, 2));
+        }
+
+        function sincronizarEngine() {
+            [pareja.base, objetivoActivo()].forEach(lang => {
+                const c = getConfigIdioma(lang);
+                AudioEngine.sessionConfig.reps[lang] = c.reps;
+                AudioEngine.sessionConfig.silenceGap[lang] = c.intervalo;
+                AudioEngine.sessionConfig.rate[lang] = velocidadARate(c.velocidad);
+            });
+        }
+
+        // Secuencia pedagógica: materno → objetivo → materno → objetivo
+        function construirPasos(f) {
+            const orden = [pareja.base, objetivoActivo(), pareja.base, objetivoActivo()];
+            return orden.map(lang => {
+                const d = datosIdioma(f, lang);
+                return { lang, fuente: fuenteAudio(d, lang) };
+            });
+        }
+
+        function setPlayUI(playing) {
+            isPlaying = playing;
+            document.getElementById('btn-play').classList.toggle('playing', playing);
+            document.getElementById('play-icon').className = playing ? 'fas fa-pause' : 'fas fa-play';
+        }
+
+        async function toggleAudio(forzarInicio = false) {
+            if (!forzarInicio) setPlayUI(!isPlaying);
+            else setPlayUI(true);
+
+            if (!isPlaying) {
+                AudioEngine.pause();
+                return;
+            }
+
+            // 🛡️ Guardia: si ya hay una secuencia corriendo, no arrancar otra
+            // (evita audios encimados por play/pausa/play rápidos)
+            if (secuenciaEnCurso) return;
+
+            const f = frasesActivas[indice];
+            if (!f) { setPlayUI(false); return; }
+
+            sincronizarEngine();
+            secuenciaEnCurso = true;
+            let completa = false;
+            try {
+                completa = await AudioEngine.playSequence(
+                    construirPasos(f),
+                    (lang) => incrementarEstrella(lang)
+                );
+            } finally {
+                secuenciaEnCurso = false;
+            }
+
+            if (completa && isPlaying) {
+                registrarRepasoSiCorresponde();
+
+                const eraUltimaFrase = indice === frasesActivas.length - 1;
+
+                if (eraUltimaFrase) {
+                    // 🔗 ENCADENAMIENTO: ¿hay más idiomas en la lista de estudio?
+                    if (pareja.activo < pareja.objetivos.length - 1) {
+                        pareja.activo++;
+                        indice = 0;
+                        AudioEngine.reset();
+                        const nombre = (IDIOMAS_INFO[objetivoActivo()] || {}).nombre || objetivoActivo();
+                        mostrarToast(`🔗 Bloque completado. Ahora: ${nombre}`);
+                        aplicarPareja();
+                        actualizarUI();
+                        setPlayUI(true);
+                        setTimeout(() => { if (isPlaying) toggleAudio(true); }, 1200);
+                    } else {
+                        // 🏁 Sesión completa: todos los idiomas, todas las frases
+                        pareja.activo = 0;
+                        AudioEngine.reset();
+                        setPlayUI(false);
+                        aplicarPareja();
+                        actualizarUI();
+                        mostrarToast('🏁 ¡Sesión completa! Recorriste todos tus idiomas.');
+                    }
+                } else {
+                    // Auto-avance a la siguiente frase del bloque actual
+                    cambiarFrase(1, true);
+                    setTimeout(() => { if (isPlaying) toggleAudio(true); }, 500);
+                }
+            }
+        }
+
+        // Play individual de un bloque (una sola reproducción)
+        async function playPhrase(rol) {
+            const lang = langDe(rol);
+            const f = frasesActivas[indice];
+            if (!f) return;
+
+            AudioEngine.pause();
+            setPlayUI(false);
+
+            const d = datosIdioma(f, lang);
+            const c = getConfigIdioma(lang);
+            const rate = velocidadARate(c.velocidad);
+            const fuente = fuenteAudio(d, lang);
+
+            // Cuenta como una repetición manual (sube el contador, sin estrella automática)
+            const p = getProgreso(lang);
+            p.reps = Math.min(p.reps + 1, c.reps);
+            renderProgreso(rol);
+            guardarProgreso();
+
+            await AudioEngine._playPaso({ lang, fuente }, rate);
+        }
+
+        function cambiarFrase(d, mantenerPlay = false) {
+            if (!frasesActivas.length) return;
+            if (!mantenerPlay) {
+                AudioEngine.reset();
+                setPlayUI(false);
+            } else {
+                AudioEngine.stepIndex = 0;
+                AudioEngine.repIndex = 0;
+            }
+            indice = (indice + d + frasesActivas.length) % frasesActivas.length;
+            actualizarUI();
+        }
+
+        // ============================================================
+        // CONFIG POR BLOQUE (popups)
+        // ============================================================
+        function abrirConfig(rol) {
+            document.querySelectorAll('.config-popup').forEach(p => p.style.display = 'none');
+            document.getElementById('config-' + rol).style.display = 'block';
+        }
+        function cerrarConfig(rol) {
+            document.getElementById('config-' + rol).style.display = 'none';
+        }
+        document.addEventListener('click', function (e) {
+            document.querySelectorAll('.config-popup').forEach(popup => {
+                if (popup.style.display === 'block' && !popup.contains(e.target) && !e.target.closest('.gear')) {
+                    popup.style.display = 'none';
+                }
+            });
+        });
+
+        function adjustReps(rol, delta) {
+            const c = getConfigIdioma(langDe(rol));
+            c.reps = Math.max(1, Math.min(10, c.reps + delta));
+            document.getElementById('reps-display-' + rol).innerText = c.reps;
+            renderProgreso(rol);
+            persistirPreferencias();
+        }
+
+        function adjustSilence(rol, delta) {
+            const c = getConfigIdioma(langDe(rol));
+            c.intervalo = Math.max(0, Math.min(3, parseFloat((c.intervalo + delta).toFixed(1))));
+            document.getElementById('silence-display-' + rol).innerText = c.intervalo.toFixed(1);
+            persistirPreferencias();
+        }
+
+        function adjustSpeed(rol, delta) {
+            const c = getConfigIdioma(langDe(rol));
+            c.velocidad = Math.max(-3, Math.min(4, c.velocidad + delta));
+            document.getElementById('speed-display-' + rol).innerText = c.velocidad;
+            persistirPreferencias();
+        }
+
+        function adjustFontSize(rol, delta) {
+            const c = getConfigIdioma(langDe(rol));
+            c.fontSize = Math.max(12, Math.min(34, c.fontSize + delta));
+            document.getElementById('fs-display-' + rol).innerText = c.fontSize;
+            document.getElementById('texto-' + rol).style.fontSize = c.fontSize + 'px';
+            persistirPreferencias();
+        }
+
+        function toggleTexto(rol) {
+            const c = getConfigIdioma(langDe(rol));
+            c.textoVisible = !c.textoVisible;
+            const btn = document.getElementById('toggle-text-' + rol);
+            btn.classList.toggle('activo', c.textoVisible);
+            btn.innerText = c.textoVisible ? 'Hide' : 'Show';
+            renderBloque(rol);
+            persistirPreferencias();
+        }
+
+        function toggleNikud(rol) {
+            vista.nikud[rol] = !vista.nikud[rol];
+            document.getElementById('btn-nikud-' + rol).classList.toggle('activo', vista.nikud[rol]);
+            renderBloque(rol);
+            persistirPreferencias();
+        }
+
+        function toggleTrans() {
+            vista.translitVisible = !vista.translitVisible;
+            const btn = document.getElementById('toggle-trans');
+            btn.classList.toggle('activo', vista.translitVisible);
+            btn.innerText = vista.translitVisible ? 'Hide' : 'Show';
+            renderBloque('obj');
+            persistirPreferencias();
+        }
+
+        function toggleBlurBase() {
+            vista.blurBase = !vista.blurBase;
+            document.getElementById('btn-blur-base').classList.toggle('activo', !vista.blurBase);
+            renderBloque('base');
+            persistirPreferencias();
+        }
+
+        // ============================================================
+        // DESIGN PANEL (claves con prefijo hgll- para no chocar
+        // con las de Bet Midrash, que compartían nombres)
+        // ============================================================
+        const FUENTES_LATINAS = ['Poppins', 'Inter', 'Merriweather', 'Lora'];
+        const FUENTES_HEBREAS = ['Rubik', 'Heebo', 'David Libre', 'Frank Ruhl Libre', 'Alef',
+            'Varela Round', 'Secular One', 'Suez One', 'IBM Plex Sans Hebrew', 'Noto Rashi Hebrew'];
+
+        function poblarSelectFuentes() {
+            ['obj', 'base'].forEach(rol => {
+                const sel = document.getElementById('dp-font-' + rol);
+                sel.innerHTML = '';
+                const grupoL = document.createElement('optgroup'); grupoL.label = 'Latinas';
+                FUENTES_LATINAS.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; grupoL.appendChild(o); });
+                const grupoH = document.createElement('optgroup'); grupoH.label = 'Hebreas';
+                FUENTES_HEBREAS.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; grupoH.appendChild(o); });
+                sel.appendChild(grupoL); sel.appendChild(grupoH);
+            });
+        }
+
+        function toggleDesignPanel() {
+            document.getElementById('design-panel').classList.toggle('visible');
+        }
+
+        function dpColor(rol, color) {
+            document.getElementById('texto-' + rol).style.color = color;
+            localStorage.setItem('hgll-color-' + rol, color);
+        }
+
+        function dpFont(rol, font) {
+            document.getElementById('texto-' + rol).style.fontFamily = `'${font}', sans-serif`;
+            localStorage.setItem('hgll-font-' + rol, font);
+        }
+
+        function dpVarColor(num, color) {
+            document.documentElement.style.setProperty(`--color-${num}`, color);
+            localStorage.setItem(`hgll-var-color-${num}`, color);
+        }
+
+        function aplicarDiseño() {
+            for (let i = 1; i <= 5; i++) {
+                const c = localStorage.getItem(`hgll-var-color-${i}`);
+                if (c) {
+                    document.documentElement.style.setProperty(`--color-${i}`, c);
+                    const input = document.getElementById(`dp-color-${i}`);
+                    if (input) input.value = c;
+                }
+            }
+            ['obj', 'base'].forEach(rol => {
+                const color = localStorage.getItem('hgll-color-' + rol);
+                if (color) {
+                    document.getElementById('texto-' + rol).style.color = color;
+                    document.getElementById('dp-color-' + rol).value = color;
+                }
+                const font = localStorage.getItem('hgll-font-' + rol);
+                if (font) {
+                    document.getElementById('texto-' + rol).style.fontFamily = `'${font}', sans-serif`;
+                    document.getElementById('dp-font-' + rol).value = font;
+                }
+            });
+        }
+
+        function resetDesign() {
+            Object.keys(localStorage)
+                .filter(k => k.startsWith('hgll-'))
+                .forEach(k => localStorage.removeItem(k));
+            location.reload();
+        }
+
+        // ============================================================
+        // SESIÓN Y ARRANQUE
+        // ============================================================
+        async function cerrarSesion() {
+            const { error } = await window.supabase.auth.signOut();
+            if (!error) window.location.href = '../../index.html';
+            else alert('Error: ' + error.message);
+        }
+
+        async function iniciar() {
+            cargarPreferencias();
+            poblarSelectFuentes();
+            await cargarProgreso();
+            await cargarAudiosProtegidos();
+
+            const resp = await fetch('frases.json');
+            const crudas = await resp.json();
+            frasesTodas = crudas.map(normalizarFrase);
+            frasesActivas = frasesTodas;
+
+            // Si el par guardado ya no existe en los datos, volver al default
+            const disp = idiomasDisponibles();
+            pareja.objetivos = pareja.objetivos.filter(c => disp.includes(c) && c !== pareja.base);
+            if (!disp.includes(pareja.base)) pareja.base = 'es';
+            if (!pareja.objetivos.length) pareja.objetivos = [disp.find(c => c !== pareja.base) || 'en'];
+            pareja.activo = 0;
+
+            aplicarPareja();
+            actualizarUI();
+            actualizarBannerRepasos();
+        }
+
+        iniciar();
+    </script>
+</body>
+
+</html>

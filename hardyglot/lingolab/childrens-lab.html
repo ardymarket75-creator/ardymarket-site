@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children's Lab - Lingo Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../supabase-config.js"></script>
+    <script>
+        (async () => {
+            const { data } = await window.supabase.auth.getSession();
+            if (!data.session) window.location.href = '../../index.html';
+        })();
+    </script>
+    <style>
+        body { font-family: 'Urbanist', sans-serif; background-color: #f3f4f6; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; margin: 0; padding: 30px 0; box-sizing: border-box; }
+        .container { background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; max-width: 760px; width: 90%; position: relative; }
+        .volver { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #6b7280; font-weight: 600; font-size: 14px; }
+        .volver:hover { color: #10B981; }
+        h1 { font-size: 34px; margin: 10px 0 5px; color: #1f2937; }
+        h1 i { color: #3B82F6; }
+        .desc { color: #6b7280; max-width: 520px; margin: 0 auto 30px; }
+        .badge { display: inline-block; font-size: 12px; font-weight: 700; color: #b45309; background: #fef3c7; border-radius: 20px; padding: 4px 14px; margin-bottom: 25px; }
+
+        h2 { font-size: 18px; color: #1f2937; text-align: left; margin: 30px 0 15px; }
+        .ruta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        @media (max-width: 600px) { .ruta { grid-template-columns: repeat(2, 1fr); } .container { padding: 40px 22px; } }
+        .dia { border: 2px solid #E5E7EB; border-radius: 12px; padding: 14px 8px; }
+        .dia .num { font-size: 22px; font-weight: 700; color: #10B981; }
+        .dia .label { font-size: 11px; color: #6b7280; }
+
+        .modulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        @media (max-width: 600px) { .modulos { grid-template-columns: 1fr; } }
+        .modulo { border: 2px solid #E5E7EB; border-radius: 12px; padding: 16px 10px; color: #374151; font-size: 14px; font-weight: 600; }
+        .modulo i { display: block; font-size: 22px; color: #3B82F6; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="volver" href="index.html"><i class="fa-solid fa-arrow-left"></i> Lingo Lab</a>
+        <h1><i class="fa-solid fa-children"></i> Children's Lab</h1>
+        <p class="desc">Curiosidad, historias y descubrimiento. Aprender preguntando, explorando y contando.</p>
+        <span class="badge">Contenido en construcción</span>
+
+        <h2>Ruta de aprendizaje · repaso Fibonacci</h2>
+        <div class="ruta">
+            <div class="dia"><div class="num">0</div><div class="label">Día inicial</div></div>
+            <div class="dia"><div class="num">1</div><div class="label">Día 1</div></div>
+            <div class="dia"><div class="num">2</div><div class="label">Día 2</div></div>
+            <div class="dia"><div class="num">3</div><div class="label">Día 3</div></div>
+            <div class="dia"><div class="num">5</div><div class="label">Día 5</div></div>
+            <div class="dia"><div class="num">8</div><div class="label">Día 8</div></div>
+            <div class="dia"><div class="num">13</div><div class="label">Día 13</div></div>
+            <div class="dia"><div class="num">21</div><div class="label">Día 21</div></div>
+        </div>
+
+        <h2>Módulos</h2>
+        <div class="modulos">
+            <div class="modulo"><i class="fa-solid fa-headphones"></i>Listen and Repeat</div>
+            <div class="modulo"><i class="fa-solid fa-dumbbell"></i>Practice</div>
+            <div class="modulo"><i class="fa-solid fa-microphone"></i>Pronunciation</div>
+            <div class="modulo"><i class="fa-solid fa-masks-theater"></i>Role Play</div>
+            <div class="modulo"><i class="fa-solid fa-book-open-reader"></i>Reading</div>
+            <div class="modulo"><i class="fa-solid fa-pen-nib"></i>Writing</div>
+        </div>
+    </div>
+</body>
+</html>

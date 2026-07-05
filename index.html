@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArdyMarket - Tu ciudad virtual de aprendizaje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <style>
+        body {
+            font-family: 'Urbanist', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1b7a63 0%, #6c5ce7 100%);
+            margin: 0;
+        }
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 { color: #1b7a63; margin-bottom: 5px; font-weight: 800; font-size: 34px; }
+        .tagline { color: #6c5ce7; font-weight: 600; margin-top: 0; }
+        p { color: #666; }
+        .btn-google {
+            padding: 12px 24px;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Urbanist', sans-serif;
+        }
+        .btn-google:hover { background: #3367d6; transform: translateY(-2px); }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 250px;
+            font-family: 'Urbanist', sans-serif;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1b7a63;
+            box-shadow: 0 0 0 3px rgba(27, 122, 99, 0.1);
+        }
+        .btn-magic {
+            padding: 10px 20px;
+            background: #1b7a63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            font-family: 'Urbanist', sans-serif;
+        }
+        .btn-magic:hover { background: #146351; }
+        .loading { color: #1b7a63; font-weight: 600; display: none; }
+    </style>
+</head>
+<body>
+    <div class="box" id="loginBox">
+        <h1>ArdyMarket</h1>
+        <p class="tagline">Tu ciudad virtual de aprendizaje</p>
+        <p>Hardyglot · Hardy Scholar · Bet Midrash · Hardy Store</p>
+
+        <button class="btn-google" onclick="iniciarConGoogle()">🔵 Acceder con Google</button>
+
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+        <p>O ingresa con tu correo:</p>
+        <input type="email" id="email" placeholder="tu@email.com">
+        <br>
+        <button class="btn-magic" onclick="iniciarSesion()">Enviar enlace mágico</button>
+
+        <div class="loading" id="loading">Procesando...</div>
+    </div>
+
+    <script>
+        // URL base compatible con GitHub Pages (incluye ruta del repo si existe)
+        const BASE_URL = window.location.href.replace(/[^/]*(\?.*)?(#.*)?$/, '');
+
+        async function iniciarConGoogle() {
+            document.getElementById('loading').style.display = 'block';
+            const { data, error } = await window.supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo: BASE_URL + 'index.html' }
+            });
+            if (error) {
+                alert("Error: " + error.message);
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        async function iniciarSesion() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert("Por favor ingresa tu correo");
+                return;
+            }
+            document.getElementById('loading').style.display = 'block';
+            const { data, error } = await window.supabase.auth.signInWithOtp({
+                email: email,
+                options: { emailRedirectTo: BASE_URL + 'index.html' }
+            });
+            if (error) {
+                alert("Error: " + error.message);
+                document.getElementById('loading').style.display = 'none';
+            } else {
+                alert("¡Revisa tu correo!");
+                document.getElementById('email').value = '';
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // Con sesión activa → directo al Hub
+        window.supabase.auth.onAuthStateChange((event, session) => {
+            if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session) {
+                window.location.href = 'hub.html';
+            }
+        });
+
+        window.addEventListener('load', async () => {
+            const { data: { session } } = await window.supabase.auth.getSession();
+            if (session) window.location.href = 'hub.html';
+        });
+
+        document.getElementById('email').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') iniciarSesion();
+        });
+    </script>
+</body>
+</html>

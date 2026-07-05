@@ -1,0 +1,2060 @@
+[
+  {
+    "id": 1,
+    "categoria": [
+      "rutina_mañana",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 1,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Thank God for a new day",
+      "palabra_oculta": "God",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        0.0,
+        2.036
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Gracias a Dios por un nuevo día.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          0,
+          2.9
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "ברוך ה' על יום חדש",
+        "transliteracion": "Barúch Hashém al yóm chadásh",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          0,
+          2.72
+        ],
+        "frase_traduccion_nikud": "בָּרוּךְ ה' עַל יוֹם חָדָש"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 2,
+    "categoria": [
+      "rutina_mañana",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 2,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to do Netilat Yadayim before starting the day",
+      "palabra_oculta": "Yadayim",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        2.036,
+        5.232
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a hacer Netilat Yadayim antes de comenzar el día.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          2.9,
+          8.0
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך ליטול ידיים לפני תחילת היום",
+        "transliteracion": "Aní holéch litól yadáyim lifnéi techilát hayóm",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          2.72,
+          6.71
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לִיטוֹל יָדַיִים לִפְנֵי תְּחִילַת הַיּוֹם"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 3,
+    "categoria": [
+      "rutina_mañana",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 3,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to get dressed and prepare for tefilah",
+      "palabra_oculta": "tefilah",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        5.232,
+        7.82
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a vestirme y prepararme para la tefilá.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          8.0,
+          12.66
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך להתלבש ולהתכונן לתפילה",
+        "transliteracion": "Aní holéch lehitlabésh ulehitkonén latfilá",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          6.71,
+          10.68
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לְהִתְלַבֵּש וּלְהִתְכּוֹנֵן לַתְּפִילָה"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 4,
+    "categoria": [
+      "familia",
+      "rutina_mañana"
+    ],
+    "rango_recurrencia": 4,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Good morning, honey. Did you sleep well?",
+      "palabra_oculta": "sleep",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        7.82,
+        10.601
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Buenos días, amor. ¿Dormiste bien?",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          12.66,
+          18.08
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "בוקר טוב, אהובי. ישנת טוב?",
+        "transliteracion": "Bóker tóv, ahuví. Yashánta tóv?",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          10.68,
+          14.49
+        ],
+        "frase_traduccion_nikud": "בּוֹקֶר טוֹב, אֲהוּבִי. יָשַׁנְתָּ טוֹב?"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 5,
+    "categoria": [
+      "familia",
+      "bienestar"
+    ],
+    "rango_recurrencia": 5,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I hope you have an excellent day",
+      "palabra_oculta": "excellent",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        10.601,
+        12.662
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Espero que tengas un día excelente.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          18.08,
+          22.42
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני מקווה שיהיה לך יום מצוין",
+        "transliteracion": "Aní mekavé sheyihyé lechá yóm metzuyán",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          14.49,
+          17.76
+        ],
+        "frase_traduccion_nikud": "אֲנִי מְקַוֶּה שֶׁיִּהְיֶה לְךָ יוֹם מְצֻיָּן"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 6,
+    "categoria": [
+      "rutina_mañana",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 6,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to pray Shacharit before going to work",
+      "palabra_oculta": "Shacharit",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        12.662,
+        15.803
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a rezar Shajarit antes de ir al trabajo.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          22.42,
+          27.11
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך להתפלל שחרית לפני ההליכה לעבודה",
+        "transliteracion": "Aní holéch lehitpalél Shacharít lifnéi hahalichá laavodá",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          17.76,
+          22.31
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לְהִתְפַּלֵּל שַׁחֲרִית לִפְנֵי הַהֲלִיכָה לַעֲבוֹדָה"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 7,
+    "categoria": [
+      "trabajo",
+      "organizacion"
+    ],
+    "rango_recurrencia": 7,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I need to check my schedule for today",
+      "palabra_oculta": "schedule",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        15.803,
+        17.9
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Necesito revisar mi agenda para hoy.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          27.11,
+          31.47
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני צריך לבדוק את הלוז שלי להיום",
+        "transliteracion": "Aní tzarích livdók et halúz shelí lehayóm",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          22.31,
+          25.84
+        ],
+        "frase_traduccion_nikud": "אֲנִי צָרִיךְ לִבְדוֹק אֶת הַלוּז שֶׁלִּי לְהַיּוֹם"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 8,
+    "categoria": [
+      "trabajo",
+      "reunion"
+    ],
+    "rango_recurrencia": 8,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I have a few important meetings today",
+      "palabra_oculta": "meetings",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        17.9,
+        19.888
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Hoy tengo varias reuniones importantes.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          31.47,
+          36.05
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "היום יש לי כמה פגישות חשובות",
+        "transliteracion": "Hayóm yésh lí kámah pguishót chashuvót",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          25.84,
+          29.49
+        ],
+        "frase_traduccion_nikud": "הַיּוֹם יֵש לִי כַּמָּה פְּגִישׁוֹת חֲשׁוּבוֹת"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 9,
+    "categoria": [
+      "hogar",
+      "compras"
+    ],
+    "rango_recurrencia": 9,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Don't forget to do the shopping when you have time",
+      "palabra_oculta": "shopping",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        19.888,
+        22.328
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "No olvides hacer las compras cuando tengas tiempo.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          36.05,
+          40.93
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אל תשכח לעשות קניות כשיש לך זמן",
+        "transliteracion": "Al tishkách laasót kniyót ksheyésh lechá zmán",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          29.49,
+          33.33
+        ],
+        "frase_traduccion_nikud": "אַל תִּשְׁכַּח לַעֲשׂוֹת קְנִיּוֹת כְּשֶׁיֵּש לְךָ זְמַן"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 10,
+    "categoria": [
+      "bienestar",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 10,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "May God be with you throughout the day",
+      "palabra_oculta": "throughout",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        22.328,
+        24.525
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Que Dios te acompañe durante todo el día.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          40.93,
+          45.27
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "שה' יהיה איתך כל היום",
+        "transliteracion": "She-Hashém yihyé itchá kol hayóm",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          33.33,
+          36.74
+        ],
+        "frase_traduccion_nikud": "שֶׁה' יִהְיֶה אִתְּךָ כֹּל הַיּוֹם"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 11,
+    "categoria": [
+      "transporte",
+      "rutina_mañana"
+    ],
+    "rango_recurrencia": 11,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "The traffic is a little heavy this morning",
+      "palabra_oculta": "heavy",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        24.525,
+        26.823
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "El tráfico está un poco pesado esta mañana.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          45.27,
+          50.08
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "התנועה קצת כבדה הבוקר",
+        "transliteracion": "Hatnuá kzat kvedá habóker",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          36.74,
+          39.83
+        ],
+        "frase_traduccion_nikud": "הַתְּנוּעָה קְצָת כְּבֵדָה הַבּוֹקֶר"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 12,
+    "categoria": [
+      "transporte",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 12,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to listen to a Torah class on my way to work",
+      "palabra_oculta": "commute",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        26.823,
+        29.786
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a escuchar una clase de Torá durante el trayecto.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          50.08,
+          55.26
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך לשמוע שיעור תורה במהלך הנסיעה",
+        "transliteracion": "Aní holéch lishmóa shiúr Torá bemahálach hanesiá",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          39.83,
+          43.87
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לִשְמוֹעַ שִׁעוּר תּוֹרָה בְּמַהֲלַךְ הַנְּסִיעָה"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 13,
+    "categoria": [
+      "transporte",
+      "trabajo"
+    ],
+    "rango_recurrencia": 13,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I hope I can make it to the office on time",
+      "palabra_oculta": "office",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        29.786,
+        32.27
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Espero llegar a tiempo a la oficina.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          55.26,
+          59.38
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני מקווה להגיע למשרד בזמן",
+        "transliteracion": "Aní mekavé leaguía lamisrád bazmán",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          43.87,
+          47.33
+        ],
+        "frase_traduccion_nikud": "אֲנִי מְקַוֶּה לְהַגִּיעַ לַמִּשְׂרָד בִּזְמַן",
+        "variantes_genero": {
+          "m": {
+            "transliteracion": "Aní mekavé leaguía lamisrád bazmán",
+            "frase_traduccion_nikud": "אֲנִי מְקַוֶּה לְהַגִּיעַ לַמִּשְׂרָד בִּזְמַן"
+          },
+          "f": {
+            "transliteracion": "Aní mekavá leaguía lamisrád bazmán",
+            "frase_traduccion_nikud": "אֲנִי מְקַוָּה לְהַגִּיעַ לַמִּשְׂרָד בִּזְמַן"
+          }
+        }
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 14,
+    "categoria": [
+      "trabajo"
+    ],
+    "rango_recurrencia": 14,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I have a lot of work to get through today.",
+      "palabra_oculta": "work",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        32.27,
+        34.345
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Tengo mucho trabajo por hacer hoy.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          59.38,
+          63.25
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "יש לי הרבה עבודה לעשות היום",
+        "transliteracion": "Yésh lí harbé avodá laasót hayóm",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          47.33,
+          50.51
+        ],
+        "frase_traduccion_nikud": "יֵש לִי הַרְבֵּה עֲבוֹדָה לַעֲשׂוֹת הַיּוֹם"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 15,
+    "categoria": [
+      "trabajo",
+      "comunicacion"
+    ],
+    "rango_recurrencia": 15,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "First, I am going to check my emails",
+      "palabra_oculta": "emails",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        34.345,
+        36.785
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Primero voy a revisar mis correos electrónicos.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          63.25,
+          68.32
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "קודם כל אני הולך לבדוק את המיילים שלי",
+        "transliteracion": "Kódem kól aní holéch livdók et haméilim shelí",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          50.51,
+          54.06
+        ],
+        "frase_traduccion_nikud": "קוֹדֶם כֹּל אֲנִי הוֹלֵךְ לִבְדוֹק אֶת הַמֵּיילִים שֶׁלִּי"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 16,
+    "categoria": [
+      "trabajo",
+      "comunicacion"
+    ],
+    "rango_recurrencia": 16,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I need to speak with some clients this morning",
+      "palabra_oculta": "clients",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        36.785,
+        39.08
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Necesito hablar con algunos clientes esta mañana.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          68.32,
+          73.4
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני צריך לדבר עם כמה לקוחות הבוקר",
+        "transliteracion": "Aní tzarích ledabér ím kámah lakochót habóker",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          54.06,
+          57.59
+        ],
+        "frase_traduccion_nikud": "אֲנִי צָרִיךְ לְדַבֵּר עִם כַּמָּה לָקוֹחוֹת הַבּוֹקֶר"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 17,
+    "categoria": [
+      "trabajo",
+      "organizacion"
+    ],
+    "rango_recurrencia": 17,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "This project requires a lot of attention to detail",
+      "palabra_oculta": "requires",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        39.08,
+        42.057
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Este proyecto requiere mucha atención a los detalles.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          73.4,
+          78.64
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "הפרויקט הזה דורש הרבה תשומת לב לפרטים",
+        "transliteracion": "Haproyékt hazé dorésh harbé tsumát lév lapratím",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          57.59,
+          61.7
+        ],
+        "frase_traduccion_nikud": "הַפְּרוֹיֶקְט הַזֶּה דּוֹרֵש הַרְבֵּה תְּשׂוּמַת לֵב לַפְּרָטִים"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 18,
+    "categoria": [
+      "trabajo",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 18,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Thank God, everything is going well",
+      "palabra_oculta": "moving",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        42.057,
+        44.383
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Gracias a Dios, todo está avanzando bien.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          78.64,
+          83.4
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "ברוך ה', הכל מתקדם טוב",
+        "transliteracion": "Barúch Hashém, hakól mitkadém tóv",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          61.7,
+          65.06
+        ],
+        "frase_traduccion_nikud": "בָּרוּךְ ה', הַכֹּל מִתְקַדֵּם טוֹב"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 19,
+    "categoria": [
+      "comida",
+      "rutina_tarde"
+    ],
+    "rango_recurrencia": 19,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "It's time for lunch",
+      "palabra_oculta": "lunch",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        44.383,
+        45.719
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Es hora de almorzar.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          83.4,
+          86.93
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "הגיע הזמן לארוחת צהריים",
+        "transliteracion": "Higuía hazmán laaruchát tzahoráyim",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          65.06,
+          68.16
+        ],
+        "frase_traduccion_nikud": "הִגִּיעַ הַזְּמַן לַאֲרוּחַת צָהֳרַיִים"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 20,
+    "categoria": [
+      "comida",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 20,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to say the blessing before I eat",
+      "palabra_oculta": "beracha",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        45.719,
+        47.867
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a decir la berajá antes de comer.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          86.93,
+          91.21
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך לברך לפני האוכל",
+        "transliteracion": "Aní holéch levaréch lifnéi haoachél",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          68.16,
+          71.18
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לְבָרֵךְ לִפְנֵי הָאוֹכֶל"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 21,
+    "categoria": [
+      "comida",
+      "bienestar"
+    ],
+    "rango_recurrencia": 21,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "This food is really good",
+      "palabra_oculta": "food",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        47.867,
+        49.769
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Esta comida está muy buena.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          91.21,
+          95.02
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "האוכל הזה טוב מאוד",
+        "transliteracion": "Haoachél hazé tóv meód",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          71.18,
+          73.91
+        ],
+        "frase_traduccion_nikud": "הָאוֹכֶל הַזֶּה טוֹב מְאוֹד"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 22,
+    "categoria": [
+      "trabajo",
+      "rutina_tarde"
+    ],
+    "rango_recurrencia": 22,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I need to get back to work after lunch",
+      "palabra_oculta": "lunch",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        49.769,
+        51.949
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Necesito regresar al trabajo después del almuerzo.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          95.02,
+          100.35
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני צריך לחזור לעבודה אחרי ארוחת הצהריים",
+        "transliteracion": "Aní tzarích lachzór laavodá achréi aruchát tzahoráyim",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          73.91,
+          77.99
+        ],
+        "frase_traduccion_nikud": "אֲנִי צָרִיךְ לַחְזוֹר לַעֲבוֹדָה אַחֲרֵי אֲרוּחַת הַצָּהֳרַיִים"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 23,
+    "categoria": [
+      "rutina_tarde",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 23,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to take a break to pray Mincha",
+      "palabra_oculta": "Mincha",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        51.949,
+        54.411
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a hacer una pausa para rezar Minjá.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          100.35,
+          104.75
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך לעשות הפסקה כדי להתפלל מנחה",
+        "transliteracion": "Aní holéch laasót hafsaká kedéi lehitpalél Minchá",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          77.99,
+          81.7
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לַעֲשׂוֹת הַפְסָקָה כְּדֵי לְהִתְפַּלֵּל מִנְחָה"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 24,
+    "categoria": [
+      "rutina_tarde"
+    ],
+    "rango_recurrencia": 24,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "The afternoon is flying by",
+      "palabra_oculta": "quickly",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        54.411,
+        56.485
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "La tarde está pasando muy rápido.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          104.75,
+          108.92
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אחר הצהריים עובר מהר מאוד",
+        "transliteracion": "Achár tzahoráyim ovér mahír meód",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          81.7,
+          85.28
+        ],
+        "frase_traduccion_nikud": "אַחַר הַצָּהֳרַיִים עוֹבֵר מַהֵר מְאוֹד"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 25,
+    "categoria": [
+      "trabajo",
+      "organizacion"
+    ],
+    "rango_recurrencia": 25,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I still have a few things left to do",
+      "palabra_oculta": "pending",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        56.485,
+        58.581
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Todavía tengo algunas tareas pendientes.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          108.92,
+          113.48
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "עדיין יש לי כמה משימות פתוחות",
+        "transliteracion": "Adáyin yésh lí kámah mashiymót ptuachót",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          85.28,
+          88.47
+        ],
+        "frase_traduccion_nikud": "עֲדַיִן יֵש לִי כַּמָּה מְשִׂימוֹת פְּתוּחוֹת"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 26,
+    "categoria": [
+      "trabajo",
+      "rutina_tarde"
+    ],
+    "rango_recurrencia": 26,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I hope to finish everything before I head home",
+      "palabra_oculta": "heading",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        58.581,
+        61.165
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Espero terminar todo antes de regresar a casa.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          113.48,
+          118.54
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני מקווה לסיים הכל לפני החזרה הביתה",
+        "transliteracion": "Aní mekavé lesayém hakól lifnéi hachazará habáita",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          88.47,
+          92.45
+        ],
+        "frase_traduccion_nikud": "אֲנִי מְקַוֶּה לְסַיֵּים הַכֹּל לִפְנֵי הַחֲזָרָה הַבַּיְתָה",
+        "variantes_genero": {
+          "m": {
+            "transliteracion": "Aní mekavé lesayém hakól lifnéi hachazará habáita",
+            "frase_traduccion_nikud": "אֲנִי מְקַוֶּה לְסַיֵּים הַכֹּל לִפְנֵי הַחֲזָרָה הַבַּיְתָה"
+          },
+          "f": {
+            "transliteracion": "Aní mekavá lesayém hakól lifnéi hachazará habáita",
+            "frase_traduccion_nikud": "אֲנִי מְקַוָּה לְסַיֵּים הַכֹּל לִפְנֵי הַחֲזָרָה הַבַּיְתָה"
+          }
+        }
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 27,
+    "categoria": [
+      "transporte",
+      "rutina_noche"
+    ],
+    "rango_recurrencia": 27,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am on my way home now",
+      "palabra_oculta": "way",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        61.165,
+        62.833
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Ya estoy de camino a casa.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          118.54,
+          122.27
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני כבר בדרך הביתה",
+        "transliteracion": "Aní kvár badérech habáita",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          92.45,
+          95.05
+        ],
+        "frase_traduccion_nikud": "אֲנִי כְּבָר בַּדֶּרֶךְ הַבַּיְתָה"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 28,
+    "categoria": [
+      "familia",
+      "rutina_noche"
+    ],
+    "rango_recurrencia": 28,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am so happy to see you",
+      "palabra_oculta": "happy",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        62.833,
+        64.453
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Estoy feliz de volver a verte.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          122.27,
+          126.26
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני שמח לראות אותך שוב",
+        "transliteracion": "Aní saméach liról otchá shúb",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          95.05,
+          98.04
+        ],
+        "frase_traduccion_nikud": "אֲנִי שָׂמֵחַ לִרְאוֹת אוֹתָךְ שׁוּב"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 29,
+    "categoria": [
+      "familia",
+      "conversacion_cotidiana"
+    ],
+    "rango_recurrencia": 29,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "How was your day?",
+      "palabra_oculta": "was",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        64.453,
+        65.655
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "¿Cómo estuvo tu día?",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          126.26,
+          129.42
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "איך היה היום שלך?",
+        "transliteracion": "Eich hayá hayóm shelchá?",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          98.04,
+          100.31
+        ],
+        "frase_traduccion_nikud": "אֵיךְ הָיָה הַיּוֹם שֶׁלְּךָ?"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 30,
+    "categoria": [
+      "familia",
+      "bienestar"
+    ],
+    "rango_recurrencia": 30,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Thank you for everything you did today",
+      "palabra_oculta": "everything",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        65.655,
+        67.771
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Gracias por todo lo que hiciste hoy.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          129.42,
+          133.77
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "תודה על כל מה שעשית היום",
+        "transliteracion": "Todá al kól má sheasíta hayóm",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          100.31,
+          103.36
+        ],
+        "frase_traduccion_nikud": "תּוֹדָה עַל כֹּל מָה שֶׁעָשִׂיתָ הַיּוֹם"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 31,
+    "categoria": [
+      "comida",
+      "rutina_noche"
+    ],
+    "rango_recurrencia": 31,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Let's have dinner together",
+      "palabra_oculta": "dinner",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        67.771,
+        69.363
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Vamos a cenar juntos.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          133.77,
+          137.5
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "בואו נאכל ארוחת ערב ביחד",
+        "transliteracion": "Bói u neochál aruchát érev beyáchad",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          103.36,
+          106.57
+        ],
+        "frase_traduccion_nikud": "בּוֹאוּ נֹאכַל אֲרוּחַת עֶרֶב בְּיַחַד"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 32,
+    "categoria": [
+      "familia",
+      "emocion"
+    ],
+    "rango_recurrencia": 32,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I love sharing this time with you",
+      "palabra_oculta": "sharing",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        69.363,
+        71.5
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Me gusta compartir este momento contigo.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          137.5,
+          142.05
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני אוהב לחלוק את הרגע הזה איתך",
+        "transliteracion": "Aní ohév lachlók et haréga hazé itchá",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          106.57,
+          109.87
+        ],
+        "frase_traduccion_nikud": "אֲנִי אוֹהֵב לַחְלוֹק אֶת הָרֶגַע הַזֶּה אִתָּךְ"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 33,
+    "categoria": [
+      "estudio",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 33,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to study some Torah tonight",
+      "palabra_oculta": "study",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        71.5,
+        73.474
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a estudiar un poco de Torá esta noche.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          142.05,
+          146.77
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך ללמוד קצת תורה הלילה",
+        "transliteracion": "Aní holéch lilmód kzat Torá haláila",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          109.87,
+          113.02
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לִלְמוֹד קְצָת תּוֹרָה הַלַּיְלָה"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 34,
+    "categoria": [
+      "rutina_noche",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 34,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "After that, I am going to pray Arvit",
+      "palabra_oculta": "Arvit",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        73.474,
+        75.873
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Después voy a rezar Arvit.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          146.77,
+          150.5
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אחר כך אני הולך להתפלל ערבית",
+        "transliteracion": "Achár kách aní holéch lehitpalél Arvít",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          113.02,
+          116.14
+        ],
+        "frase_traduccion_nikud": "אַחַר כָּךְ אֲנִי הוֹלֵךְ לְהִתְפַּלֵּל עַרְבִית"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 35,
+    "categoria": [
+      "bienestar",
+      "emocion"
+    ],
+    "rango_recurrencia": 35,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "We have so much to be thankful for",
+      "palabra_oculta": "grateful",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        75.873,
+        77.792
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Tenemos mucho por agradecer.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          150.5,
+          154.28
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "יש לנו הרבה על מה להודות",
+        "transliteracion": "Yésh lánu harbé al má lehodót",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          116.14,
+          119.14
+        ],
+        "frase_traduccion_nikud": "יֵש לָנוּ הַרְבֵּה עַל מָה לְהוֹדוֹת"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 36,
+    "categoria": [
+      "hogar",
+      "organizacion"
+    ],
+    "rango_recurrencia": 36,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I am going to get everything ready for tomorrow",
+      "palabra_oculta": "prepare",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        77.792,
+        79.986
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Voy a preparar todo para mañana.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          154.28,
+          158.49
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "אני הולך להכין הכל למחר",
+        "transliteracion": "Aní holéch leachín hakól lemachár",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          119.14,
+          122.34
+        ],
+        "frase_traduccion_nikud": "אֲנִי הוֹלֵךְ לְהָכִין הַכֹּל לְמָחָר"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 37,
+    "categoria": [
+      "bienestar",
+      "rutina_noche"
+    ],
+    "rango_recurrencia": 37,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "It was a long but productive day",
+      "palabra_oculta": "productive",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        79.986,
+        82.127
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Fue un día largo, pero productivo.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          158.49,
+          162.83
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "זה היה יום ארוך אבל פרודוקטיבי",
+        "transliteracion": "Zé hayá yóm aróch avál produktívi",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          122.34,
+          126.07
+        ],
+        "frase_traduccion_nikud": "זֶה הָיָה יוֹם אָרוֹךְ אֲבָל פְּרוֹדוּקְטִיבִי"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 38,
+    "categoria": [
+      "bienestar",
+      "espiritualidad"
+    ],
+    "rango_recurrencia": 38,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Thank God for all of today's blessings",
+      "palabra_oculta": "blessings",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        82.127,
+        84.443
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Gracias a Dios por todas las bendiciones de hoy.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          162.83,
+          167.63
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "ברוך ה' על כל הברכות של היום",
+        "transliteracion": "Barúch Hashém al kól habrachót shel hayóm",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          126.07,
+          129.37
+        ],
+        "frase_traduccion_nikud": "בָּרוּךְ ה' עַל כֹּל הַבְּרָכוֹת שֶׁל הַיּוֹם"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 39,
+    "categoria": [
+      "bienestar",
+      "rutina_noche"
+    ],
+    "rango_recurrencia": 39,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "I hope we have a peaceful and restful night",
+      "palabra_oculta": "peaceful",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        84.443,
+        86.896
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Que tengamos una noche tranquila y descansada.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          167.63,
+          172.52
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "שיהיה לנו לילה שקט ורגוע",
+        "transliteracion": "Sheyihyé lánu láila shekét veraguá",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          129.37,
+          132.69
+        ],
+        "frase_traduccion_nikud": "שֶׁיִּהְיֶה לָנוּ לַיְלָה שָׁקֵט וְרָגוּעַ"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  },
+  {
+    "id": 40,
+    "categoria": [
+      "familia",
+      "rutina_noche"
+    ],
+    "rango_recurrencia": 40,
+    "idioma_objetivo": {
+      "codigo": "en",
+      "nombre": "Inglés",
+      "frase_completa": "Good night, honey. Sleep well",
+      "palabra_oculta": "night",
+      "audio_frase_url": "",
+      "audios_por_palabra": {},
+      "sincronizacion_audio": [
+        86.896,
+        89.208
+      ]
+    },
+    "idiomas_soporte": [
+      {
+        "codigo": "es",
+        "nombre": "Español",
+        "frase_traduccion": "Buenas noches, amor. Que descanses bien.",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          172.52,
+          178.23
+        ]
+      },
+      {
+        "codigo": "he",
+        "nombre": "Hebreo",
+        "frase_traduccion": "לילה טוב, אהובי. תישן טוב",
+        "transliteracion": "Láila tóv, ahuví. Tishán tóv",
+        "audio_url": "",
+        "sincronizacion_audio": [
+          132.69,
+          136.47
+        ],
+        "frase_traduccion_nikud": "לַיְלָה טוֹב, אֲהוּבִי. תִּישַׁן טוֹב"
+      }
+    ],
+    "ayuda_pronunciacion": {
+      "palabras_dificiles": []
+    },
+    "sistema_repeticion": {
+      "nivel_fibonacci": 1,
+      "proximo_repaso": ""
+    }
+  }
+]
