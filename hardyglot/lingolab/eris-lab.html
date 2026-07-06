@@ -1046,8 +1046,20 @@
             localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, nombre: nombreAlumno, config, vista, vistaV2: true }));
         }
 
+        const IDIOMAS_ACTIVOS = ['es', 'en', 'he']; // con contenido listo hoy
+
+        // Idioma del navegador/región del estudiante, si está entre los activos
+        function idiomaDelNavegador() {
+            const candidatos = navigator.languages || [navigator.language || 'es'];
+            for (const l of candidatos) {
+                const c = (l || '').slice(0, 2).toLowerCase();
+                if (IDIOMAS_ACTIVOS.includes(c)) return c;
+            }
+            return 'es';
+        }
+
         function idiomasDisponibles() {
-            const set = new Set();
+            const set = new Set(IDIOMAS_ACTIVOS);
             frasesTodas.forEach(f => Object.keys(f.idiomas).forEach(c => set.add(c)));
             return [...set];
         }
@@ -1119,26 +1131,21 @@
             const cont = document.getElementById('chips-idiomas');
             if (!cont) return;
             cont.innerHTML = '';
-            const chipCss = 'border:1.5px solid #ddd; border-radius:20px; padding:2px 9px; font-size:13px; cursor:pointer; background:#fff; font-family:inherit;';
+            const chipCss = 'border:1.5px solid #ddd; border-radius:20px; padding:2px 9px; font-size:12px; cursor:pointer; background:#fff; font-family:inherit; letter-spacing:0.5px;';
 
-            // Chip del materno (distintivo, no clicable)
-            const infoB = IDIOMAS_INFO[pareja.base] || {};
-            const chipBase = document.createElement('span');
-            chipBase.style.cssText = chipCss + 'cursor:default; border-style:dashed; color:#888;';
-            chipBase.title = 'Idioma materno';
-            chipBase.innerText = `${infoB.flag || ''} ${infoB.nombre || pareja.base}`;
-            cont.appendChild(chipBase);
-
-            // Chips de los idiomas en estudio (clic = saltar a ese idioma)
+            // Solo los idiomas en ESTUDIO: banderita + código ISO de 3 letras.
+            // El materno NO aparece aquí (vive en la configuración de usuario).
+            // El nombre completo se ve al hacer hover (title).
             pareja.objetivos.forEach((c, i) => {
                 const info = IDIOMAS_INFO[c] || {};
                 const chip = document.createElement('button');
                 chip.type = 'button';
                 const activo = i === pareja.activo;
                 chip.style.cssText = chipCss + (activo
-                    ? 'border-color:var(--color-1,#1b7a63); background:var(--color-1,#1b7a63); color:#fff; font-weight:700;'
+                    ? 'border-color:var(--color-1,#082EA5); background:var(--color-1,#082EA5); color:#fff; font-weight:700;'
                     : '');
-                chip.innerText = `${info.flag || ''} ${info.nombre || c}`;
+                chip.title = info.nombre || c;
+                chip.innerText = `${info.flag || ''} ${info.iso3 || c.toUpperCase()}`;
                 chip.onclick = () => saltarAIdioma(i);
                 cont.appendChild(chip);
             });
