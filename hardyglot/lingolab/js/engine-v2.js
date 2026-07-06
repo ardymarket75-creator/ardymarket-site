@@ -104,7 +104,10 @@ const AudioEngine = {
                 a.currentTime = ini;
                 a.playbackRate = rate;
                 a.play().catch(() => resolve());
-                const duracionMs = ((fin - ini) * 1000) / rate; // <- el fix
+                // Margen anti-sangrado: los segmentos son contiguos (fin frase N
+                // = inicio frase N+1) y el timer del navegador se pasa unos ms,
+                // alcanzando a sonar el arranque de la frase siguiente.
+                const duracionMs = Math.max(120, ((fin - ini) * 1000) / rate - 70);
                 this._timerActual = setTimeout(() => {
                     a.pause();
                     resolve();

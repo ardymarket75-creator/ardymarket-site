@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eri's Lab - Hardyglot</title>
+    <title>Eri's LingoLab - Hardyglot</title>
+    <link rel="icon" type="image/svg+xml" href="icons/hg-fav.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Fuentes recortadas: solo las que ofrece el Design Panel (antes eran ~30 familias) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Lora:wght@400;600&family=Rubik:wght@400;500;600&family=Heebo:wght@400;500;600&family=David+Libre:wght@400;500;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Alef:wght@400;700&family=Varela+Round&family=Secular+One&family=Suez+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Noto+Rashi+Hebrew&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Lora:wght@400;600&family=Rubik:wght@400;500;600&family=David+Libre:wght@400;500;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Alef:wght@400;700&family=Varela+Round&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Noto+Serif+Hebrew:wght@400;500;700&family=Bellefair&family=Noto+Rashi+Hebrew&family=Playpen+Sans+Hebrew:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --color-1: #1b7a63;
-            --color-2: #e74c3c;
-            --color-3: #6c5ce7;
-            --color-4: #2196f3;
-            --color-5: #f39c12;
+            --color-1: #082EA5;   /* azul del play */
+            --color-2: #EE4036;   /* naranja del play */
+            --color-3: #051B66;   /* azul profundo */
+            --color-4: #4A6BE8;   /* azul claro */
+            --color-5: #F58A3C;   /* naranja suave */
             --font-primary: 'Poppins', sans-serif;
             --font-size-base: 16px;
         }
@@ -32,7 +33,7 @@
             background: #f0f2f5;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* ancla arriba: el botón play no salta al cambiar el largo de la frase */
             min-height: 100vh;
             margin: 0;
             padding: 10px;
@@ -43,10 +44,12 @@
             background: white;
             border-radius: 24px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            width: 90%;
-            max-width: 480px;
-            padding: 25px 35px 30px;
+            width: 92%;
+            max-width: 860px;
+            padding: 25px 40px 30px;
             position: relative;
+            margin-top: 3vh;
+            margin-bottom: 3vh;
         }
 
         .top-bar {
@@ -157,7 +160,7 @@
         .bloque { position: relative; }
 
         .frase-box {
-            min-height: 80px;
+            min-height: 115px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -436,6 +439,27 @@
             font-size: 12px;
         }
         .reset-btn { color: #555; }
+        /* Icono HardyGlot animado tipo ondas mientras suena */
+        @keyframes hg-ondas {
+            0%   { transform: scale(1);    opacity: 1; }
+            50%  { transform: scale(1.25); opacity: 0.65; }
+            100% { transform: scale(1);    opacity: 1; }
+        }
+        .hg-sonando { animation: hg-ondas 0.9s ease-in-out infinite; }
+
+        /* Modal compacto: el botón Guardar siempre visible */
+        .modal-content { max-height: 88vh; overflow-y: auto; }
+
+        /* La paleta abre por encima del modal si se invoca desde ahí */
+        .design-panel { z-index: 10000; }
+
+        /* Chips de idiomas elegidos en el modal */
+        .chip-elegido {
+            display: inline-flex; align-items: center; gap: 4px;
+            border: 1.5px solid var(--color-1, #082EA5); border-radius: 20px;
+            padding: 3px 10px; font-size: 14px; background: #f0faf7; cursor: pointer;
+        }
+        .chip-elegido small { color: #888; font-size: 10px; }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -455,22 +479,27 @@
         <div class="top-bar">
             <button class="btn-icon" onclick="cerrarSesion()" title="Cerrar sesión"><i
                     class="fas fa-sign-out-alt"></i></button>
-            <span class="contador" id="contador">Cargando...</span>
-            <button class="btn-icon gear" onclick="abrirModalUsuario()" title="Idiomas y perfil"><i
-                    class="fas fa-user-cog"></i></button>
+            <div style="display:flex; flex-direction:column; align-items:center; line-height:1.2;">
+                <span style="font-weight:700; font-size:14px; color:var(--color-1, #082EA5);">Eri's LingoLab</span>
+                <span class="contador" id="contador">Cargando...</span>
+                <div id="chips-idiomas" style="display:flex; gap:6px; margin-top:4px; flex-wrap:wrap; justify-content:center;"></div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <button class="btn-icon gear" onclick="abrirModalUsuario()" title="Idiomas y perfil"><i
+                        class="fas fa-user-cog"></i></button>
+                <span id="nombre-alumno" style="font-size:10px; color:#999; max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+            </div>
         </div>
 
         <!-- ===== CONTROLES PRINCIPALES (PLAY ARRIBA) ===== -->
         <div class="controls-row">
             <button class="btn-nav" onclick="window.location.href='index.html'" title="Dashboard"><span
                     class="material-symbols-outlined">home</span></button>
-            <button class="btn-nav" onclick="cambiarFrase(-1)"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn-play" id="btn-play" onclick="toggleAudio()"><i class="fas fa-play"
-                    id="play-icon"></i></button>
-            <button class="btn-nav" onclick="cambiarFrase(1)"><i class="fas fa-chevron-right"></i></button>
-            <button class="btn-design-toggle" onclick="toggleDesignPanel()" title="Design"><i
-                    class="fas fa-palette"></i></button>
-        </div>
+            <button class="btn-nav" onclick="cambiarFrase(-1)"><img src="icons/player-bck.svg" alt="Anterior" style="width:34px; height:34px;"></button>
+            <button class="btn-play" id="btn-play" onclick="toggleAudio()" style="background:transparent; box-shadow:none;"><img
+                    id="play-icon" src="icons/player-ply.svg" alt="Play" style="width:62px; height:62px;"></button>
+            <button class="btn-nav" onclick="cambiarFrase(1)"><img src="icons/player-fwd.svg" alt="Siguiente" style="width:34px; height:34px;"></button>
+            </div>
 
         <!-- ===== BANNER DE REPASOS PENDIENTES ===== -->
         <div class="banner-repasos" id="banner-repasos">
@@ -497,8 +526,8 @@
             </div>
             <div class="progress-row">
                 <span class="rep-counter" id="rep-counter-obj">0/5</span>
-                <button class="phrase-play-btn" onclick="playPhrase('obj')" title="Play"><i
-                        class="fas fa-play"></i></button>
+                <button class="phrase-play-btn" onclick="playPhrase('obj')" title="Play"><img
+                        id="phrase-icon-obj" src="icons/player-ply.svg" alt="Play" style="width:22px; height:22px; vertical-align:middle;"></button>
                 <button class="btn-dominada" id="btn-dominada-obj" onclick="marcarDominada('obj')">¡Ya!</button>
                 <span class="stars" id="stars-obj"></span>
             </div>
@@ -533,7 +562,7 @@
                         class="fas fa-eye"></i> <span id="nombre-base-toggle">Base</span></button>
                 <button class="nikud-toggle" id="btn-nikud-base" onclick="toggleNikud('base')"
                     style="display:none;"><i class="fas fa-eye"></i> נקודים</button>
-                <button class="btn-icon gear" onclick="abrirConfig('base')" title="Config"
+                <button class="btn-icon gear" onclick="abrirConfig('base')" title="Velocidad y tamaño"
                     style="margin-left:auto;"><i class="fas fa-cog"></i></button>
             </div>
             <div class="frase-box">
@@ -544,18 +573,18 @@
             </div>
             <div class="progress-row">
                 <span class="rep-counter" id="rep-counter-base">0/1</span>
-                <button class="phrase-play-btn" onclick="playPhrase('base')" title="Play"><i
-                        class="fas fa-play"></i></button>
+                <button class="phrase-play-btn" onclick="playPhrase('base')" title="Play"><img
+                        id="phrase-icon-base" src="icons/player-ply.svg" alt="Play" style="width:22px; height:22px; vertical-align:middle;"></button>
                 <button class="btn-dominada" id="btn-dominada-base" onclick="marcarDominada('base')">¡Ya!</button>
                 <span class="stars" id="stars-base"></span>
             </div>
             <div class="config-popup" id="config-base">
                 <h4><span id="config-titulo-base">Base</span> <button class="btn-close-popup"
                         onclick="cerrarConfig('base')">✕</button></h4>
-                <div class="config-row"><label>Reps:</label><button class="btn-fs"
+                <div class="config-row" style="display:none;"><label>Reps:</label><button class="btn-fs"
                         onclick="adjustReps('base', -1)">−</button><span id="reps-display-base">1</span><button
                         class="btn-fs" onclick="adjustReps('base', 1)">+</button></div>
-                <div class="config-row"><label>Silencio:</label><button class="btn-fs"
+                <div class="config-row" style="display:none;"><label>Silencio:</label><button class="btn-fs"
                         onclick="adjustSilence('base', -0.1)">−</button><span
                         id="silence-display-base">0.0</span><button class="btn-fs"
                         onclick="adjustSilence('base', 0.1)">+</button></div>
@@ -572,9 +601,24 @@
     </div>
 
     <!-- ===== MODAL: IDIOMAS Y PERFIL ===== -->
-    <div class="modal" id="modal-usuario">
+    <div class="modal" id="modal-usuario" onclick="if (event.target === this) cerrarModalUsuario()">
         <div class="modal-content">
-            <h3><i class="fas fa-user-cog"></i> Mi configuración</h3>
+            <h3 style="display:flex; justify-content:space-between; align-items:center;">
+                <span><i class="fas fa-user-cog"></i> Mi configuración</span>
+                <button class="btn-close-popup" onclick="cerrarModalUsuario()" title="Cerrar sin guardar">✕</button>
+            </h3>
+
+            <div class="form-row" style="display:flex; align-items:center; gap:10px;">
+                <button class="btn-design-toggle" onclick="toggleDesignPanel()" title="Design"><i
+                        class="fas fa-palette"></i></button>
+                <label style="margin:0;">Diseño y colores</label>
+            </div>
+
+            <div class="form-row">
+                <label>Tu nombre</label>
+                <input type="text" id="input-nombre" placeholder="¿Cómo te llamas?" maxlength="30"
+                    style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box; font-family:inherit;">
+            </div>
 
             <div class="form-row">
                 <label>Idioma que hablo (materno)</label>
@@ -583,9 +627,10 @@
 
             <div class="form-row">
                 <label>Idiomas que estudio (en orden)</label>
-                <div id="lista-objetivos" style="display:flex; flex-direction:column; gap:6px;"></div>
-                <div class="nota-genero">Toca los idiomas en el orden en que quieres estudiarlos. La sesión los
-                    encadena: al terminar el bloque de un idioma, sigue automáticamente el próximo.</div>
+                <div id="objetivos-elegidos" style="display:flex; gap:6px; flex-wrap:wrap; min-height:32px; margin-bottom:6px;"></div>
+                <select id="select-agregar-idioma" onchange="agregarIdiomaSel()" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:8px; font-family:inherit;"></select>
+                <div class="nota-genero">El orden de izquierda a derecha es tu orden de estudio. Toca un idioma
+                    elegido para quitarlo.</div>
             </div>
 
             <div class="form-row">
@@ -612,7 +657,7 @@
         <div style="border-bottom:1px solid #eee; padding-bottom:15px; margin-bottom:15px;">
             <div class="design-row">
                 <label>Idioma objetivo</label>
-                <input type="color" class="color-input" id="dp-color-obj" value="#1b7a63"
+                <input type="color" class="color-input" id="dp-color-obj" value="#082EA5"
                     onchange="dpColor('obj', this.value)">
             </div>
             <div class="design-row">
@@ -632,15 +677,15 @@
         </div>
 
         <div class="design-row"><label>Primary</label><input type="color" class="color-input" id="dp-color-1"
-                value="#1b7a63" onchange="dpVarColor(1, this.value)"></div>
+                value="#082EA5" onchange="dpVarColor(1, this.value)"></div>
         <div class="design-row"><label>Accent</label><input type="color" class="color-input" id="dp-color-2"
-                value="#e74c3c" onchange="dpVarColor(2, this.value)"></div>
+                value="#EE4036" onchange="dpVarColor(2, this.value)"></div>
         <div class="design-row"><label>Tertiary</label><input type="color" class="color-input" id="dp-color-3"
-                value="#6c5ce7" onchange="dpVarColor(3, this.value)"></div>
+                value="#051B66" onchange="dpVarColor(3, this.value)"></div>
         <div class="design-row"><label>Secondary</label><input type="color" class="color-input" id="dp-color-4"
-                value="#2196f3" onchange="dpVarColor(4, this.value)"></div>
+                value="#4A6BE8" onchange="dpVarColor(4, this.value)"></div>
         <div class="design-row"><label>Highlight</label><input type="color" class="color-input" id="dp-color-5"
-                value="#f39c12" onchange="dpVarColor(5, this.value)"></div>
+                value="#F58A3C" onchange="dpVarColor(5, this.value)"></div>
 
         <div style="display:flex; gap:10px; margin-top:20px;">
             <button class="reset-btn" onclick="resetDesign()" style="flex:1;">Reset</button>
@@ -660,9 +705,14 @@
 
         // ----- Catálogo de idiomas (agrega aquí los futuros) -----
         const IDIOMAS_INFO = {
-            en: { nombre: 'Inglés', tts: 'en-US' },
-            es: { nombre: 'Español', tts: 'es-ES' },
-            he: { nombre: 'Hebreo', tts: 'he-IL', rtl: true, tieneNikud: true, tieneTranslit: true }
+            he: { nombre: 'Hebreo', iso3: 'HEB', flag: '🇮🇱', tts: 'he-IL', rtl: true, tieneNikud: true, tieneTranslit: true },
+            en: { nombre: 'Inglés', iso3: 'ENG', flag: '🇺🇸', tts: 'en-US' },
+            es: { nombre: 'Español', iso3: 'SPA', flag: '🇪🇸', tts: 'es-ES' },
+            pt: { nombre: 'Portugués', iso3: 'POR', flag: '🇧🇷', tts: 'pt-BR' },
+            zh: { nombre: 'Chino', iso3: 'ZHO', flag: '🇨🇳', tts: 'zh-CN', tieneTranslit: true },
+            de: { nombre: 'Alemán', iso3: 'DEU', flag: '🇩🇪', tts: 'de-DE' },
+            fr: { nombre: 'Francés', iso3: 'FRA', flag: '🇫🇷', tts: 'fr-FR' },
+            ru: { nombre: 'Ruso', iso3: 'RUS', flag: '🇷🇺', tts: 'ru-RU', tieneTranslit: true }
         };
 
         // 🔒 AUDIOS PROTEGIDOS: los MP3 monolíticos viven en Supabase Storage
@@ -704,7 +754,7 @@
                 toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:10px;color:#fff;font-weight:600;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.3);max-width:90%;text-align:center;';
                 document.body.appendChild(toast);
             }
-            toast.style.background = esError ? '#e74c3c' : '#1b7a63';
+            toast.style.background = esError ? '#EE4036' : '#082EA5';
             toast.innerText = mensaje;
             toast.style.display = 'block';
             clearTimeout(toast._t);
@@ -728,12 +778,13 @@
 
         let pareja = { base: 'es', objetivos: ['en'], activo: 0 };
         let genero = 'm';
+        let nombreAlumno = '';
         let objetivosSel = [];         // selección temporal en el modal (conserva el orden de elección)
         let secuenciaEnCurso = false;  // guardia: evita dos secuencias simultáneas
 
         const config = {};   // config por código de idioma (se crea bajo demanda)
         let progreso = {};   // progreso por idioma: progreso[lang][id]
-        let vista = { blurBase: false, translitVisible: true, nikud: { obj: true, base: true } };
+        let vista = { blurBase: false, translitVisible: false, nikud: { obj: false, base: false } };
 
         const audioCache = {}; // url -> objeto Audio (se reutiliza)
 
@@ -822,7 +873,7 @@
                     intervalo: esBase ? 0.0 : 1.3,
                     velocidad: 0,
                     textoVisible: true,
-                    fontSize: esBase ? 19 : 26
+                    fontSize: esBase ? 19 : ((IDIOMAS_INFO[lang] || {}).rtl ? 36 : 26)
                 };
             }
             return config[lang];
@@ -979,14 +1030,20 @@
                         }
                     }
                     if (p.genero) genero = p.genero;
+                    if (p.nombre) nombreAlumno = p.nombre;
                     if (p.config) Object.assign(config, p.config);
                     if (p.vista) Object.assign(vista, p.vista);
+                    // Migración v2: nikud y transliteración ocultos por defecto
+                    if (!p.vistaV2) {
+                        vista.translitVisible = false;
+                        vista.nikud = { obj: false, base: false };
+                    }
                 }
             } catch (e) { }
         }
 
         function persistirPreferencias() {
-            localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, config, vista }));
+            localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, nombre: nombreAlumno, config, vista, vistaV2: true }));
         }
 
         function idiomasDisponibles() {
@@ -1007,48 +1064,125 @@
                 sel.appendChild(opt);
             });
             objetivosSel = [...pareja.objetivos];
+            document.getElementById('input-nombre').value = nombreAlumno;
             renderListaObjetivos();
             marcarGeneroUI();
             document.getElementById('modal-usuario').style.display = 'flex';
         }
 
-        // Lista de idiomas objetivo: clic agrega/quita conservando el ORDEN de elección
+        // Selector compacto: chips elegidos (orden izq→der) + dropdown para agregar
         function renderListaObjetivos() {
             const base = document.getElementById('select-base').value || pareja.base;
             objetivosSel = objetivosSel.filter(c => c !== base); // el materno no puede ser objetivo
-            const cont = document.getElementById('lista-objetivos');
+
+            // Chips de los elegidos, en orden de estudio
+            const cont = document.getElementById('objetivos-elegidos');
             cont.innerHTML = '';
-            idiomasDisponibles().filter(c => c !== base).forEach(c => {
-                const pos = objetivosSel.indexOf(c);
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'genero-btn' + (pos >= 0 ? ' activo' : '');
-                btn.style.cssText = 'display:flex; justify-content:space-between; align-items:center; width:100%;';
-                btn.innerHTML = `<span>${(IDIOMAS_INFO[c] || {}).nombre || c.toUpperCase()}</span>` +
-                    (pos >= 0 ? `<span style="font-weight:700;">${pos + 1}º</span>` : '<span style="opacity:.4;">—</span>');
-                btn.onclick = () => {
-                    const i = objetivosSel.indexOf(c);
-                    if (i >= 0) objetivosSel.splice(i, 1);
-                    else objetivosSel.push(c);
-                    renderListaObjetivos();
-                };
-                cont.appendChild(btn);
+            if (!objetivosSel.length) {
+                cont.innerHTML = '<span style="color:#aaa; font-size:13px;">Aún no has elegido idiomas…</span>';
+            }
+            objetivosSel.forEach((c, i) => {
+                const info = IDIOMAS_INFO[c] || {};
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = 'chip-elegido';
+                chip.title = 'Quitar';
+                chip.innerHTML = `<small>${i + 1}º</small> ${info.flag || ''} ${info.nombre || c} <small>✕</small>`;
+                chip.onclick = () => { objetivosSel.splice(i, 1); renderListaObjetivos(); };
+                cont.appendChild(chip);
+            });
+
+            // Dropdown con los idiomas por agregar (los "próximamente" van deshabilitados)
+            const sel = document.getElementById('select-agregar-idioma');
+            sel.innerHTML = '<option value="" selected>➕ Agregar idioma…</option>';
+            const disponibles = idiomasDisponibles();
+            Object.keys(IDIOMAS_INFO).filter(c => c !== base && !objetivosSel.includes(c)).forEach(c => {
+                const info = IDIOMAS_INFO[c] || {};
+                const o = document.createElement('option');
+                o.value = c;
+                const listo = disponibles.includes(c);
+                o.textContent = `${info.flag || ''} ${info.nombre || c}` + (listo ? '' : '  (próximamente)');
+                o.disabled = !listo;
+                sel.appendChild(o);
             });
         }
 
+        function agregarIdiomaSel() {
+            const sel = document.getElementById('select-agregar-idioma');
+            const c = sel.value;
+            if (c) { objetivosSel.push(c); renderListaObjetivos(); }
+        }
+
         function seleccionarGenero(g) { genero = g; marcarGeneroUI(); }
+
+        function renderChipsIdiomas() {
+            const cont = document.getElementById('chips-idiomas');
+            if (!cont) return;
+            cont.innerHTML = '';
+            const chipCss = 'border:1.5px solid #ddd; border-radius:20px; padding:2px 9px; font-size:13px; cursor:pointer; background:#fff; font-family:inherit;';
+
+            // Chip del materno (distintivo, no clicable)
+            const infoB = IDIOMAS_INFO[pareja.base] || {};
+            const chipBase = document.createElement('span');
+            chipBase.style.cssText = chipCss + 'cursor:default; border-style:dashed; color:#888;';
+            chipBase.title = 'Idioma materno';
+            chipBase.innerText = `${infoB.flag || ''} ${infoB.nombre || pareja.base}`;
+            cont.appendChild(chipBase);
+
+            // Chips de los idiomas en estudio (clic = saltar a ese idioma)
+            pareja.objetivos.forEach((c, i) => {
+                const info = IDIOMAS_INFO[c] || {};
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                const activo = i === pareja.activo;
+                chip.style.cssText = chipCss + (activo
+                    ? 'border-color:var(--color-1,#1b7a63); background:var(--color-1,#1b7a63); color:#fff; font-weight:700;'
+                    : '');
+                chip.innerText = `${info.flag || ''} ${info.nombre || c}`;
+                chip.onclick = () => saltarAIdioma(i);
+                cont.appendChild(chip);
+            });
+        }
+
+        function saltarAIdioma(i) {
+            if (i === pareja.activo) return;
+            AudioEngine.reset();
+            setPlayUI(false);
+            pareja.activo = i;
+            aplicarPareja();
+            actualizarUI();
+            actualizarBannerRepasos();
+        }
+
+        function mostrarNombre() {
+            document.getElementById('nombre-alumno').innerText = nombreAlumno || '';
+        }
 
         function marcarGeneroUI() {
             document.getElementById('genero-m').classList.toggle('activo', genero === 'm');
             document.getElementById('genero-f').classList.toggle('activo', genero === 'f');
         }
 
+        function cerrarModalUsuario() {
+            // Solo se puede cerrar sin guardar si el perfil ya existe (onboarding completo)
+            if (!nombreAlumno) return;
+            objetivosSel = [...pareja.objetivos]; // descartar cambios
+            document.getElementById('modal-usuario').style.display = 'none';
+        }
+
         function guardarPreferencias() {
             const base = document.getElementById('select-base').value;
+            const nombre = document.getElementById('input-nombre').value.trim();
+            if (!nombre) {
+                alert('Cuéntanos tu nombre para personalizar tu experiencia 🙂');
+                return;
+            }
             if (!objetivosSel.length) {
                 alert('Elige al menos un idioma para estudiar 🙂');
                 return;
             }
+            nombreAlumno = nombre;
+            mostrarNombre();
             AudioEngine.reset();
             setPlayUI(false);
             pareja = { base, objetivos: [...objetivosSel], activo: 0 };
@@ -1061,6 +1195,8 @@
 
         // Ajusta la UI estática al par elegido (títulos, botones hebreos, etc.)
         function aplicarPareja() {
+            renderChipsIdiomas();
+            syncVistaUI();
             const infoObj = IDIOMAS_INFO[objetivoActivo()] || {};
             const infoBase = IDIOMAS_INFO[pareja.base] || {};
 
@@ -1140,7 +1276,8 @@
             textoEl.style.fontSize = c.fontSize + 'px';
 
             // Visibilidad del texto
-            textoEl.classList.toggle('texto-oculto', !c.textoVisible || (rol === 'base' && vista.blurBase));
+            const dominadaObj = rol === 'base' && getProgreso(objetivoActivo()).dominada;
+            textoEl.classList.toggle('texto-oculto', !c.textoVisible || (rol === 'base' && vista.blurBase) || dominadaObj);
 
             // Transliteración (solo si el idioma la tiene)
             if (info.tieneTranslit && d.translit && vista.translitVisible) {
@@ -1176,7 +1313,7 @@
             let html = '';
             for (let i = 1; i <= 5; i++) html += `<i class="${i <= p.stars ? 'fas' : 'far'} fa-star"></i>`;
             starsEl.innerHTML = html;
-            repEl.innerText = `${Math.min(p.reps, c.reps)}/${c.reps}`;
+            repEl.innerText = `${Math.min(repsDeHoy(p), c.reps)}/${c.reps}`;
 
             btn.classList.toggle('hecha', !!p.dominada);
             btn.innerText = p.dominada ? '✓ Dominada' : '¡Ya!';
@@ -1200,12 +1337,18 @@
         // ESTRELLAS Y REPETICIONES
         // Máximo una estrella nueva por día por frase (constancia real)
         // ============================================================
+        function repsDeHoy(p) {
+            return p.lastRepDate === SpacedRepetition.hoy() ? (p.reps || 0) : 0;
+        }
+
         function incrementarEstrella(lang) {
             // 🎯 El idioma materno NO contabiliza: solo los idiomas en estudio
             if (lang === pareja.base) return;
 
             const c = getConfigIdioma(lang);
             const p = getProgreso(lang);
+            const hoyStr = SpacedRepetition.hoy();
+            if (p.lastRepDate !== hoyStr) { p.reps = 0; p.lastRepDate = hoyStr; }
             p.reps = Math.min(p.reps + 1, c.reps);
             if (p.reps === c.reps) {
                 const hoy = SpacedRepetition.hoy();
@@ -1297,9 +1440,9 @@
             });
         }
 
-        // Secuencia pedagógica: materno → objetivo → materno → objetivo
+        // Secuencia pedagógica: materno → objetivo (una pasada por frase)
         function construirPasos(f) {
-            const orden = [pareja.base, objetivoActivo(), pareja.base, objetivoActivo()];
+            const orden = [pareja.base, objetivoActivo()];
             return orden.map(lang => {
                 const d = datosIdioma(f, lang);
                 return { lang, fuente: fuenteAudio(d, lang) };
@@ -1308,8 +1451,7 @@
 
         function setPlayUI(playing) {
             isPlaying = playing;
-            document.getElementById('btn-play').classList.toggle('playing', playing);
-            document.getElementById('play-icon').className = playing ? 'fas fa-pause' : 'fas fa-play';
+            document.getElementById('play-icon').src = playing ? 'icons/player-pse.svg' : 'icons/player-ply.svg';
         }
 
         async function toggleAudio(forzarInicio = false) {
@@ -1328,7 +1470,20 @@
             const f = frasesActivas[indice];
             if (!f) { setPlayUI(false); return; }
 
+            if (audiosProntos) { await audiosProntos; audiosProntos = null; }
+
+            // 🎯 EL CONTADOR MANDA: si esta frase ya completó sus reps de hoy,
+            // se salta sin reproducir y sigue de largo
+            const restantes = repsRestantesHoy(f);
+            if (restantes === 0 && !modoRepaso) {
+                trasFraseCompleta(150); // salto rápido
+                return;
+            }
+
             sincronizarEngine();
+            // Reproducir SOLO las repeticiones que faltan hoy
+            AudioEngine.sessionConfig.reps[objetivoActivo()] = restantes;
+
             secuenciaEnCurso = true;
             let completa = false;
             try {
@@ -1342,35 +1497,47 @@
 
             if (completa && isPlaying) {
                 registrarRepasoSiCorresponde();
+                trasFraseCompleta(500);
+            }
+        }
 
-                const eraUltimaFrase = indice === frasesActivas.length - 1;
+        // Reps que le faltan a la frase HOY en el idioma activo
+        function repsRestantesHoy(f) {
+            const lang = objetivoActivo();
+            const c = getConfigIdioma(lang);
+            const p = (progreso[lang] && progreso[lang][f.id]) || null;
+            const hechas = (p && p.lastRepDate === SpacedRepetition.hoy()) ? (p.reps || 0) : 0;
+            return Math.max(0, c.reps - hechas);
+        }
 
-                if (eraUltimaFrase) {
-                    // 🔗 ENCADENAMIENTO: ¿hay más idiomas en la lista de estudio?
-                    if (pareja.activo < pareja.objetivos.length - 1) {
-                        pareja.activo++;
-                        indice = 0;
-                        AudioEngine.reset();
-                        const nombre = (IDIOMAS_INFO[objetivoActivo()] || {}).nombre || objetivoActivo();
-                        mostrarToast(`🔗 Bloque completado. Ahora: ${nombre}`);
-                        aplicarPareja();
-                        actualizarUI();
-                        setPlayUI(true);
-                        setTimeout(() => { if (isPlaying) toggleAudio(true); }, 1200);
-                    } else {
-                        // 🏁 Sesión completa: todos los idiomas, todas las frases
-                        pareja.activo = 0;
-                        AudioEngine.reset();
-                        setPlayUI(false);
-                        aplicarPareja();
-                        actualizarUI();
-                        mostrarToast('🏁 ¡Sesión completa! Recorriste todos tus idiomas.');
-                    }
+        // Qué sigue cuando una frase queda completa (reproducida o saltada)
+        function trasFraseCompleta(delayMs) {
+            const eraUltimaFrase = indice === frasesActivas.length - 1;
+
+            if (eraUltimaFrase) {
+                // 🔗 ENCADENAMIENTO: ¿hay más idiomas en la lista de estudio?
+                if (pareja.activo < pareja.objetivos.length - 1) {
+                    pareja.activo++;
+                    indice = 0;
+                    AudioEngine.reset();
+                    const nombre = (IDIOMAS_INFO[objetivoActivo()] || {}).nombre || objetivoActivo();
+                    mostrarToast(`🔗 Bloque completado. Ahora: ${nombre}`);
+                    aplicarPareja();
+                    actualizarUI();
+                    setPlayUI(true);
+                    setTimeout(() => { if (isPlaying) toggleAudio(true); }, 1200);
                 } else {
-                    // Auto-avance a la siguiente frase del bloque actual
-                    cambiarFrase(1, true);
-                    setTimeout(() => { if (isPlaying) toggleAudio(true); }, 500);
+                    // 🏁 Sesión completa: todos los idiomas, todas las frases
+                    pareja.activo = 0;
+                    AudioEngine.reset();
+                    setPlayUI(false);
+                    aplicarPareja();
+                    actualizarUI();
+                    mostrarToast('🏁 ¡Sesión completa! Todas las repeticiones de hoy están hechas.');
                 }
+            } else {
+                cambiarFrase(1, true);
+                setTimeout(() => { if (isPlaying) toggleAudio(true); }, delayMs);
             }
         }
 
@@ -1383,6 +1550,13 @@
             AudioEngine.pause();
             setPlayUI(false);
 
+            // Icono HardyGlot en modo "sonando" con ondas
+            const icono = document.getElementById('phrase-icon-' + rol);
+            if (icono) {
+                icono.src = 'icons/hg-fav-playing.svg';
+                icono.classList.add('hg-sonando');
+            }
+
             const d = datosIdioma(f, lang);
             const c = getConfigIdioma(lang);
             const rate = velocidadARate(c.velocidad);
@@ -1390,11 +1564,19 @@
 
             // Cuenta como una repetición manual (sube el contador, sin estrella automática)
             const p = getProgreso(lang);
+            const hoyStr = SpacedRepetition.hoy();
+            if (p.lastRepDate !== hoyStr) { p.reps = 0; p.lastRepDate = hoyStr; }
             p.reps = Math.min(p.reps + 1, c.reps);
             renderProgreso(rol);
             guardarProgreso();
 
             await AudioEngine._playPaso({ lang, fuente }, rate);
+
+            // La frase terminó: volver al botón de play normal
+            if (icono) {
+                icono.src = 'icons/player-ply.svg';
+                icono.classList.remove('hg-sonando');
+            }
         }
 
         function cambiarFrase(d, mantenerPlay = false) {
@@ -1452,7 +1634,8 @@
 
         function adjustFontSize(rol, delta) {
             const c = getConfigIdioma(langDe(rol));
-            c.fontSize = Math.max(12, Math.min(34, c.fontSize + delta));
+            const maxFs = (IDIOMAS_INFO[langDe(rol)] || {}).rtl ? 42 : 34;
+            c.fontSize = Math.max(12, Math.min(maxFs, c.fontSize + delta));
             document.getElementById('fs-display-' + rol).innerText = c.fontSize;
             document.getElementById('texto-' + rol).style.fontSize = c.fontSize + 'px';
             persistirPreferencias();
@@ -1473,6 +1656,18 @@
             document.getElementById('btn-nikud-' + rol).classList.toggle('activo', vista.nikud[rol]);
             renderBloque(rol);
             persistirPreferencias();
+        }
+
+        function syncVistaUI() {
+            ['obj', 'base'].forEach(rol => {
+                const btn = document.getElementById('btn-nikud-' + rol);
+                if (btn) btn.classList.toggle('activo', !!vista.nikud[rol]);
+            });
+            const bt = document.getElementById('toggle-trans');
+            if (bt) {
+                bt.classList.toggle('activo', vista.translitVisible);
+                bt.innerText = vista.translitVisible ? 'Hide' : 'Show';
+            }
         }
 
         function toggleTrans() {
@@ -1496,8 +1691,9 @@
         // con las de Bet Midrash, que compartían nombres)
         // ============================================================
         const FUENTES_LATINAS = ['Poppins', 'Inter', 'Merriweather', 'Lora'];
-        const FUENTES_HEBREAS = ['Rubik', 'Heebo', 'David Libre', 'Frank Ruhl Libre', 'Alef',
-            'Varela Round', 'Secular One', 'Suez One', 'IBM Plex Sans Hebrew', 'Noto Rashi Hebrew'];
+        const FUENTES_HEBREAS = ['Rubik', 'Alef', 'Varela Round', 'IBM Plex Sans Hebrew',
+            'David Libre', 'Frank Ruhl Libre', 'Noto Serif Hebrew', 'Bellefair',
+            'Noto Rashi Hebrew', 'Playpen Sans Hebrew'];
 
         function poblarSelectFuentes() {
             ['obj', 'base'].forEach(rol => {
@@ -1569,16 +1765,47 @@
             else alert('Error: ' + error.message);
         }
 
-        async function iniciar() {
-            cargarPreferencias();
-            poblarSelectFuentes();
-            await cargarProgreso();
-            await cargarAudiosProtegidos();
+        let audiosProntos = null; // promesa de las URLs firmadas
 
-            const resp = await fetch('frases.json');
-            const crudas = await resp.json();
-            frasesTodas = crudas.map(normalizarFrase);
+        async function iniciar() {
+            const esPrimeraVez = !localStorage.getItem(PREFS_KEY);
+            cargarPreferencias();
+
+            // Primera visita: el materno por defecto es el idioma del navegador,
+            // y el idioma de estudio por defecto, el primero activo que no sea el materno
+            if (esPrimeraVez) {
+                pareja.base = idiomaDelNavegador();
+                // Por defecto: hebreo primero, inglés segundo (sin incluir el materno);
+                // los demás idiomas los agrega el alumno a su gusto
+                pareja.objetivos = ['he', 'en'].filter(c => c !== pareja.base);
+                pareja.activo = 0;
+            }
+            poblarSelectFuentes();
+            mostrarNombre();
+
+            // 0) VALIDACIÓN DE PERFIL PRIMERO: sin perfil no se entra a la app
+            if (esPrimeraVez) abrirModalUsuario();
+
+            // 1) TEXTOS: la app se ve de inmediato
+            try {
+                const resp = await fetch('frases.json');
+                const crudas = await resp.json();
+                frasesTodas = crudas.map(normalizarFrase);
+            } catch (err) {
+                console.error('❌ No se pudo cargar frases.json:', err);
+                mostrarToast('⚠️ No se pudieron cargar las frases. Recarga la página.', true);
+                frasesTodas = [];
+            }
             frasesActivas = frasesTodas;
+
+            // 2) Supabase en segundo plano (no bloquea la pantalla)
+            audiosProntos = cargarAudiosProtegidos();
+            cargarProgreso().then(() => { actualizarUI(); actualizarBannerRepasos(); });
+
+            syncVistaUI();
+            // El modal de onboarding (si aplica) ya está abierto; refrescar sus
+            // opciones ahora que los datos cargaron
+            if (esPrimeraVez) { renderListaObjetivos(); }
 
             // Si el par guardado ya no existe en los datos, volver al default
             const disp = idiomasDisponibles();
