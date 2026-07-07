@@ -10,18 +10,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Fuentes recortadas: solo las que ofrece el Design Panel (antes eran ~30 familias) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Lora:wght@400;600&family=Rubik:wght@400;500;600&family=David+Libre:wght@400;500;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Alef:wght@400;700&family=Varela+Round&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Noto+Serif+Hebrew:wght@400;500;700&family=Bellefair&family=Noto+Rashi+Hebrew&family=Playpen+Sans+Hebrew:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&family=Lora:wght@400;600;700&family=Montserrat:wght@300;400;700&family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Roboto+Slab:wght@300;400;700&family=Quicksand:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&family=Caveat:wght@400;700&family=Bitter:wght@300;400;700&family=Fira+Sans:wght@300;400;700&family=Amatic+SC:wght@400;700&family=Bona+Nova:wght@400;700&family=Cardo:wght@400;700&family=David+Libre:wght@400;500;700&family=Frank+Ruhl+Libre:wght@300;400;700&family=Fredoka:wght@300;400;600&family=Karantina:wght@300;400;700&family=Noto+Rashi+Hebrew&family=Playpen+Sans+Hebrew:wght@300;400;700&family=Rubik:wght@300;400;700&family=Rubik+Scribble&family=Varela+Round&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* Gveret Levin (cursiva israelí) no está en Google Fonts.
+           Al subir el archivo a fonts/GveretLevin.woff2 se activa sola. */
+        @font-face {
+            font-family: 'Gveret Levin';
+            src: url('fonts/GveretLevin.woff2') format('woff2');
+            font-display: swap;
+        }
+
         :root {
-            --color-1: #082EA5;   /* azul del play */
-            --color-2: #EE4036;   /* naranja del play */
-            --color-3: #051B66;   /* azul profundo */
-            --color-4: #4A6BE8;   /* azul claro */
-            --color-5: #F58A3C;   /* naranja suave */
+            --color-1: #1A365D;   /* Azul Disciplina */
+            --color-2: #D35400;   /* Naranja Constancia */
+            --color-3: #5C4033;   /* Marrón Esfuerzo */
+            --color-4: #707B7C;   /* Gris Resiliencia */
+            --color-5: #F4F6F6;   /* Blanco Hueso */
             --font-primary: 'Poppins', sans-serif;
             --font-size-base: 16px;
         }
@@ -30,7 +38,7 @@
 
         body {
             font-family: var(--font-primary);
-            background: #f0f2f5;
+            background: #F4F6F6;
             display: flex;
             justify-content: center;
             align-items: flex-start; /* ancla arriba: el botón play no salta al cambiar el largo de la frase */
@@ -77,10 +85,16 @@
         .btn-icon.gear { color: #bbb; }
         .btn-icon.gear:hover { color: var(--color-1); }
 
+        .etapa-seg {
+            flex: 1; height: 5px; border-radius: 3px; background: #e5e7eb; transition: background 0.3s;
+        }
+        .etapa-seg.hecha { background: var(--color-1, #1A365D); }
+        .etapa-seg.proximamente { background: repeating-linear-gradient(45deg, #e5e7eb, #e5e7eb 3px, #eee 3px, #eee 6px); }
+
         .contador {
             font-weight: 600;
-            color: #444;
-            font-size: 15px;
+            color: var(--color-4, #444);
+            font-size: 12px;
             flex: 1;
             text-align: center;
         }
@@ -118,6 +132,9 @@
             font-size: 20px;
             box-shadow: 0 4px 12px rgba(27, 122, 99, 0.35);
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-play.playing { background: var(--color-5); }
@@ -186,6 +203,19 @@
 
         .texto-oculto { filter: blur(8px); opacity: 0.5; }
 
+        /* #16: traducción por palabra */
+        .palabra { position: relative; }
+        .palabra[data-glosa]:hover::after {
+            content: attr(data-glosa);
+            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+            background: #333; color: #fff; font-size: 11px; padding: 3px 8px;
+            border-radius: 6px; white-space: nowrap; z-index: 100; pointer-events: none;
+            direction: ltr; font-family: 'Poppins', sans-serif; font-weight: 400;
+        }
+        .palabra-col { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; }
+        .glosa { font-size: 10px; color: #6b7280; font-weight: 400; margin-top: 1px;
+                 font-family: 'Poppins', sans-serif; direction: ltr; line-height: 1.1; }
+
         .rtl { direction: rtl; }
 
         .translit {
@@ -205,7 +235,7 @@
             min-height: 26px;
         }
 
-        .nikud-toggle, .base-toggle {
+        .nikud-toggle {
             border: 1px solid #eee;
             background: #fafafa;
             border-radius: 8px;
@@ -214,7 +244,8 @@
             cursor: pointer;
             color: #777;
         }
-        .nikud-toggle.activo, .base-toggle.activo { color: var(--color-3); border-color: var(--color-3); }
+        .nikud-toggle { border: 1px solid #ccc; }
+        .nikud-toggle.activo { color: var(--color-4, #444); border-color: var(--color-4, #888); background: #f0f0f0; font-weight: 600; }
 
         .progress-row {
             display: flex;
@@ -245,7 +276,7 @@
         }
         .btn-dominada.hecha { color: var(--color-1); font-weight: 600; text-decoration: none; }
 
-        .stars { color: var(--color-5); font-size: 13px; letter-spacing: 2px; }
+        .stars { color: var(--color-2, #D35400); font-size: 13px; letter-spacing: 2px; }
         .stars .far { color: #ddd; }
 
         .rep-counter { font-size: 12px; color: #999; min-width: 28px; }
@@ -393,13 +424,14 @@
         .design-panel {
             display: none;
             position: fixed;
-            top: 0;
-            right: 0;
-            height: 100vh;
-            width: 280px;
+            top: 12px;
+            right: 12px;
+            max-height: 55vh;
+            width: 240px;
             background: white;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.12);
-            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            padding: 18px;
             z-index: 90;
             overflow-y: auto;
         }
@@ -456,7 +488,7 @@
         /* Chips de idiomas elegidos en el modal */
         .chip-elegido {
             display: inline-flex; align-items: center; gap: 4px;
-            border: 1.5px solid var(--color-1, #082EA5); border-radius: 20px;
+            border: 1.5px solid var(--color-1, #1A365D); border-radius: 20px;
             padding: 3px 10px; font-size: 14px; background: #f0faf7; cursor: pointer;
         }
         .chip-elegido small { color: #888; font-size: 10px; }
@@ -480,9 +512,15 @@
             <button class="btn-icon" onclick="window.location.href='index.html'" title="Lingo Lab"><span
                     class="material-symbols-outlined" style="font-size:22px;">home</span></button>
             <div style="display:flex; flex-direction:column; align-items:center; line-height:1.2;">
-                <span style="font-weight:700; font-size:14px; color:var(--color-1, #082EA5);">Eri's LingoLab</span>
+                <span style="font-weight:800; font-size:17px; color:var(--color-1, #1A365D);">Eri's LingoLab</span>
                 <span class="contador" id="contador">Cargando...</span>
                 <div id="chips-idiomas" style="display:flex; gap:6px; margin-top:4px; flex-wrap:wrap; justify-content:center;"></div>
+                <div id="barra-global" style="width:150px; height:5px; border-radius:3px; background:#e5e7eb; margin-top:8px; overflow:hidden;" title="Progreso global del curso">
+                    <div id="barra-global-fill" style="height:100%; width:0%; background:var(--color-2, #D35400); transition:width 0.4s;"></div>
+                </div>
+                <div id="barra-modulo" style="width:150px; height:5px; border-radius:3px; background:#e5e7eb; margin-top:3px; overflow:hidden;" title="Progreso del módulo actual">
+                    <div id="barra-modulo-fill" style="height:100%; width:0%; background:var(--color-1, #1A365D); transition:width 0.3s;"></div>
+                </div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <button class="btn-icon gear" onclick="abrirModalUsuario()" title="Idiomas y perfil"><i
@@ -492,12 +530,12 @@
         </div>
 
         <!-- ===== CONTROLES PRINCIPALES (PLAY ARRIBA) ===== -->
-        <div class="controls-row">
+        <div class="controls-row" style="margin-left:-12px;">
             <button class="btn-nav" onclick="cambiarFrase(-1)"><img src="icons/player-bck.svg" alt="Anterior" style="width:34px; height:34px;"></button>
-            <button class="btn-play" id="btn-play" onclick="toggleAudio()" style="background:transparent; box-shadow:none;"><img
-                    id="play-icon" src="icons/player-ply.svg" alt="Play" style="width:62px; height:62px;"></button>
-            <button class="btn-nav" onclick="cambiarFrase(1)"><img src="icons/player-fwd.svg" alt="Siguiente" style="width:34px; height:34px;"></button>
-            </div>
+            <button class="btn-play" id="btn-play" onclick="toggleAudio()" style="background:transparent; box-shadow:none; margin-left:-3px;"><img
+                    id="play-icon" src="icons/player-ply.svg" alt="Play" style="width:48px; height:48px; display:block;"></button>
+            <button class="btn-nav" onclick="cambiarFrase(1)" style="margin-left:-6px;"><img src="icons/player-fwd.svg" alt="Siguiente" style="width:34px; height:34px;"></button>
+        </div>
 
         <!-- ===== BANNER DE REPASOS PENDIENTES ===== -->
         <div class="banner-repasos" id="banner-repasos">
@@ -510,12 +548,6 @@
 
         <!-- ===== BLOQUE IDIOMA OBJETIVO ===== -->
         <div class="bloque">
-            <div class="utility-row">
-                <button class="nikud-toggle" id="btn-nikud-obj" onclick="toggleNikud('obj')" style="display:none;"><i
-                        class="fas fa-eye"></i> נקודים</button>
-                <button class="btn-icon gear" onclick="abrirConfig('obj')" title="Config" style="margin-left:auto;"><i
-                        class="fas fa-cog"></i></button>
-            </div>
             <div class="frase-box">
                 <div>
                     <div class="texto-objetivo" id="texto-obj">...</div>
@@ -528,6 +560,12 @@
                         id="phrase-icon-obj" src="icons/player-ply.svg" alt="Play" style="width:22px; height:22px; vertical-align:middle;"></button>
                 <button class="btn-dominada" id="btn-dominada-obj" onclick="marcarDominada('obj')">¡Ya!</button>
                 <span class="stars" id="stars-obj"></span>
+            </div>
+            <div class="utility-row">
+                <button class="nikud-toggle" id="btn-nikud-obj" onclick="toggleNikud('obj')" style="display:none;"><i
+                        class="fas fa-eye"></i> נקודים</button>
+                <button class="btn-icon gear" onclick="abrirConfig('obj')" title="Config" style="margin-left:auto;"><i
+                        class="fas fa-cog"></i></button>
             </div>
             <div class="config-popup" id="config-obj">
                 <h4><span id="config-titulo-obj">Objetivo</span> <button class="btn-close-popup"
@@ -544,10 +582,21 @@
                 <div class="config-row"><label>Tamaño letra:</label><button class="btn-fs"
                         onclick="adjustFontSize('obj', -1)">−</button><span id="fs-display-obj">26</span><button
                         class="btn-fs" onclick="adjustFontSize('obj', 1)">+</button></div>
+                <div class="config-row"><label>Grosor:</label>
+                    <button class="btn-fs" id="peso-300-obj" onclick="setPeso('obj', 300)" title="Light">L</button>
+                    <button class="btn-fs" id="peso-400-obj" onclick="setPeso('obj', 400)" title="Normal">N</button>
+                    <button class="btn-fs" id="peso-700-obj" onclick="setPeso('obj', 700)" title="Bold"><b>B</b></button>
+                </div>
+                <div class="config-row"><label>Fuente:</label><select id="dp-font-obj"
+                        onchange="dpFont('obj', this.value)" class="font-select" style="flex:1;"></select></div>
                 <div class="config-row" id="row-translit" style="display:none;"><label>Transliteración:</label><button
                         class="config-toggle" id="toggle-trans" onclick="toggleTrans()">Show</button></div>
+                <div class="config-row" id="row-nikud-global" style="display:none;"><label>Nikud (todas):</label><button
+                        class="config-toggle" id="toggle-nikud-global" onclick="toggleNikudGlobal()">Show</button></div>
                 <div class="config-row"><label>Texto:</label><button class="config-toggle activo" id="toggle-text-obj"
                         onclick="toggleTexto('obj')">Hide</button></div>
+                <div class="config-row" id="row-glosas-obj" style="display:none;"><label>Traducción:</label><button
+                        class="config-toggle" id="toggle-glosas-obj" onclick="toggleGlosas('obj')">Show</button></div>
             </div>
         </div>
 
@@ -555,14 +604,6 @@
 
         <!-- ===== BLOQUE IDIOMA BASE ===== -->
         <div class="bloque">
-            <div class="utility-row">
-                <button class="base-toggle activo" id="btn-blur-base" onclick="toggleBlurBase()"><i
-                        class="fas fa-eye"></i> <span id="nombre-base-toggle">Base</span></button>
-                <button class="nikud-toggle" id="btn-nikud-base" onclick="toggleNikud('base')"
-                    style="display:none;"><i class="fas fa-eye"></i> נקודים</button>
-                <button class="btn-icon gear" onclick="abrirConfig('base')" title="Velocidad y tamaño"
-                    style="margin-left:auto;"><i class="fas fa-cog"></i></button>
-            </div>
             <div class="frase-box">
                 <div>
                     <div class="texto-base" id="texto-base"></div>
@@ -575,6 +616,14 @@
                         id="phrase-icon-base" src="icons/player-ply.svg" alt="Play" style="width:22px; height:22px; vertical-align:middle;"></button>
                 <button class="btn-dominada" id="btn-dominada-base" onclick="marcarDominada('base')">¡Ya!</button>
                 <span class="stars" id="stars-base"></span>
+            </div>
+            <div class="utility-row">
+                <button class="nikud-toggle activo" id="btn-blur-base" onclick="togglePeekTexto('base')"><i
+                        class="fas fa-eye"></i> <span id="nombre-base-toggle">Texto</span></button>
+                <button class="nikud-toggle" id="btn-nikud-base" onclick="toggleNikud('base')"
+                    style="display:none;"><i class="fas fa-eye"></i> נקודים</button>
+                <button class="btn-icon gear" onclick="abrirConfig('base')" title="Velocidad y tamaño"
+                    style="margin-left:auto;"><i class="fas fa-cog"></i></button>
             </div>
             <div class="config-popup" id="config-base">
                 <h4><span id="config-titulo-base">Base</span> <button class="btn-close-popup"
@@ -592,10 +641,21 @@
                 <div class="config-row"><label>Tamaño letra:</label><button class="btn-fs"
                         onclick="adjustFontSize('base', -1)">−</button><span id="fs-display-base">19</span><button
                         class="btn-fs" onclick="adjustFontSize('base', 1)">+</button></div>
+                <div class="config-row"><label>Grosor:</label>
+                    <button class="btn-fs" id="peso-300-base" onclick="setPeso('base', 300)" title="Light">L</button>
+                    <button class="btn-fs" id="peso-400-base" onclick="setPeso('base', 400)" title="Normal">N</button>
+                    <button class="btn-fs" id="peso-700-base" onclick="setPeso('base', 700)" title="Bold"><b>B</b></button>
+                </div>
+                <div class="config-row"><label>Fuente:</label><select id="dp-font-base"
+                        onchange="dpFont('base', this.value)" class="font-select" style="flex:1;"></select></div>
                 <div class="config-row"><label>Texto:</label><button class="config-toggle activo" id="toggle-text-base"
                         onclick="toggleTexto('base')">Hide</button></div>
+                <div class="config-row" id="row-glosas-base" style="display:none;"><label>Traducción:</label><button
+                        class="config-toggle" id="toggle-glosas-base" onclick="toggleGlosas('base')">Show</button></div>
             </div>
         </div>
+
+        <div id="app-footer" style="text-align:center; padding-top:14px; font-size:11px; color:var(--color-4, #888); font-family:'Poppins', sans-serif;"></div>
     </div>
 
     <!-- ===== MODAL: IDIOMAS Y PERFIL ===== -->
@@ -619,23 +679,21 @@
             </div>
 
             <div class="form-row">
-                <label>Idioma que hablo (materno)</label>
+                <label>Idioma que hablo</label>
                 <select id="select-base" onchange="renderListaObjetivos()"></select>
             </div>
 
             <div class="form-row">
-                <label>Idiomas que estudio (en orden)</label>
+                <label>Idiomas que estudio</label>
                 <div id="objetivos-elegidos" style="display:flex; gap:6px; flex-wrap:wrap; min-height:32px; margin-bottom:6px;"></div>
                 <select id="select-agregar-idioma" onchange="agregarIdiomaSel()" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:8px; font-family:inherit;"></select>
-                <div class="nota-genero">El orden de izquierda a derecha es tu orden de estudio. Toca un idioma
-                    elegido para quitarlo.</div>
             </div>
 
             <div class="form-row">
                 <label>Expresión de género</label>
                 <div class="genero-opciones">
-                    <button class="genero-btn" id="genero-m" onclick="seleccionarGenero('m')">♂ Masculina</button>
-                    <button class="genero-btn" id="genero-f" onclick="seleccionarGenero('f')">♀ Femenina</button>
+                    <button class="genero-btn" id="genero-m" onclick="seleccionarGenero('m')">♂ Hombre</button>
+                    <button class="genero-btn" id="genero-f" onclick="seleccionarGenero('f')">♀ Mujer</button>
                 </div>
                 <div class="nota-genero">En idiomas con formas gramaticales por género (como el hebreo), verás y
                     escucharás las frases en la forma que te corresponde.</div>
@@ -659,12 +717,8 @@
         <div style="border-bottom:1px solid #eee; padding-bottom:15px; margin-bottom:15px;">
             <div class="design-row">
                 <label>Idioma objetivo</label>
-                <input type="color" class="color-input" id="dp-color-obj" value="#082EA5"
+                <input type="color" class="color-input" id="dp-color-obj" value="#1A365D"
                     onchange="dpColor('obj', this.value)">
-            </div>
-            <div class="design-row">
-                <select class="font-select" id="dp-font-obj" onchange="dpFont('obj', this.value)"
-                    style="flex:1;"></select>
             </div>
 
             <div class="design-row" style="margin-top:10px;">
@@ -672,22 +726,30 @@
                 <input type="color" class="color-input" id="dp-color-base" value="#444444"
                     onchange="dpColor('base', this.value)">
             </div>
-            <div class="design-row">
-                <select class="font-select" id="dp-font-base" onchange="dpFont('base', this.value)"
-                    style="flex:1;"></select>
-            </div>
+        </div>
+
+        <div class="design-row">
+            <label>Paleta</label>
+            <select class="font-select" id="dp-paleta" onchange="aplicarPaleta(this.value)" style="flex:1;">
+                <option value="">— elegir —</option>
+                <option value="disciplina">🔷 Disciplina (default)</option>
+                <option value="esfuerzo">🟤 Esfuerzo</option>
+                <option value="resiliencia">⚙️ Resiliencia</option>
+                <option value="constancia">🔥 Constancia</option>
+                <option value="claridad">⚪ Claridad</option>
+            </select>
         </div>
 
         <div class="design-row"><label>Primary</label><input type="color" class="color-input" id="dp-color-1"
-                value="#082EA5" onchange="dpVarColor(1, this.value)"></div>
+                value="#1A365D" onchange="dpVarColor(1, this.value)"></div>
         <div class="design-row"><label>Accent</label><input type="color" class="color-input" id="dp-color-2"
-                value="#EE4036" onchange="dpVarColor(2, this.value)"></div>
+                value="#D35400" onchange="dpVarColor(2, this.value)"></div>
         <div class="design-row"><label>Tertiary</label><input type="color" class="color-input" id="dp-color-3"
-                value="#051B66" onchange="dpVarColor(3, this.value)"></div>
+                value="#5C4033" onchange="dpVarColor(3, this.value)"></div>
         <div class="design-row"><label>Secondary</label><input type="color" class="color-input" id="dp-color-4"
-                value="#4A6BE8" onchange="dpVarColor(4, this.value)"></div>
+                value="#707B7C" onchange="dpVarColor(4, this.value)"></div>
         <div class="design-row"><label>Highlight</label><input type="color" class="color-input" id="dp-color-5"
-                value="#F58A3C" onchange="dpVarColor(5, this.value)"></div>
+                value="#F4F6F6" onchange="dpVarColor(5, this.value)"></div>
 
         <div style="display:flex; gap:10px; margin-top:20px;">
             <button class="reset-btn" onclick="resetDesign()" style="flex:1;">Reset</button>
@@ -756,7 +818,7 @@
                 toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:10px;color:#fff;font-weight:600;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.3);max-width:90%;text-align:center;';
                 document.body.appendChild(toast);
             }
-            toast.style.background = esError ? '#EE4036' : '#082EA5';
+            toast.style.background = esError ? '#D35400' : '#1A365D';
             toast.innerText = mensaje;
             toast.style.display = 'block';
             clearTimeout(toast._t);
@@ -786,7 +848,15 @@
 
         const config = {};   // config por código de idioma (se crea bajo demanda)
         let progreso = {};   // progreso por idioma: progreso[lang][id]
-        let vista = { blurBase: false, translitVisible: false, nikud: { obj: false, base: false } };
+        let vista = { translitVisible: false, nikud: { obj: false, base: false }, glosas: { obj: false, base: false } };
+        // Overrides TEMPORALES (solo la frase actual): null = usar el default global de config/vista
+        let overrideTexto = { obj: null, base: null };
+        let overrideNikud = { obj: null, base: null };
+
+        function resetOverridesFrase() {
+            overrideTexto = { obj: null, base: null };
+            overrideNikud = { obj: null, base: null };
+        }
 
         const audioCache = {}; // url -> objeto Audio (se reutiliza)
 
@@ -868,15 +938,17 @@
         // ============================================================
         function getConfigIdioma(lang) {
             if (!config[lang]) {
-                // Por defecto el base repite 1 vez y el objetivo 5
-                const esBase = lang === pareja.base;
+                const esRTL = !!(IDIOMAS_INFO[lang] || {}).rtl;
                 config[lang] = {
-                    reps: esBase ? 1 : 5,
-                    intervalo: esBase ? 0.0 : 1.3,
-                    velocidad: 0,
+                    reps: 5,
+                    intervalo: 1.3,
+                    velocidad: -1,
                     textoVisible: true,
-                    fontSize: esBase ? 19 : ((IDIOMAS_INFO[lang] || {}).rtl ? 36 : 26)
+                    fontSize: esRTL ? 36 : 18,
+                    peso: 400
                 };
+                // Fuente por defecto: hebreo ya definido (David Libre); el resto, Montserrat
+                config[lang].fuente = esRTL ? 'David Libre' : 'Montserrat';
             }
             return config[lang];
         }
@@ -953,6 +1025,49 @@
                 else console.log(`✅ Progreso sincronizado (${filas.length} filas, 1 request)`);
             } catch (err) {
                 console.error('Error en sincronizarConSupabase:', err);
+            }
+        }
+
+        // #13: perfil (nombre + idiomas + género) en la nube — sobrevive cambio de dispositivo
+        async function guardarPerfilNube() {
+            if (!window.supabase) return;
+            try {
+                const { data: { session } } = await window.supabase.auth.getSession();
+                if (!session) return; // sin sesión: solo queda local (ya guardado)
+                const { error } = await window.supabase.from('perfiles_lab').upsert({
+                    user_id: session.user.id,
+                    nombre: nombreAlumno,
+                    genero: genero,
+                    idioma_base: pareja.base,
+                    idiomas_objetivo: pareja.objetivos,
+                    updated_at: new Date().toISOString()
+                }, { onConflict: 'user_id' });
+                if (error) console.warn('⚠️ No se pudo sincronizar el perfil:', error.message);
+            } catch (err) {
+                console.warn('⚠️ Error sincronizando perfil:', err);
+            }
+        }
+
+        async function cargarPerfilNube() {
+            if (!window.supabase) return false;
+            try {
+                const { data: { session } } = await window.supabase.auth.getSession();
+                if (!session) return false;
+                const { data, error } = await window.supabase
+                    .from('perfiles_lab').select('*').eq('user_id', session.user.id).maybeSingle();
+                if (error || !data) return false;
+
+                nombreAlumno = data.nombre || nombreAlumno;
+                genero = data.genero || genero;
+                pareja.base = data.idioma_base || pareja.base;
+                pareja.objetivos = (data.idiomas_objetivo && data.idiomas_objetivo.length)
+                    ? data.idiomas_objetivo : pareja.objetivos;
+                pareja.activo = 0;
+                console.log('✅ Perfil cargado de Supabase (mismo perfil en cualquier dispositivo)');
+                return true;
+            } catch (err) {
+                console.warn('⚠️ Error cargando perfil de la nube:', err);
+                return false;
             }
         }
 
@@ -1040,15 +1155,30 @@
                         vista.translitVisible = false;
                         vista.nikud = { obj: false, base: false };
                     }
+                    // Migración v3: el materno visible por defecto
+                    if (!p.vistaV3) {
+                        vista.blurBase = false;
+                        if (config.es) config.es.textoVisible = true;
+                    }
                 }
             } catch (e) { }
         }
 
         function persistirPreferencias() {
-            localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, nombre: nombreAlumno, config, vista, vistaV2: true }));
+            localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, nombre: nombreAlumno, config, vista, vistaV2: true, vistaV3: true }));
         }
 
+        const APP_VERSION = 'v2.0.0-alfa';
+        console.log('%cEri\'s LingoLab ' + APP_VERSION, 'color:#1A365D; font-weight:bold; font-size:14px;');
+
         const IDIOMAS_ACTIVOS = ['es', 'en', 'he']; // con contenido listo hoy
+
+        const UI_STRINGS = {
+            es: { texto: 'Texto' },
+            en: { texto: 'Text' },
+            he: { texto: 'טקסט' }
+        };
+        function tUI(clave) { return (UI_STRINGS[pareja.base] || UI_STRINGS.es)[clave]; }
 
         // Idioma del navegador/región del estudiante, si está entre los activos
         function idiomaDelNavegador() {
@@ -1129,6 +1259,45 @@
 
         function seleccionarGenero(g) { genero = g; marcarGeneroUI(); }
 
+        function renderBarraGlobal() {
+            const fill = document.getElementById('barra-global-fill');
+            if (!fill) return;
+            const total = frasesTodas.length * pareja.objetivos.length;
+            if (!total) { fill.style.width = '0%'; return; }
+            let dominadas = 0;
+            pareja.objetivos.forEach(lang => {
+                const porLang = progreso[lang] || {};
+                dominadas += Object.values(porLang).filter(p => p && p.dominada).length;
+            });
+            const pct = Math.round((dominadas / total) * 100);
+            fill.style.width = pct + '%';
+            document.getElementById('barra-global').title = `Progreso global del curso: ${pct}%`;
+        }
+
+        // Módulo activo hoy: 'shadowing'. Cuando se construya el motor de
+        // práctica (#12 backlog), este mismo bloque cambia de MODO_ACTUAL
+        // y de cálculo, sin tocar el resto de la UI.
+        let MODO_ACTUAL = 'shadowing';
+
+        function renderBarraModulo() {
+            const fill = document.getElementById('barra-modulo-fill');
+            const cont = document.getElementById('barra-modulo');
+            if (!fill) return;
+            const f = frasesActivas[indice];
+            const lang = objetivoActivo();
+            const c = getConfigIdioma(lang);
+
+            let pct = 0, label = 'Shadowing';
+            if (MODO_ACTUAL === 'shadowing' && f) {
+                const restantes = repsRestantesHoy(f);
+                pct = Math.round(((c.reps - restantes) / c.reps) * 100);
+            } else if (MODO_ACTUAL === 'practica') {
+                label = 'Práctica'; pct = 0; // motor aún no implementado
+            }
+            fill.style.width = pct + '%';
+            if (cont) cont.title = `${label}: ${pct}%`;
+        }
+
         function renderChipsIdiomas() {
             const cont = document.getElementById('chips-idiomas');
             if (!cont) return;
@@ -1144,7 +1313,7 @@
                 chip.type = 'button';
                 const activo = i === pareja.activo;
                 chip.style.cssText = chipCss + (activo
-                    ? 'border-color:var(--color-1,#082EA5); background:var(--color-1,#082EA5); color:#fff; font-weight:700;'
+                    ? 'border-color:var(--color-1,#1A365D); background:var(--color-1,#1A365D); color:#fff; font-weight:700;'
                     : '');
                 chip.title = info.nombre || c;
                 chip.innerText = `${info.flag || ''} ${info.iso3 || c.toUpperCase()}`;
@@ -1157,6 +1326,7 @@
             if (i === pareja.activo) return;
             AudioEngine.reset();
             setPlayUI(false);
+            resetOverridesFrase();
             pareja.activo = i;
             aplicarPareja();
             actualizarUI();
@@ -1192,6 +1362,7 @@
             }
             nombreAlumno = nombre;
             mostrarNombre();
+            guardarPerfilNube();
             AudioEngine.reset();
             setPlayUI(false);
             pareja = { base, objetivos: [...objetivosSel], activo: 0 };
@@ -1206,15 +1377,18 @@
         function aplicarPareja() {
             renderChipsIdiomas();
             syncVistaUI();
+            poblarSelectFuentes(); // el idioma de cada bloque puede haber cambiado
             const infoObj = IDIOMAS_INFO[objetivoActivo()] || {};
             const infoBase = IDIOMAS_INFO[pareja.base] || {};
 
             document.getElementById('config-titulo-obj').innerText = infoObj.nombre || objetivoActivo();
             document.getElementById('config-titulo-base').innerText = infoBase.nombre || pareja.base;
-            document.getElementById('nombre-base-toggle').innerText = infoBase.nombre || pareja.base;
+            document.getElementById('nombre-base-toggle').innerText = tUI('texto');
 
             // Rasgos hebreos (nikud/translit/RTL) según dónde caiga el hebreo
             document.getElementById('btn-nikud-obj').style.display = infoObj.tieneNikud ? 'inline-block' : 'none';
+            const rowNG = document.getElementById('row-nikud-global');
+            if (rowNG) rowNG.style.display = (infoObj.tieneNikud || infoBase.tieneNikud) ? 'flex' : 'none';
             document.getElementById('btn-nikud-base').style.display = infoBase.tieneNikud ? 'inline-block' : 'none';
             document.getElementById('row-translit').style.display = infoObj.tieneTranslit ? 'flex' : 'none';
 
@@ -1228,6 +1402,8 @@
                 document.getElementById('silence-display-' + rol).innerText = c.intervalo.toFixed(1);
                 document.getElementById('speed-display-' + rol).innerText = c.velocidad;
                 document.getElementById('fs-display-' + rol).innerText = c.fontSize;
+                const selFuente = document.getElementById('dp-font-' + rol);
+                if (selFuente && c.fuente) selFuente.value = c.fuente;
                 const btn = document.getElementById('toggle-text-' + rol);
                 btn.classList.toggle('activo', c.textoVisible);
                 btn.innerText = c.textoVisible ? 'Hide' : 'Show';
@@ -1249,12 +1425,14 @@
             let etiqueta = (modoRepaso ? '📚 Repaso ' : 'Frase ') + `${indice + 1} de ${frasesActivas.length}`;
             if (pareja.objetivos.length > 1) {
                 const nombre = (IDIOMAS_INFO[objetivoActivo()] || {}).nombre || objetivoActivo();
-                etiqueta += ` · ${nombre} (${pareja.activo + 1}/${pareja.objetivos.length})`;
+                etiqueta += ` · ${nombre}`;
             }
             document.getElementById('contador').innerText = etiqueta;
 
             renderBloque('obj');
             renderBloque('base');
+            renderBarraGlobal();
+            renderBarraModulo();
         }
 
         function renderBloque(rol) {
@@ -1274,19 +1452,55 @@
 
             // Texto (con nikud si aplica y está activo)
             let texto = d.frase;
-            if (info.tieneNikud && vista.nikud[rol] && d.nikud) texto = d.nikud;
+            const nikudEfectivo = overrideNikud[rol] !== null ? overrideNikud[rol] : vista.nikud[rol];
+            if (info.tieneNikud && nikudEfectivo && d.nikud) texto = d.nikud;
 
-            // En el bloque objetivo, cada palabra es clicable (TTS palabra a palabra)
-            if (rol === 'obj') {
-                textoEl.innerHTML = envolverPalabras(texto, lang);
-            } else {
-                textoEl.innerText = texto;
+            // Cada palabra es clicable (TTS palabra a palabra) en ambos bloques.
+            // Si la frase trae glosas (traducción por palabra) y el modo está activo,
+            // se pintan debajo de cada palabra.
+            // #16 v2: traducción AUTOMÁTICA POR PALABRA (temporal, mientras se
+            // define el sistema definitivo en frases.json). Usa el endpoint
+            // gratuito de Google Translate desde el navegador — sin backend,
+            // sin API key. Corre SIEMPRE (no solo cuando el toggle está activo),
+            // porque el hover debe mostrar la traducción de la palabra sin
+            // necesidad de activar el modo "siempre visible".
+            let glosasUsar = d.glosas;
+            const esGlosaProvisional = !(Array.isArray(d.glosas) && d.glosas.length > 0);
+            if (esGlosaProvisional && rol === 'obj') {
+                const palabras = texto.split(' ');
+                glosasUsar = palabras.map(p => {
+                    const key = lang + ':' + pareja.base + ':' + p.toLowerCase();
+                    return glosaWordCache[key] || null; // null = todavía no llega, se rellena solo
+                });
+
+                // Disparar traducciones pendientes en segundo plano (no bloquea el render)
+                const fRef = f; // para no re-renderizar si el alumno ya cambió de frase
+                palabras.forEach(p => {
+                    const key = lang + ':' + pareja.base + ':' + p.toLowerCase();
+                    if (glosaWordCache[key] === undefined) {
+                        glosaWordCache[key] = null; // marca "en curso" para no pedirla dos veces
+                        traducirPalabraAuto(p, lang, pareja.base).then(trad => {
+                            glosaWordCache[key] = trad;
+                            if (frasesActivas[indice] === fRef) renderBloque(rol);
+                        });
+                    }
+                });
             }
+            const tieneGlosas = Array.isArray(glosasUsar) && glosasUsar.length > 0;
+            const rowGlosas = document.getElementById('row-glosas-' + rol);
+            if (rowGlosas) rowGlosas.style.display = tieneGlosas ? 'flex' : 'none';
+            const btnNik = document.getElementById('btn-nikud-' + rol);
+            if (btnNik && info.tieneNikud) btnNik.classList.toggle('activo', nikudEfectivo);
+            textoEl.innerHTML = envolverPalabras(texto, lang, glosasUsar, tieneGlosas && vista.glosas && vista.glosas[rol]);
             textoEl.style.fontSize = c.fontSize + 'px';
+            textoEl.style.fontWeight = c.peso || 400;
+            if (c.fuente) textoEl.style.fontFamily = `'${c.fuente}', sans-serif`;
 
-            // Visibilidad del texto
-            const dominadaObj = rol === 'base' && getProgreso(objetivoActivo()).dominada;
-            textoEl.classList.toggle('texto-oculto', !c.textoVisible || (rol === 'base' && vista.blurBase) || dominadaObj);
+            // Visibilidad del texto: override temporal de ESTA frase > default global
+            const textoVisibleEfectivo = overrideTexto[rol] !== null ? overrideTexto[rol] : c.textoVisible;
+            textoEl.classList.toggle('texto-oculto', !textoVisibleEfectivo);
+            const btnPeek = document.getElementById('btn-blur-' + rol);
+            if (btnPeek) btnPeek.classList.toggle('activo', textoVisibleEfectivo);
 
             // Transliteración (solo si el idioma la tiene)
             if (info.tieneTranslit && d.translit && vista.translitVisible) {
@@ -1328,10 +1542,14 @@
             btn.innerText = p.dominada ? '✓ Dominada' : '¡Ya!';
         }
 
-        function envolverPalabras(texto, lang) {
-            return texto.split(' ').map(p =>
-                `<span class="palabra" onclick="reproducirPalabra('${p.replace(/'/g, "\\'")}','${lang}')">${p}</span>`
-            ).join(' ');
+        function envolverPalabras(texto, lang, glosas, mostrarGlosas) {
+            return texto.split(' ').map((p, i) => {
+                const g = (glosas && glosas[i]) ? String(glosas[i]).replace(/"/g, '&quot;') : '';
+                const attr = g ? ` data-glosa="${g}"` : '';
+                const sub = (g && mostrarGlosas) ? `<small class="glosa">${g}</small>` : '';
+                const cls = sub ? 'palabra palabra-col' : 'palabra';
+                return `<span class="${cls}"${attr} onclick="reproducirPalabra('${p.replace(/'/g, "\\'")}','${lang}')">${p}${sub}</span>`;
+            }).join(' ');
         }
 
         function reproducirPalabra(palabra, lang) {
@@ -1598,6 +1816,7 @@
                 AudioEngine.repIndex = 0;
             }
             indice = (indice + d + frasesActivas.length) % frasesActivas.length;
+            resetOverridesFrase();
             actualizarUI();
         }
 
@@ -1653,6 +1872,7 @@
         function toggleTexto(rol) {
             const c = getConfigIdioma(langDe(rol));
             c.textoVisible = !c.textoVisible;
+            overrideTexto[rol] = null; // el cambio global manda de nuevo en esta frase
             const btn = document.getElementById('toggle-text-' + rol);
             btn.classList.toggle('activo', c.textoVisible);
             btn.innerText = c.textoVisible ? 'Hide' : 'Show';
@@ -1661,10 +1881,10 @@
         }
 
         function toggleNikud(rol) {
-            vista.nikud[rol] = !vista.nikud[rol];
-            document.getElementById('btn-nikud-' + rol).classList.toggle('activo', vista.nikud[rol]);
+            const actual = overrideNikud[rol] !== null ? overrideNikud[rol] : vista.nikud[rol];
+            overrideNikud[rol] = !actual;
+            document.getElementById('btn-nikud-' + rol).classList.toggle('activo', overrideNikud[rol]);
             renderBloque(rol);
-            persistirPreferencias();
         }
 
         function syncVistaUI() {
@@ -1688,32 +1908,136 @@
             persistirPreferencias();
         }
 
-        function toggleBlurBase() {
-            vista.blurBase = !vista.blurBase;
-            document.getElementById('btn-blur-base').classList.toggle('activo', !vista.blurBase);
-            renderBloque('base');
+        // #7: nikud GLOBAL desde la configuración (todas las ventanas y frases)
+        function toggleGlosas(rol) {
+            vista.glosas = vista.glosas || { obj: false, base: false };
+            vista.glosas[rol] = !vista.glosas[rol];
+            const btn = document.getElementById('toggle-glosas-' + rol);
+            btn.classList.toggle('activo', vista.glosas[rol]);
+            btn.innerText = vista.glosas[rol] ? 'Hide' : 'Show';
+            renderBloque(rol);
             persistirPreferencias();
+        }
+
+        function setPeso(rol, peso) {
+            const c = getConfigIdioma(langDe(rol));
+            c.peso = peso;
+            [300, 400, 700].forEach(p => {
+                const b = document.getElementById(`peso-${p}-${rol}`);
+                if (b) b.style.outline = p === peso ? '2px solid var(--color-1)' : 'none';
+            });
+            renderBloque(rol);
+            persistirPreferencias();
+        }
+
+        function toggleNikudGlobal() {
+            const nuevo = !(vista.nikud.obj || vista.nikud.base);
+            vista.nikud.obj = nuevo;
+            vista.nikud.base = nuevo;
+            overrideNikud = { obj: null, base: null };
+            syncVistaUI();
+            document.getElementById('toggle-nikud-global').innerText = nuevo ? 'Hide' : 'Show';
+            document.getElementById('toggle-nikud-global').classList.toggle('activo', nuevo);
+            actualizarUI();
+            persistirPreferencias();
+        }
+
+        // Botón pequeño: override TEMPORAL, solo para la frase visible ahora mismo.
+        // No se guarda ni afecta a las demás frases (eso lo hace la config/gear).
+        // #16 v2: caché en memoria para no pedir la misma palabra dos veces
+        const glosaWordCache = {};
+
+        // Traduce una palabra suelta con el endpoint gratuito de Google Translate.
+        // Sin API key, sin backend — es un puente TEMPORAL mientras se define
+        // el sistema definitivo de glosas en frases.json.
+        async function traducirPalabraAuto(palabra, srcLang, tgtLang) {
+            const limpio = palabra.replace(/[.,;:!?¿¡"'""]/g, '').trim();
+            if (!limpio) return null;
+            const intentar = async (codigoSrc) => {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${codigoSrc}&tl=${tgtLang}&dt=t&q=${encodeURIComponent(limpio)}`;
+                const resp = await fetch(url);
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                const data = await resp.json();
+                return data && data[0] && data[0][0] && data[0][0][0];
+            };
+            try {
+                return (await intentar(srcLang)) || null;
+            } catch (err) {
+                // El hebreo a veces necesita el código clásico 'iw' en este endpoint
+                if (srcLang === 'he') {
+                    try { return (await intentar('iw')) || null; } catch (err2) { /* seguimos abajo */ }
+                }
+                console.warn('⚠️ Traducción automática no disponible para "' + palabra + '":', err.message);
+                return null;
+            }
+        }
+
+        function togglePeekTexto(rol) {
+            const c = getConfigIdioma(langDe(rol));
+            const actual = overrideTexto[rol] !== null ? overrideTexto[rol] : c.textoVisible;
+            overrideTexto[rol] = !actual;
+            document.getElementById('btn-blur-' + rol)?.classList.toggle('activo', overrideTexto[rol]);
+            renderBloque(rol);
         }
 
         // ============================================================
         // DESIGN PANEL (claves con prefijo hgll- para no chocar
         // con las de Bet Midrash, que compartían nombres)
         // ============================================================
-        const FUENTES_LATINAS = ['Poppins', 'Inter', 'Merriweather', 'Lora'];
-        const FUENTES_HEBREAS = ['Rubik', 'Alef', 'Varela Round', 'IBM Plex Sans Hebrew',
-            'David Libre', 'Frank Ruhl Libre', 'Noto Serif Hebrew', 'Bellefair',
-            'Noto Rashi Hebrew', 'Playpen Sans Hebrew'];
+        const FUENTES_LATINAS = ['Bitter', 'Caveat', 'Fira Sans', 'Inter', 'Lora',
+            'Merriweather', 'Montserrat', 'Nunito', 'Playfair Display', 'Poppins',
+            'Quicksand', 'Roboto Slab', 'Space Grotesk'];
+        // Lista curada por Ardy, en orden alfabético (#10, #11)
+        const FUENTES_HEBREAS = ['Amatic SC', 'Bona Nova', 'Cardo', 'David Libre',
+            'Frank Ruhl Libre', 'Fredoka', 'Gveret Levin', 'Karantina',
+            'Noto Rashi Hebrew', 'Playpen Sans Hebrew', 'Rubik', 'Rubik Scribble',
+            'Varela Round'];
 
+        // Filtra la lista de fuentes según el idioma real de cada bloque (antes
+        // se mostraban SIEMPRE ambos grupos, mezclando hebreas con latinas).
         function poblarSelectFuentes() {
             ['obj', 'base'].forEach(rol => {
                 const sel = document.getElementById('dp-font-' + rol);
+                if (!sel) return;
+                const info = IDIOMAS_INFO[langDe(rol)] || {};
+                const lista = info.rtl ? FUENTES_HEBREAS : FUENTES_LATINAS; // hoy: solo hebreo es no-latino
+                const valorPrevio = sel.value;
                 sel.innerHTML = '';
-                const grupoL = document.createElement('optgroup'); grupoL.label = 'Latinas';
-                FUENTES_LATINAS.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; grupoL.appendChild(o); });
-                const grupoH = document.createElement('optgroup'); grupoH.label = 'Hebreas';
-                FUENTES_HEBREAS.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; grupoH.appendChild(o); });
-                sel.appendChild(grupoL); sel.appendChild(grupoH);
+                lista.forEach(f => {
+                    const o = document.createElement('option');
+                    o.value = f; o.textContent = f;
+                    sel.appendChild(o);
+                });
+                if (lista.includes(valorPrevio)) sel.value = valorPrevio;
             });
+        }
+
+        // #15: paletas conceptuales — cada una liderada por su valor
+        const PALETAS = {
+            // Slots: 1 primario · 2 acento · 3 oscuro/texto fuerte · 4 GRIS neutro (UI secundaria) · 5 fondo claro
+            disciplina:  ['#1A365D', '#D35400', '#5C4033', '#707B7C', '#F4F6F6'],
+            esfuerzo:    ['#5C4033', '#D69E2E', '#1A365D', '#8C7B6B', '#FAF5EF'],
+            resiliencia: ['#4A5568', '#C05621', '#1A202C', '#A0AEC0', '#F7FAFC'],
+            constancia:  ['#D35400', '#1A365D', '#7B341E', '#9C9691', '#FFF8F1'],
+            claridad:    ['#2B6CB0', '#DD6B20', '#2D3748', '#9CA3AF', '#FFFFFF']
+        };
+
+        function aplicarPaleta(nombre) {
+            const p = PALETAS[nombre];
+            if (!p) return;
+            p.forEach((color, i) => {
+                const num = i + 1;
+                document.getElementById('dp-color-' + num).value = color;
+                dpVarColor(num, color);
+            });
+            // Consistencia total: el texto de cada idioma también sigue la paleta
+            // (objetivo = color primario, materno = gris neutro), no solo la UI.
+            const primario = p[0], grisNeutro = p[3];
+            document.getElementById('dp-color-obj').value = primario;
+            dpColor('obj', primario);
+            document.getElementById('dp-color-base').value = grisNeutro;
+            dpColor('base', grisNeutro);
+            mostrarToast('🎨 Paleta aplicada: ' + nombre.charAt(0).toUpperCase() + nombre.slice(1));
         }
 
         function toggleDesignPanel() {
@@ -1726,8 +2050,10 @@
         }
 
         function dpFont(rol, font) {
+            const c = getConfigIdioma(langDe(rol));
+            c.fuente = font;
             document.getElementById('texto-' + rol).style.fontFamily = `'${font}', sans-serif`;
-            localStorage.setItem('hgll-font-' + rol, font);
+            persistirPreferencias();
         }
 
         function dpVarColor(num, color) {
@@ -1750,10 +2076,15 @@
                     document.getElementById('texto-' + rol).style.color = color;
                     document.getElementById('dp-color-' + rol).value = color;
                 }
-                const font = localStorage.getItem('hgll-font-' + rol);
-                if (font) {
-                    document.getElementById('texto-' + rol).style.fontFamily = `'${font}', sans-serif`;
-                    document.getElementById('dp-font-' + rol).value = font;
+                // Migración única: si quedó una fuente guardada en el sistema
+                // viejo (por posición en pantalla), pasarla al idioma actual y
+                // olvidar la clave vieja — de aquí en adelante la fuente vive
+                // en config[idioma].fuente, no en config[rol].
+                const fontLegacy = localStorage.getItem('hgll-font-' + rol);
+                if (fontLegacy) {
+                    const c = getConfigIdioma(langDe(rol));
+                    if (!c.fuente) c.fuente = fontLegacy;
+                    localStorage.removeItem('hgll-font-' + rol);
                 }
             });
         }
@@ -1779,6 +2110,8 @@
         async function iniciar() {
             const esPrimeraVez = !localStorage.getItem(PREFS_KEY);
             cargarPreferencias();
+            const huboPerfilEnNube = await cargarPerfilNube();
+            const primeraVezReal = esPrimeraVez && !huboPerfilEnNube;
 
             // Primera visita: el materno por defecto es el idioma del navegador,
             // y el idioma de estudio por defecto, el primero activo que no sea el materno
@@ -1793,7 +2126,7 @@
             mostrarNombre();
 
             // 0) VALIDACIÓN DE PERFIL PRIMERO: sin perfil no se entra a la app
-            if (esPrimeraVez) abrirModalUsuario();
+            if (primeraVezReal) abrirModalUsuario();
 
             // 1) TEXTOS: la app se ve de inmediato
             try {
@@ -1814,7 +2147,7 @@
             syncVistaUI();
             // El modal de onboarding (si aplica) ya está abierto; refrescar sus
             // opciones ahora que los datos cargaron
-            if (esPrimeraVez) { renderListaObjetivos(); }
+            if (primeraVezReal) { renderListaObjetivos(); }
 
             // Si el par guardado ya no existe en los datos, volver al default
             const disp = idiomasDisponibles();
@@ -1829,6 +2162,10 @@
         }
 
         iniciar();
+    </script>
+    <script>
+        document.getElementById('app-footer').innerText =
+            '© Copyright 2026 Hardyglot.com  ·  LingoLogic ' + APP_VERSION;
     </script>
 </body>
 
