@@ -1,0 +1,29 @@
+{
+  "id": "shajarit-edot-hamizrach",
+  "tipo": "rezo",
+  "titulo": "Shajarit",
+  "titulo_hebreo": "שחרית",
+  "rito": "edot_hamizrach",
+  "rito_nombre": "Edot HaMizrach (según Jajam Ovadia Yosef)",
+  "modalidades": {
+    "lectura": { "nombre": "Lectura del Sidur", "estado": "activo" },
+    "jazanut": { "nombre": "Jazanut (rezo cantado)", "estado": "proximamente", "nota": "Varias tonadas por texto; la elección de tonada es libertad del jazán. Las tonadas viven en la Biblioteca y se referencian desde aquí." }
+  },
+  "nota_arquitectura": "Un rezo NO es un bloque monolítico: es una secuencia ordenada de referencias a piezas canónicas. Los textos litúrgicos viven en /data/textos/, el Tanaj vive en /data/tanaj/. Shajarit de otro rito = otra lista que referencia muchas de las mismas piezas. Cero duplicados.",
+  "secuencia": [
+    {
+      "orden": 1,
+      "seccion": "Birjot HaShajar",
+      "tipo": "texto_liturgico",
+      "ref": "textos/modeh-ani.json"
+    },
+    {
+      "orden": 2,
+      "seccion": "Halel",
+      "tipo": "tanaj",
+      "ref": "tanaj/tehilim-113.json",
+      "psukim": [1, 3],
+      "nota": "Referencia por rango de psukim al perek canónico del Tanaj."
+    }
+  ]
+}

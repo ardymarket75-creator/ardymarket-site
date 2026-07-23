@@ -1,0 +1,30 @@
+{
+  "_esquema": "Diccionario canónico hebreo del ecosistema ArdyMarket. Llave técnica: id opaco 'he-NNNNNN'. Llave semántica: forma vocalizada (nikud) — distinto nikud = distinta entrada (homógrafos). Se llena bajo demanda: cada texto nuevo aporta solo sus palabras faltantes. 'audio' es matriz por rito: { edot_hamizrach: {url, locutor, genero}, ... } — vacía = cascada a TTS.",
+  "palabras": [
+    { "id": "he-000001", "nikud": "מוֹדֶה", "sin_nikud": "מודה", "translit": "modé", "glosas": { "es": "agradezco / reconozco", "en": "I give thanks" }, "audio": {} },
+    { "id": "he-000002", "nikud": "אֲנִי", "sin_nikud": "אני", "translit": "aní", "glosas": { "es": "yo", "en": "I" }, "audio": {} },
+    { "id": "he-000003", "nikud": "לְפָנֶיךָ", "sin_nikud": "לפניך", "translit": "lefanécha", "glosas": { "es": "ante Ti", "en": "before You" }, "audio": {} },
+    { "id": "he-000004", "nikud": "מֶלֶךְ", "sin_nikud": "מלך", "translit": "mélech", "glosas": { "es": "Rey", "en": "King" }, "audio": {} },
+    { "id": "he-000005", "nikud": "חַי", "sin_nikud": "חי", "translit": "jai", "glosas": { "es": "vivo", "en": "living" }, "audio": {} },
+    { "id": "he-000006", "nikud": "וְקַיָּם", "sin_nikud": "וקיים", "translit": "vekayám", "glosas": { "es": "y existente / eterno", "en": "and enduring" }, "audio": {} },
+    { "id": "he-000007", "nikud": "שֶׁהֶחֱזַרְתָּ", "sin_nikud": "שהחזרת", "translit": "shehejezárta", "glosas": { "es": "que devolviste", "en": "who returned" }, "audio": {} },
+    { "id": "he-000008", "nikud": "בִּי", "sin_nikud": "בי", "translit": "bi", "glosas": { "es": "en mí", "en": "within me" }, "audio": {} },
+    { "id": "he-000009", "nikud": "נִשְׁמָתִי", "sin_nikud": "נשמתי", "translit": "nishmatí", "glosas": { "es": "mi alma", "en": "my soul" }, "audio": {} },
+    { "id": "he-000010", "nikud": "בְּחֶמְלָה", "sin_nikud": "בחמלה", "translit": "bejemlá", "glosas": { "es": "con compasión", "en": "with compassion" }, "audio": {} },
+    { "id": "he-000011", "nikud": "רַבָּה", "sin_nikud": "רבה", "translit": "rabá", "glosas": { "es": "grande / abundante", "en": "great / abundant" }, "audio": {} },
+    { "id": "he-000012", "nikud": "אֱמוּנָתֶךָ", "sin_nikud": "אמונתך", "translit": "emunatécha", "glosas": { "es": "Tu fidelidad", "en": "Your faithfulness" }, "audio": {} },
+    { "id": "he-000013", "nikud": "הַלְלוּ", "sin_nikud": "הללו", "translit": "halelú", "glosas": { "es": "alaben", "en": "praise" }, "audio": {} },
+    { "id": "he-000014", "nikud": "יָהּ", "sin_nikud": "יה", "translit": "Yah", "glosas": { "es": "a Yah (Nombre divino)", "en": "Yah (divine Name)" }, "audio": {} },
+    { "id": "he-000015", "nikud": "עַבְדֵי", "sin_nikud": "עבדי", "translit": "avdéi", "glosas": { "es": "siervos de", "en": "servants of" }, "audio": {} },
+    { "id": "he-000016", "nikud": "ה׳", "sin_nikud": "ה׳", "translit": "Hashém", "glosas": { "es": "Hashem (el Nombre)", "en": "Hashem (the Name)" }, "audio": {} },
+    { "id": "he-000017", "nikud": "אֶת־שֵׁם", "sin_nikud": "את־שם", "translit": "et-shem", "glosas": { "es": "el Nombre de", "en": "the Name of" }, "audio": {} },
+    { "id": "he-000018", "nikud": "יְהִי", "sin_nikud": "יהי", "translit": "yehí", "glosas": { "es": "sea", "en": "may it be" }, "audio": {} },
+    { "id": "he-000019", "nikud": "שֵׁם", "sin_nikud": "שם", "translit": "shem", "glosas": { "es": "nombre", "en": "name" }, "audio": {} },
+    { "id": "he-000020", "nikud": "מְבֹרָךְ", "sin_nikud": "מבורך", "translit": "mevorách", "glosas": { "es": "bendito", "en": "blessed" }, "audio": {} },
+    { "id": "he-000021", "nikud": "מֵעַתָּה", "sin_nikud": "מעתה", "translit": "meatá", "glosas": { "es": "desde ahora", "en": "from now" }, "audio": {} },
+    { "id": "he-000022", "nikud": "וְעַד־עוֹלָם", "sin_nikud": "ועד־עולם", "translit": "vead-olám", "glosas": { "es": "y hasta la eternidad", "en": "and forever" }, "audio": {} },
+    { "id": "he-000023", "nikud": "מִמִּזְרַח־שֶׁמֶשׁ", "sin_nikud": "ממזרח־שמש", "translit": "mimizráj-shémesh", "glosas": { "es": "desde el nacer del sol", "en": "from the sun's rising" }, "audio": {} },
+    { "id": "he-000024", "nikud": "עַד־מְבוֹאוֹ", "sin_nikud": "עד־מבואו", "translit": "ad-mevoó", "glosas": { "es": "hasta su ocaso", "en": "to its setting" }, "audio": {} },
+    { "id": "he-000025", "nikud": "מְהֻלָּל", "sin_nikud": "מהולל", "translit": "mehulál", "glosas": { "es": "alabado", "en": "praised" }, "audio": {} }
+  ]
+}

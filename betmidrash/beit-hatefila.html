@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beit HaTefilá · Shajarit - Bet Midrash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-config.js"></script>
+    <script>
+        (async () => {
+            if (location.protocol === 'file:' || ['localhost','127.0.0.1'].includes(location.hostname)) return;
+            try {
+                const { data } = await window.supabase.auth.getSession();
+                if (!data.session) window.location.href = '../index.html';
+            } catch (e) { console.warn('Auth no disponible (modo prueba)'); }
+        })();
+    </script>
+
+    <!-- ============ MOTOR CANÓNICO — se referencia, nunca se copia ============ -->
+    <script src="../engine/audio-engine.js"></script>
+    <script src="../engine/spaced-repetition.js"></script>
+    <script src="../engine/texto-interactivo.js"></script>
+
+    <style>
+        :root {
+            --tejelet: #1e3a8a;
+            --tejelet-suave: #eef2ff;
+            --dorado: #b8860b;
+            --pergamino: #fdf9ef;
+            --pergamino-borde: #ede3c8;
+            --tinta: #1f2937;
+            --gris: #6b7280;
+            --borde: #E5E7EB;
+            --verde: #10B981;
+        }
+        body { font-family: 'Urbanist', sans-serif; background-color: #f3f4f6; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; margin: 0; padding: 30px 0; box-sizing: border-box; }
+        .container { background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 860px; width: 92%; position: relative; }
+        @media (max-width: 700px) { .container { padding: 38px 20px; } }
+        .volver { position: absolute; top: 20px; left: 20px; text-decoration: none; color: var(--gris); font-weight: 600; font-size: 14px; }
+        .volver:hover { color: var(--tejelet); }
+
+        header { text-align: center; margin-bottom: 26px; }
+        .heb-titulo { font-family: 'Frank Ruhl Libre', serif; font-size: 26px; color: var(--tejelet); direction: rtl; margin: 6px 0 0; font-weight: 700; }
+        h1 { font-size: 30px; margin: 10px 0 4px; color: var(--tinta); }
+        .sub { color: var(--gris); font-size: 14px; }
+
+        .barra-modo { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; margin: 22px 0 8px; }
+        .chip { font-size: 12px; font-weight: 700; border-radius: 20px; padding: 5px 14px; border: 2px solid var(--borde); color: var(--gris); background: white; }
+        .chip.on { border-color: var(--tejelet); color: var(--tejelet); background: var(--tejelet-suave); }
+        .chip.off { opacity: 0.55; }
+        button.chip { cursor: pointer; font-family: 'Urbanist', sans-serif; }
+        button.chip:hover { border-color: var(--tejelet); }
+
+        .repasos { background: var(--tejelet-suave); border: 2px solid #c7d2fe; border-radius: 12px; padding: 12px 18px; margin: 18px 0 30px; font-size: 14px; color: var(--tejelet); font-weight: 600; text-align: center; }
+        .repasos.vacio { background: #f9fafb; border-color: var(--borde); color: var(--gris); font-weight: 400; }
+
+        .seccion-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); font-weight: 800; margin: 34px 0 8px; }
+        .bloque { border: 2px solid var(--borde); border-radius: 16px; padding: 26px; margin-bottom: 26px; }
+        .bloque h2 { margin: 0 0 2px; font-size: 21px; color: var(--tinta); }
+        .bloque .heb-sub { font-family: 'Frank Ruhl Libre', serif; font-size: 19px; color: var(--tejelet); direction: rtl; text-align: left; }
+        .bloque .origen { font-size: 12px; color: var(--gris); margin: 4px 0 16px; }
+        .bloque .origen i { color: var(--dorado); margin-right: 4px; }
+
+        /* La página del sidur: el elemento firma */
+        .frase-card { background: var(--pergamino); border: 1px solid var(--pergamino-borde); border-radius: 12px; padding: 18px 20px 14px; margin-bottom: 14px; }
+        .frase-heb { font-family: 'Frank Ruhl Libre', serif; font-size: 27px; direction: rtl; color: var(--tinta); margin-bottom: 6px; }
+        .frase-translit { font-size: 13px; color: var(--gris); font-style: italic; margin: 2px 0; }
+        .frase-trad { font-size: 14.5px; color: var(--tinta); margin: 2px 0 12px; }
+        .frase-pie { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .btn { font-family: 'Urbanist', sans-serif; font-size: 12.5px; font-weight: 700; border-radius: 8px; padding: 7px 13px; cursor: pointer; border: 2px solid var(--borde); background: white; color: var(--tinta); transition: 0.15s; }
+        .btn:hover { border-color: var(--tejelet); color: var(--tejelet); }
+        .btn.principal { background: var(--tejelet); border-color: var(--tejelet); color: white; }
+        .btn.principal:hover { background: #16307a; }
+        .btn.dominada { background: #d1fae5; border-color: #d1fae5; color: #065f46; cursor: default; }
+        .tag-matriz { font-size: 10.5px; font-weight: 800; color: var(--dorado); background: #fdf3d7; border-radius: 20px; padding: 4px 11px; letter-spacing: 0.5px; }
+        .tag-seleccion { font-size: 10.5px; font-weight: 800; color: var(--tejelet); background: var(--tejelet-suave); border-radius: 20px; padding: 4px 11px; }
+
+        .concepto { border: 2px solid var(--dorado); background: #fffbf0; border-radius: 12px; padding: 16px 20px; margin: 18px 0 6px; }
+        .concepto .t { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); font-weight: 800; }
+        .concepto .heb { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; color: var(--tinta); }
+        .concepto p { margin: 6px 0 0; font-size: 14px; color: var(--tinta); line-height: 1.5; }
+
+        details.comentarios { margin-top: 14px; }
+        details.comentarios summary { cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--tejelet); }
+        .comentario { border-left: 3px solid var(--borde); padding: 8px 14px; margin: 12px 0; font-size: 13.5px; line-height: 1.55; color: var(--tinta); }
+        .comentario.jajam { border-left-color: var(--dorado); }
+        .comentario .fuente { font-weight: 700; display: block; font-size: 12px; color: var(--gris); margin-bottom: 2px; }
+        .comentario.jajam .fuente { color: var(--dorado); }
+
+        .nota-pie { font-size: 12px; color: var(--gris); text-align: center; margin-top: 30px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="volver" href="index.html"><i class="fa-solid fa-arrow-left"></i> Bet Midrash</a>
+    <header>
+        <p class="heb-titulo">בית התפילה · שחרית</p>
+        <h1>Beit HaTefilá — Shajarit</h1>
+        <p class="sub" id="subRito">Rito Edot HaMizrach</p>
+    </header>
+
+    <div class="barra-modo">
+        <span class="chip on"><i class="fa-solid fa-book-open"></i> Lectura del Sidur</span>
+        <span class="chip off"><i class="fa-solid fa-music"></i> Jazanut · próximamente</span>
+        <button class="chip" id="btnInterlineado" onclick="toggleInterlineado()"><i class="fa-solid fa-language"></i> Mostrar traducciones</button>
+    </div>
+
+    <div class="repasos vacio" id="barraRepasos">Cargando repasos…</div>
+
+    <div id="contenido"></div>
+
+    <p class="nota-pie">
+        Pasa el cursor sobre cualquier palabra para ver su traducción · haz click para escucharla.<br>
+        Audio actual: voz del navegador (TTS). Los audios grabados por rito entran por la misma cascada sin cambiar nada aquí.
+    </p>
+</div>
+
+<script>
+/* ============================================================
+   Beit HaTefilá — página consumidora del motor.
+   Todo lo genérico vive en /engine/. Aquí solo hay:
+   composición del rezo, progreso local y UI.
+   ============================================================ */
+
+const LANG = 'he';
+const OPTS_AUDIO = { rito: 'edot_hamizrach', ttsLang: 'he-IL' };
+
+// --- Progreso (localStorage por ahora; Supabase después con el mismo shape) ---
+let progreso = JSON.parse(localStorage.getItem('bm_progreso') || '{}');
+if (!progreso[LANG]) progreso[LANG] = {};
+// Selección personal: frases NO-matriz que el alumno agregó a su repaso (caso Sofer)
+let seleccion = new Set(JSON.parse(localStorage.getItem('bm_seleccion') || '[]'));
+
+function guardar() {
+    localStorage.setItem('bm_progreso', JSON.stringify(progreso));
+    localStorage.setItem('bm_seleccion', JSON.stringify([...seleccion]));
+}
+
+// --- Estado de UI ---
+let interlineado = false;
+let frasesIndex = {};   // id → {frase, titulo del bloque}
+
+// --- Carga y composición del rezo ---
+async function init() {
+    const [dicc, rezo] = await Promise.all([
+        fetch('data/diccionario-he.json').then(r => r.json()),
+        fetch('data/shajarit-edot-hamizrach.json').then(r => r.json())
+    ]);
+    TextoInteractivo.cargarDiccionario('he', dicc.palabras);
+    document.getElementById('subRito').textContent = 'Rito ' + rezo.rito_nombre;
+
+    const cont = document.getElementById('contenido');
+    for (const paso of rezo.secuencia) {
+        const pieza = await fetch('data/' + paso.ref).then(r => r.json());
+        cont.appendChild(renderBloque(paso, pieza));
+    }
+    pintarRepasos();
+}
+
+function renderBloque(paso, pieza) {
+    const div = document.createElement('div');
+
+    const label = document.createElement('p');
+    label.className = 'seccion-label';
+    label.textContent = paso.seccion;
+    div.appendChild(label);
+
+    const bloque = document.createElement('div');
+    bloque.className = 'bloque';
+
+    const fila = document.createElement('div');
+    fila.style.cssText = 'display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px;';
+    fila.innerHTML = `<h2>${pieza.titulo}</h2><span class="heb-sub">${pieza.titulo_hebreo}</span>`;
+    bloque.appendChild(fila);
+
+    const origen = document.createElement('p');
+    origen.className = 'origen';
+    origen.innerHTML = pieza.tipo === 'tanaj'
+        ? `<i class="fa-solid fa-scroll"></i> Referencia al Tanaj — ${pieza.estante} · ${pieza.libro} ${pieza.perek}` + (paso.psukim ? ` · psukim ${paso.psukim[0]}–${paso.psukim[1]}` : '')
+        : `<i class="fa-solid fa-book"></i> Texto litúrgico`;
+    bloque.appendChild(origen);
+
+    const frases = pieza.frases || pieza.psukim || [];
+    for (const frase of frases) {
+        frasesIndex[frase.id] = frase;
+        bloque.appendChild(renderFrase(frase));
+    }
+
+    if (pieza.concepto_matriz) {
+        const c = pieza.concepto_matriz;
+        const box = document.createElement('div');
+        box.className = 'concepto';
+        box.innerHTML = `<span class="t">Concepto matriz — esto es lo que se memoriza</span>
+            <div class="heb" dir="rtl">${c.termino_hebreo}</div>
+            <p><strong>${c.nombre} (${c.translit}):</strong> ${c.definicion_core}</p>`;
+        bloque.appendChild(box);
+    }
+
+    if (pieza.comentarios && pieza.comentarios.length) {
+        const det = document.createElement('details');
+        det.className = 'comentarios';
+        det.innerHTML = '<summary><i class="fa-solid fa-comment-dots"></i> Comentarios (' + pieza.comentarios.length + ')</summary>';
+        for (const com of pieza.comentarios) {
+            const d = document.createElement('div');
+            d.className = 'comentario ' + (com.autoridad === 'jajam' ? 'jajam' : '');
+            d.innerHTML = `<span class="fuente">${com.autoridad === 'jajam' ? '📜 ' : '💡 '}${com.fuente}</span>${com.texto}`;
+            det.appendChild(d);
+        }
+        bloque.appendChild(det);
+    }
+
+    div.appendChild(bloque);
+    return div;
+}
+
+function renderFrase(frase) {
+    const card = document.createElement('div');
+    card.className = 'frase-card';
+    card.id = 'card-' + frase.id;
+
+    const heb = document.createElement('div');
+    heb.className = 'frase-heb';
+    TextoInteractivo.render(heb, frase.tokens, { ...OPTS_AUDIO, interlineado });
+    card.appendChild(heb);
+
+    const tr = document.createElement('p');
+    tr.className = 'frase-translit';
+    tr.textContent = frase.translit;
+    card.appendChild(tr);
+
+    const trad = document.createElement('p');
+    trad.className = 'frase-trad';
+    trad.textContent = frase.traduccion.es;
+    card.appendChild(trad);
+
+    const pie = document.createElement('div');
+    pie.className = 'frase-pie';
+    pie.id = 'pie-' + frase.id;
+    card.appendChild(pie);
+    pintarPie(frase);
+
+    return card;
+}
+
+/* --- Pie de cada frase: audio + estado de repetición espaciada --- */
+function pintarPie(frase) {
+    const pie = document.getElementById('pie-' + frase.id);
+    if (!pie) return;
+    pie.innerHTML = '';
+
+    // Audio de la frase (cascada del motor: archivo → tts)
+    const btnAudio = document.createElement('button');
+    btnAudio.className = 'btn';
+    btnAudio.innerHTML = '<i class="fa-solid fa-volume-high"></i> Escuchar';
+    btnAudio.onclick = () => reproducirFrase(frase);
+    pie.appendChild(btnAudio);
+
+    const p = progreso[LANG][frase.id];
+    const enRepaso = frase.es_matriz || seleccion.has(frase.id);
+
+    // Etiqueta de rol
+    if (frase.es_matriz) {
+        const tag = document.createElement('span');
+        tag.className = 'tag-matriz';
+        tag.textContent = '★ Frase matriz';
+        pie.appendChild(tag);
+    } else if (seleccion.has(frase.id)) {
+        const tag = document.createElement('span');
+        tag.className = 'tag-seleccion';
+        tag.textContent = 'En mi repaso';
+        pie.appendChild(tag);
+    }
+
+    if (enRepaso) {
+        if (!p || !p.dominada) {
+            const b = document.createElement('button');
+            b.className = 'btn principal';
+            b.innerHTML = '<i class="fa-solid fa-check"></i> Dominada — iniciar repaso';
+            b.onclick = () => marcarDominada(frase.id);
+            pie.appendChild(b);
+        } else if (p.proximo_repaso <= SpacedRepetition.hoy()) {
+            const b = document.createElement('button');
+            b.className = 'btn principal';
+            b.innerHTML = '<i class="fa-solid fa-rotate"></i> Repasada hoy';
+            b.onclick = () => completarRepaso(frase.id);
+            pie.appendChild(b);
+        } else {
+            const b = document.createElement('button');
+            b.className = 'btn dominada';
+            b.innerHTML = `<i class="fa-solid fa-circle-check"></i> Nivel ${p.nivel_repaso} · próximo: ${p.proximo_repaso}`;
+            pie.appendChild(b);
+        }
+        if (!frase.es_matriz) {
+            const q = document.createElement('button');
+            q.className = 'btn';
+            q.innerHTML = '<i class="fa-solid fa-xmark"></i> Quitar';
+            q.onclick = () => { seleccion.delete(frase.id); delete progreso[LANG][frase.id]; guardar(); pintarPie(frase); pintarRepasos(); };
+            pie.appendChild(q);
+        }
+    } else {
+        // Selección personal (caso Sofer): agregar frase no-matriz al repaso propio
+        const b = document.createElement('button');
+        b.className = 'btn';
+        b.innerHTML = '<i class="fa-solid fa-plus"></i> Agregar a mi repaso';
+        b.onclick = () => { seleccion.add(frase.id); guardar(); pintarPie(frase); };
+        pie.appendChild(b);
+    }
+}
+
+/* --- Repetición espaciada: TODO el cálculo lo hace el motor --- */
+function marcarDominada(id) {
+    if (!progreso[LANG][id]) progreso[LANG][id] = {};
+    SpacedRepetition.programarPrimerRepaso(progreso[LANG][id]);
+    guardar();
+    pintarPie(frasesIndex[id]);
+    pintarRepasos();
+}
+
+function completarRepaso(id) {
+    SpacedRepetition.completarRepaso(progreso[LANG][id]);
+    guardar();
+    pintarPie(frasesIndex[id]);
+    pintarRepasos();
+}
+
+function pintarRepasos() {
+    const ids = SpacedRepetition.repasosPendientesRaw(progreso, LANG);
+    const barra = document.getElementById('barraRepasos');
+    if (ids.length === 0) {
+        barra.className = 'repasos vacio';
+        barra.textContent = 'No tienes repasos pendientes hoy. Sigue la ruta Fibonacci: 1 · 2 · 3 · 5 · 8 · 13 · 21 días.';
+    } else {
+        barra.className = 'repasos';
+        barra.innerHTML = `<i class="fa-solid fa-bell"></i> Tienes ${ids.length} repaso${ids.length > 1 ? 's' : ''} pendiente${ids.length > 1 ? 's' : ''} hoy: ` +
+            ids.map(id => `<a href="#card-${id}" style="color:inherit">${id}</a>`).join(' · ');
+    }
+}
+
+/* --- Audio de frase completa: reutiliza el AudioEngine del motor --- */
+async function reproducirFrase(frase) {
+    AudioEngine.reset();
+    AudioEngine.sessionConfig.reps[LANG] = 1;
+    AudioEngine.sessionConfig.silenceGap[LANG] = 0;
+    AudioEngine.sessionConfig.rate[LANG] = 0.9;
+    const texto = frase.tokens.map(t => {
+        const e = TextoInteractivo.entrada(t.dicc_id);
+        return e ? (e.sin_nikud || e.nikud) : '';
+    }).join(' ');
+    // Cascada: cuando exista audio grabado por rito, aquí cambia la fuente
+    // a {tipo:'archivo'} sin tocar nada más (mismo patrón de Hardyglot).
+    AudioEngine.isPlaying = true;
+    await AudioEngine._playPaso({ lang: LANG, fuente: { tipo: 'tts', texto, ttsLang: OPTS_AUDIO.ttsLang } }, 0.9);
+    AudioEngine.isPlaying = false;
+}
+
+/* --- Interlineado global --- */
+function toggleInterlineado() {
+    interlineado = !interlineado;
+    document.querySelectorAll('.frase-heb').forEach(el => TextoInteractivo.setInterlineado(el, interlineado));
+    document.getElementById('btnInterlineado').classList.toggle('on', interlineado);
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+  "id": "tehilim-113",
+  "tipo": "tanaj",
+  "estante": "Ketuvim",
+  "libro": "Tehilim",
+  "perek": 113,
+  "titulo_hebreo": "תהילים קי״ג",
+  "titulo": "Salmo 113",
+  "nota": "Casa canónica: el Tanaj. Shajarit (Halel) lo REFERENCIA por rango de psukim — cero duplicados. MVP: psukim 1–3; el perek completo tiene 9.",
+  "concepto_matriz": {
+    "termino_hebreo": "הַלֵּל",
+    "translit": "Halel",
+    "nombre": "Alabanza",
+    "definicion_core": "La alabanza a Dios sin petición: exaltar Su Nombre en todo tiempo y en todo lugar, del amanecer al ocaso."
+  },
+  "psukim": [
+    {
+      "id": "tehilim-113:1",
+      "pasuk": 1,
+      "es_matriz": true,
+      "tokens": [
+        { "dicc_id": "he-000013" },
+        { "dicc_id": "he-000014" },
+        { "dicc_id": "he-000013" },
+        { "dicc_id": "he-000015" },
+        { "dicc_id": "he-000016" },
+        { "dicc_id": "he-000013" },
+        { "dicc_id": "he-000017" },
+        { "dicc_id": "he-000016" }
+      ],
+      "translit": "Halelú-Yah. Halelú avdéi Hashem, halelú et-shem Hashem",
+      "traduccion": { "es": "¡Alaben a Yah! Alaben, siervos de Hashem, alaben el Nombre de Hashem", "en": "Praise Yah! Praise, servants of Hashem, praise the Name of Hashem" }
+    },
+    {
+      "id": "tehilim-113:2",
+      "pasuk": 2,
+      "es_matriz": false,
+      "tokens": [
+        { "dicc_id": "he-000018" },
+        { "dicc_id": "he-000019" },
+        { "dicc_id": "he-000016" },
+        { "dicc_id": "he-000020" },
+        { "dicc_id": "he-000021" },
+        { "dicc_id": "he-000022" }
+      ],
+      "translit": "Yehí shem Hashem mevorách, meatá vead-olám",
+      "traduccion": { "es": "Sea el Nombre de Hashem bendito, desde ahora y para siempre", "en": "May the Name of Hashem be blessed, from now and forever" }
+    },
+    {
+      "id": "tehilim-113:3",
+      "pasuk": 3,
+      "es_matriz": false,
+      "tokens": [
+        { "dicc_id": "he-000023" },
+        { "dicc_id": "he-000024" },
+        { "dicc_id": "he-000025" },
+        { "dicc_id": "he-000019", "glosa_override": "el Nombre de" },
+        { "dicc_id": "he-000016" }
+      ],
+      "translit": "Mimizráj-shémesh ad-mevoó, mehulál shem Hashem",
+      "traduccion": { "es": "Desde el nacer del sol hasta su ocaso, alabado es el Nombre de Hashem", "en": "From the rising of the sun to its setting, praised is the Name of Hashem" }
+    }
+  ],
+  "comentarios": [
+    {
+      "autoridad": "jajam",
+      "fuente": "Talmud Bavli, Pesajim 117a–118a",
+      "texto": "Los Salmos 113–118 forman el Halel. La tradición atribuye su recitación a momentos de redención, y por eso acompaña las festividades."
+    }
+  ]
+}

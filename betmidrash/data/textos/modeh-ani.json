@@ -1,0 +1,68 @@
+{
+  "id": "modeh-ani",
+  "tipo": "texto_liturgico",
+  "titulo_hebreo": "מוֹדֶה אֲנִי",
+  "titulo": "Modeh Ani",
+  "seccion": "Birjot HaShajar · Al despertar",
+  "concepto_matriz": {
+    "termino_hebreo": "הוֹדָאָה",
+    "translit": "Hodaá",
+    "nombre": "Gratitud",
+    "definicion_core": "El reconocimiento del alma hacia Dios por la existencia renovada cada día: agradecer es reconocer."
+  },
+  "frases": [
+    {
+      "id": "modeh-ani:1",
+      "es_matriz": true,
+      "tokens": [
+        { "dicc_id": "he-000001" },
+        { "dicc_id": "he-000002" },
+        { "dicc_id": "he-000003" },
+        { "dicc_id": "he-000004" },
+        { "dicc_id": "he-000005" },
+        { "dicc_id": "he-000006" }
+      ],
+      "translit": "Modé aní lefanécha, mélech jai vekayám",
+      "traduccion": { "es": "Agradezco ante Ti, Rey vivo y eterno", "en": "I give thanks before You, living and enduring King" }
+    },
+    {
+      "id": "modeh-ani:2",
+      "es_matriz": false,
+      "tokens": [
+        { "dicc_id": "he-000007" },
+        { "dicc_id": "he-000008" },
+        { "dicc_id": "he-000009" },
+        { "dicc_id": "he-000010" }
+      ],
+      "translit": "shehejezárta bi nishmatí bejemlá",
+      "traduccion": { "es": "que devolviste a mí mi alma con compasión", "en": "who has returned my soul within me with compassion" }
+    },
+    {
+      "id": "modeh-ani:3",
+      "es_matriz": true,
+      "tokens": [
+        { "dicc_id": "he-000011" },
+        { "dicc_id": "he-000012" }
+      ],
+      "translit": "rabá emunatécha",
+      "traduccion": { "es": "grande es Tu fidelidad", "en": "great is Your faithfulness" }
+    }
+  ],
+  "comentarios": [
+    {
+      "autoridad": "jajam",
+      "fuente": "Séder HaYom (R. Moshé ben Majir, s. XVI)",
+      "texto": "La primera fuente escrita de Modeh Ani. Se instituyó como la primera expresión del día: antes de cualquier acción, el reconocimiento."
+    },
+    {
+      "autoridad": "jajam",
+      "fuente": "Halajá — nusaj sin el Nombre divino",
+      "texto": "Modeh Ani no contiene ninguno de los Nombres divinos; por eso puede decirse inmediatamente al despertar, incluso antes de Netilat Yadayim."
+    },
+    {
+      "autoridad": "aclaracion_moderna",
+      "fuente": "Nota de estudio Bet Midrash",
+      "texto": "Observa el orden de las palabras: en hebreo la frase comienza con 'modé' (agradezco) y no con 'aní' (yo). Los maestros ven aquí una enseñanza: la gratitud precede al yo."
+    }
+  ]
+}
