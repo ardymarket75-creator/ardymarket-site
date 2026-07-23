@@ -149,6 +149,120 @@
         .btn-design-toggle:hover { color: var(--color-3); }
 
         /* ===== BANNER DE REPASOS ===== */
+        /* 🆕 v2.1.0 — contador de días (reemplaza las estrellas) */
+        .contador-dia {
+            font-size: 12px; font-weight: 600; letter-spacing: .3px;
+            padding: 0 11px; border-radius: 20px; white-space: nowrap;
+            border: 1.5px solid var(--color-4, #888); color: var(--color-3, #333);
+            background: transparent;
+            display: inline-flex; align-items: center;
+        }
+        .contador-dia.modo-repaso {
+            border-color: var(--color-2, #D35400); color: #fff;
+            background: var(--color-2, #D35400);
+        }
+        .contador-dia.modo-graduada {
+            border-color: var(--color-1, #1A365D); color: #fff;
+            background: var(--color-1, #1A365D);
+        }
+
+        /* 🆕 v2.1.0 — panel de producción escrita */
+        /* 🆕 v2.1.1 — sin marco: la ventanita de escritura ya se distingue sola */
+        #panel-repaso { display: none; margin: 12px 0; }
+
+        /* El engranaje de usuario se tiñe cuando el modo instructor está activo */
+        .gear-coach { color: var(--color-2, #D35400) !important; }
+        #btn-instructor.activo { background: var(--color-1, #1A365D); color: #fff; border-color: var(--color-1, #1A365D); }
+
+        /* 🆕 v2.1.2 — panel de instructor */
+        #panel-coach {
+            display: none; position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,.45);
+            align-items: center; justify-content: center; padding: 16px;
+        }
+        #panel-coach.visible { display: flex; }
+        .pc-caja {
+            background: #fff; border-radius: 14px; padding: 16px 18px;
+            width: 100%; max-width: 340px; box-shadow: 0 10px 40px rgba(0,0,0,.2);
+        }
+        .pc-head {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; font-weight: 700; color: var(--color-3, #333);
+            margin-bottom: 2px; letter-spacing: .3px;
+        }
+        .pc-frase { font-weight: 400; color: #999; font-size: 11px; margin-bottom: 12px; }
+
+        .btn-instr-icono {
+            margin-top: 4px; border: none; background: none; cursor: pointer;
+            font-size: 13px; color: var(--color-4, #888); padding: 2px;
+        }
+        .btn-instr-icono.activo { color: var(--color-2, #D35400); }
+        .pc-fila {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 7px; font-size: 13px; color: #555;
+        }
+        .pc-ctrl { display: flex; align-items: center; gap: 8px; }
+        .pc-ctrl button {
+            width: 26px; height: 26px; border-radius: 6px; cursor: pointer;
+            border: 1px solid #ddd; background: transparent;
+            font-family: inherit; font-size: 15px; line-height: 1; color: #555;
+        }
+        .pc-ctrl span { min-width: 34px; text-align: center; font-weight: 700; font-size: 13px; }
+        .pc-modos { display: flex; gap: 4px; }
+        .pc-modos button {
+            padding: 4px 9px; border-radius: 6px; cursor: pointer; font-family: inherit;
+            font-size: 11px; border: 1px solid #ddd; background: transparent; color: #666;
+        }
+        .pc-modos button.activo {
+            background: var(--color-1, #1A365D); border-color: var(--color-1, #1A365D); color: #fff;
+        }
+        .pc-acciones { gap: 8px; margin-top: 10px; }
+        .pc-btn {
+            flex: 1; padding: 7px; border-radius: 8px; cursor: pointer; font-family: inherit;
+            font-size: 12px; border: 1px solid #ddd; background: transparent; color: #555;
+        }
+        .pc-btn.pc-peligro { color: var(--color-2, #D35400); border-color: var(--color-2, #D35400); }
+        .pc-nota { font-size: 11px; color: #999; margin: 9px 0 0; line-height: 1.4; }
+
+        /* 🆕 v2.1.2 — selector de modo: dos líneas apiladas, tamaño del nombre */
+        .sel-modo {
+            display: flex; flex-direction: column; gap: 1px; margin-top: 3px;
+            border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden;
+        }
+        .sm-op {
+            font-family: inherit; font-size: 10px; line-height: 1.4;
+            padding: 2px 7px; border: none; cursor: pointer;
+            background: transparent; color: #999; white-space: nowrap;
+            display: flex; align-items: center; gap: 4px; justify-content: space-between;
+        }
+        .sm-op b { font-size: 9px; font-weight: 700; opacity: .8; }
+        .sm-op.activo { background: var(--color-1, #1A365D); color: #fff; }
+        .sm-op.pendiente { color: var(--color-2, #D35400); font-weight: 700; }
+
+
+        #repaso-estado { font-size: 14px; font-weight: 600; margin-bottom: 10px; min-height: 20px; color: var(--color-3, #333); }
+        /* 🆕 v2.1.5 — misma regla de alineación que los bloques de idioma:
+           todo apoyado en la línea base, misma altura. */
+        .rp-fila { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 8px; }
+        .rp-fila > * { height: 42px; box-sizing: border-box; }
+        #repaso-input {
+            flex: 1; padding: 0 12px; font-size: 16px; font-family: inherit;
+            border: 1.5px solid #ccc; border-radius: 8px; min-width: 0;
+        }
+        #repaso-input:disabled { background: #f0f0f0; color: #777; }
+        .rp-btn {
+            padding: 0 16px; border: none; border-radius: 8px; cursor: pointer;
+            background: var(--color-1, #1A365D); color: #fff; font-family: inherit;
+            font-size: 14px; font-weight: 600; white-space: nowrap;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .rp-btn.rp-sec { background: transparent; color: var(--color-3, #333); border: 1.5px solid #ccc; font-weight: 400; }
+        #repaso-feedback { font-size: 14px; margin: 6px 0; min-height: 18px; }
+        .rp-ok { color: #1D9E75; font-weight: 600; }
+        .rp-mal { color: #D35400; font-weight: 600; }
+        .rp-nota { color: #888; font-weight: 400; font-size: 13px; }
+        .rp-esperado { margin-top: 6px; font-size: 18px; color: var(--color-3, #333); }
+
         .banner-repasos {
             display: none;
             background: #fff8e6;
@@ -228,31 +342,44 @@
         .palabra { cursor: pointer; border-radius: 4px; padding: 0 1px; }
         .palabra:hover { background: rgba(27, 122, 99, 0.12); }
 
+        /* 🆕 v2.1.4 — ALINEACIÓN SOBRE LA LÍNEA
+           Regla: todo control que viva encima del divisor mide 26px de alto
+           y se apoya en la misma línea base (align-items: flex-end). Antes
+           el engranaje medía 32 y los toggles 24, y al estar centrados
+           sobresalían por arriba y por abajo. */
         .utility-row {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             gap: 8px;
             min-height: 26px;
+        }
+        .utility-row .btn-icon.gear {
+            width: 28px; height: 28px; font-size: 15px;
         }
 
         .nikud-toggle {
             border: 1px solid #eee;
             background: #fafafa;
             border-radius: 8px;
-            padding: 3px 8px;
+            padding: 0 9px;
             font-size: 12px;
             cursor: pointer;
             color: #777;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
         .nikud-toggle { border: 1px solid #ccc; }
         .nikud-toggle.activo { color: var(--color-4, #444); border-color: var(--color-4, #888); background: #f0f0f0; font-weight: 600; }
 
         .progress-row {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
             gap: 12px;
             margin-top: 4px;
+            margin-bottom: 8px;
         }
 
         .phrase-play-btn {
@@ -264,7 +391,12 @@
             cursor: pointer;
             color: var(--color-1);
             font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
         }
+        .phrase-play-btn img { width: 22px !important; height: 22px !important; }
 
         .btn-dominada {
             border: none;
@@ -273,13 +405,20 @@
             cursor: pointer;
             font-size: 12px;
             text-decoration: underline;
+            display: inline-flex;
+            align-items: center;
+            padding: 0;
+            font-family: inherit;
         }
         .btn-dominada.hecha { color: var(--color-1); font-weight: 600; text-decoration: none; }
 
         .stars { color: var(--color-2, #D35400); font-size: 13px; letter-spacing: 2px; }
         .stars .far { color: #ddd; }
 
-        .rep-counter { font-size: 12px; color: #999; min-width: 28px; }
+        .rep-counter {
+            font-size: 12px; color: #999; min-width: 28px;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
 
         .divider {
             height: 2px;
@@ -523,9 +662,23 @@
                 </div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center;">
-                <button class="btn-icon gear" onclick="abrirModalUsuario()" title="Idiomas y perfil"><i
+                <button class="btn-icon gear" id="gear-usuario" onclick="abrirModalUsuario()" title="Idiomas y perfil"><i
                         class="fas fa-user-cog"></i></button>
                 <span id="nombre-alumno" style="font-size:10px; color:#999; max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                <!-- 🆕 v2.1.2 — selector de modo compacto, del tamaño del nombre -->
+                <div class="sel-modo" id="sel-modo">
+                    <button class="sm-op activo" id="sm-estudio" onclick="cambiarTab('estudio')">
+                        estudio <b id="tab-num-estudio">0</b>
+                    </button>
+                    <button class="sm-op" id="sm-repaso" onclick="cambiarTab('repaso')">
+                        repaso <b id="tab-num-repaso">0</b>
+                    </button>
+                </div>
+                <!-- 🆕 v2.1.4 — acceso al panel de instructor, solo si está validado -->
+                <button class="btn-instr-icono" id="icono-instructor" onclick="abrirPanelCoach()"
+                        title="Panel de instructor" style="display:none;">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </button>
             </div>
         </div>
 
@@ -538,12 +691,70 @@
         </div>
 
         <!-- ===== BANNER DE REPASOS PENDIENTES ===== -->
-        <div class="banner-repasos" id="banner-repasos">
-            <span id="banner-texto">📚 Tienes repasos hoy</span>
-            <span>
-                <button onclick="filtrarRepasos()">Repasar</button>
-                <button onclick="verTodas()" style="background:#bbb;">Todas</button>
-            </span>
+
+
+        <!-- ===== PANEL DE INSTRUCTOR (corrección manual del progreso) ===== -->
+        <div id="panel-coach" onclick="if (event.target === this) cerrarPanelCoach()">
+          <div class="pc-caja">
+            <div class="pc-head">
+                <span><i class="fas fa-chalkboard-teacher"></i> Instructor</span>
+                <button class="btn-close-popup" onclick="cerrarPanelCoach()" title="Cerrar">✕</button>
+            </div>
+            <div class="pc-frase" id="pc-frase"></div>
+            <div class="pc-fila">
+                <label>Reps de hoy</label>
+                <div class="pc-ctrl">
+                    <button onclick="coachAjustar('reps',-1)">−</button>
+                    <span id="pc-reps">0</span>
+                    <button onclick="coachAjustar('reps',1)">+</button>
+                </div>
+            </div>
+            <div class="pc-fila">
+                <label>Días cumplidos</label>
+                <div class="pc-ctrl">
+                    <button onclick="coachAjustar('dias',-1)">−</button>
+                    <span id="pc-dias">0</span>
+                    <button onclick="coachAjustar('dias',1)">+</button>
+                </div>
+            </div>
+            <div class="pc-fila">
+                <label>Día de la secuencia</label>
+                <div class="pc-ctrl">
+                    <button onclick="coachAjustar('nivel',-1)">−</button>
+                    <span id="pc-nivel">—</span>
+                    <button onclick="coachAjustar('nivel',1)">+</button>
+                </div>
+            </div>
+            <div class="pc-fila">
+                <label>Modo</label>
+                <div class="pc-modos">
+                    <button id="pc-m-estudio" onclick="coachModo('estudio')">estudio</button>
+                    <button id="pc-m-repaso" onclick="coachModo('repaso')">repaso</button>
+                    <button id="pc-m-graduada" onclick="coachModo('graduada')">graduada</button>
+                </div>
+            </div>
+            <div class="pc-fila pc-acciones">
+                <button class="pc-btn" onclick="coachDeshacerRep()"
+                        title="Resta una repetición del contador de hoy">− 1 repetición</button>
+                <button class="pc-btn pc-peligro" onclick="coachReiniciarFrase()"
+                        title="Borra todo el progreso de esta frase y la devuelve al día 0">Borrar progreso</button>
+            </div>
+            <p class="pc-nota">Afecta solo a esta frase en el idioma que estás estudiando.</p>
+          </div>
+        </div>
+
+        <!-- ===== PANEL DE REPASO (producción escrita) ===== -->
+        <div id="panel-repaso">
+            <div id="repaso-estado"></div>
+            <div class="rp-fila">
+                <input id="repaso-input" type="text" autocomplete="off" autocorrect="off"
+                    spellcheck="false" placeholder="Escribe la frase…"
+                    onkeydown="if(event.key==='Enter')validarRepaso()">
+                <button class="rp-btn" onclick="validarRepaso()">Comprobar</button>
+            </div>
+            <div id="repaso-feedback"></div>
+
+        <div class="divider" style="margin:14px 0 0;"></div>
         </div>
 
         <!-- ===== BLOQUE IDIOMA OBJETIVO ===== -->
@@ -562,6 +773,11 @@
                 <span class="stars" id="stars-obj"></span>
             </div>
             <div class="utility-row">
+                <!-- 🐛 FIX v2.0.1: este botón solo existía en el bloque materno.
+                     Faltaba justo donde es pedagógicamente útil: ocultar el texto
+                     del idioma OBJETIVO para forzar escucha antes de leer. -->
+                <button class="nikud-toggle activo" id="btn-blur-obj" onclick="togglePeekTexto('obj')"><i
+                        class="fas fa-eye"></i> Texto</button>
                 <button class="nikud-toggle" id="btn-nikud-obj" onclick="toggleNikud('obj')" style="display:none;"><i
                         class="fas fa-eye"></i> נקודים</button>
                 <button class="btn-icon gear" onclick="abrirConfig('obj')" title="Config" style="margin-left:auto;"><i
@@ -655,7 +871,8 @@
             </div>
         </div>
 
-        <div id="app-footer" style="text-align:center; padding-top:14px; font-size:11px; color:var(--color-4, #888); font-family:'Poppins', sans-serif;"></div>
+        <div class="divider"></div>
+        <div id="app-footer" style="text-align:center; padding-top:2px; font-size:11px; color:var(--color-4, #888); font-family:'Poppins', sans-serif;"></div>
     </div>
 
     <!-- ===== MODAL: IDIOMAS Y PERFIL ===== -->
@@ -697,6 +914,23 @@
                 </div>
                 <div class="nota-genero">En idiomas con formas gramaticales por género (como el hebreo), verás y
                     escucharás las frases en la forma que te corresponde.</div>
+            </div>
+
+            <!-- 🆕 v2.1.2 — sección de instructor. Solo visible para perfiles
+                 validados por Ardy (columna es_coach en perfiles_lab). -->
+            <div class="form-row" id="fila-coach" style="display:none;">
+                <label>Modo instructor</label>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <button class="genero-btn" id="btn-instructor" onclick="toggleModoInstructor()">
+                        <i class="fas fa-chalkboard-teacher"></i> <span id="btn-instructor-txt">Activar</span>
+                    </button>
+                </div>
+
+            </div>
+            <div class="form-row" id="fila-solicitar-coach">
+                <div class="nota-genero">¿Eres profesor y quieres usar Hardyglot con tus alumnos?
+                    <a href="mailto:hardyglot@gmail.com?subject=Solicitud%20modo%20instructor&body=Hola%20Ardy%2C%20quiero%20ser%20instructor%20en%20Hardyglot.%20Mi%20correo%20de%20la%20app%20es%3A%20"
+                       style="color:var(--color-1,#1A365D); font-weight:600;">Solicita el modo instructor</a>.</div>
             </div>
 
             <button class="btn-primario" onclick="guardarPreferencias()">Guardar</button>
@@ -807,6 +1041,7 @@
                     console.warn(`⚠️ Error firmando URL de ${lang}:`, err);
                 }
             }
+            precalentarAudios();
         }
 
         // Aviso visual no intrusivo
@@ -829,9 +1064,8 @@
         const STORAGE_KEY = 'hardyglot_progreso_v3';   // misma clave: conserva tu progreso actual
         const PREFS_KEY = 'hardyglot_prefs_v1';        // pareja de idiomas + género + config por idioma
 
-        // Cuando agregues las columnas next_review/review_level en Supabase
-        // (ver INSTRUCCIONES.md), cambia esto a true:
-        const SYNC_REPASOS = false;
+        // 🆕 v2.1.0 — las columnas del ciclo de vida ya existen en Supabase
+        // (correr MIGRACION-v2.1.0.sql antes de desplegar).
 
         // ----- Estado global -----
         let frasesTodas = [];      // todas las frases normalizadas
@@ -914,6 +1148,9 @@
         function getAudioObj(url) {
             if (!audioCache[url]) {
                 const a = new Audio(url);
+                // 🐛 FIX v2.0.1: precargar mientras el alumno lee la pantalla,
+                // no en el primer play. Reduce la espera del primer segmento.
+                a.preload = 'auto';
                 a.addEventListener('error', () => {
                     console.error('❌ No se pudo cargar el audio:', url);
                     mostrarToast('⚠️ Un audio no cargó. Revisa tu conexión o tu sesión.', true);
@@ -921,6 +1158,13 @@
                 audioCache[url] = a;
             }
             return audioCache[url];
+        }
+
+        // 🐛 FIX v2.0.1: calentar el buffer apenas llegan las URLs firmadas.
+        function precalentarAudios() {
+            Object.values(AUDIO_MONOLITICO).forEach(url => {
+                try { getAudioObj(url).load(); } catch (e) { }
+            });
         }
 
         function fuenteAudio(d, lang) {
@@ -956,12 +1200,29 @@
         function getProgreso(lang) {
             if (!progreso[lang]) progreso[lang] = {};
             const f = frasesActivas[indice];
-            if (!f) return { reps: 0, stars: 0, dominada: false, lastStarDate: null };
+            if (!f) return SpacedRepetition.nuevoProgreso();
             const id = f.id;
             if (!progreso[lang][id]) {
-                progreso[lang][id] = { reps: 0, stars: 0, dominada: false, lastStarDate: null };
+                progreso[lang][id] = SpacedRepetition.nuevoProgreso();
+            } else {
+                // Registros viejos (con `stars`) se normalizan al vuelo
+                progreso[lang][id] = SpacedRepetition.migrar(progreso[lang][id]);
             }
             return progreso[lang][id];
+        }
+
+        // Progreso de una frase concreta sin depender del índice actual
+        function progresoDe(lang, id) {
+            if (!progreso[lang]) progreso[lang] = {};
+            if (!progreso[lang][id]) progreso[lang][id] = SpacedRepetition.nuevoProgreso();
+            else progreso[lang][id] = SpacedRepetition.migrar(progreso[lang][id]);
+            return progreso[lang][id];
+        }
+
+        function modoFrase(lang) {
+            const f = frasesActivas[indice];
+            if (!f) return 'estudio';
+            return progresoDe(lang, f.id).modo || 'estudio';
         }
 
         function objetivoActivo() {
@@ -977,14 +1238,34 @@
         // ============================================================
         // PERSISTENCIA: localStorage + Supabase (batch)
         // ============================================================
+        /* 🆕 v2.1.6 — ANTIRREBOTE.
+           guardarProgreso() se llama en cada repetición, y durante una
+           secuencia de 5 reps eso disparaba 5 subidas a Supabase con el
+           mismo contenido. localStorage se escribe siempre (es instantáneo
+           y local), pero la subida se agrupa: espera 1,5 s de calma y manda
+           una sola vez. Menos peticiones, menos consumo de egress, y en el
+           móvil menos batería. */
+        let _timerSync = null;
+
         async function guardarProgreso() {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(progreso));
             } catch (e) {
                 console.warn('Error guardando en localStorage:', e);
             }
-            if (navigator.onLine) sincronizarConSupabase();
+            if (!navigator.onLine) return;
+            clearTimeout(_timerSync);
+            _timerSync = setTimeout(() => sincronizarConSupabase(), 1500);
         }
+
+        // Al cerrar o esconder la pestaña, subir lo pendiente sin esperar
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && _timerSync) {
+                clearTimeout(_timerSync);
+                _timerSync = null;
+                if (navigator.onLine) sincronizarConSupabase();
+            }
+        });
 
         // FIX: antes se hacía un upsert por frase (hasta 120 requests).
         // Ahora se arma UNA sola llamada con todas las filas.
@@ -998,21 +1279,27 @@
                 const filas = [];
                 for (const lang in progreso) {
                     for (const id in progreso[lang]) {
-                        const p = progreso[lang][id];
-                        const fila = {
+                        const p = SpacedRepetition.migrar(progreso[lang][id]);
+                        /* 🆕 v2.1.0 — se suben TODOS los campos del ciclo de vida.
+                           Antes faltaban lastRepDate y las fechas de días
+                           cumplidos, así que al cambiar de dispositivo el alumno
+                           perdía las reps del día y el límite de un día por
+                           jornada dejaba de funcionar. */
+                        filas.push({
                             user_id,
                             phrase_id: parseInt(id),
                             lang,
                             reps: p.reps || 0,
-                            stars: p.stars || 0,
-                            dominada: p.dominada || false,
+                            stars: p.diasCompletos || 0,   // columna legada
+                            dominada: p.modo !== 'estudio',
+                            modo: p.modo || 'estudio',
+                            dias_completos: p.diasCompletos || 0,
+                            ultimo_dia_completo: p.ultimoDiaCompleto || null,
+                            last_rep_date: p.lastRepDate || null,
+                            review_level: p.nivel_repaso || 0,
+                            next_review: p.proximo_repaso || null,
                             updated_at: new Date().toISOString()
-                        };
-                        if (SYNC_REPASOS) {
-                            fila.review_level = p.nivel_repaso || 0;
-                            fila.next_review = p.proximo_repaso || null;
-                        }
-                        filas.push(fila);
+                        });
                     }
                 }
                 if (!filas.length) return;
@@ -1021,7 +1308,16 @@
                     .from('progreso')
                     .upsert(filas, { onConflict: 'user_id,phrase_id,lang' });
 
-                if (error) console.error('Error sincronizando:', error);
+                if (error) {
+                    /* 🐛 FIX v2.1.1 — antes esto imprimía "Object" y no se podía
+                       diagnosticar nada. Ahora muestra el mensaje real. */
+                    console.error('❌ Error sincronizando:', error.message, '| code:', error.code, '| detalle:', error.details, '| hint:', error.hint);
+                    if (error.code === '42P10' || (error.message || '').includes('on conflict')) {
+                        mostrarToast('⚠️ Falta la restricción única en la tabla progreso. Correr el paso 5 de MIGRACION-v2.1.0.sql', true);
+                    } else if (error.code === '42703' || error.code === 'PGRST204') {
+                        mostrarToast('⚠️ Faltan columnas en Supabase. Correr MIGRACION-v2.1.0.sql', true);
+                    }
+                }
                 else console.log(`✅ Progreso sincronizado (${filas.length} filas, 1 request)`);
             } catch (err) {
                 console.error('Error en sincronizarConSupabase:', err);
@@ -1090,15 +1386,16 @@
                     data.forEach(row => {
                         if (!progreso[row.lang]) progreso[row.lang] = {};
                         progreso[row.lang][row.phrase_id.toString()] = {
-                            reps: row.reps, stars: row.stars, dominada: row.dominada,
-                            lastStarDate: null,
-                            nivel_repaso: row.review_level ?? undefined,
-                            proximo_repaso: row.next_review ?? undefined
+                            modo: row.modo || (row.dominada ? 'repaso' : 'estudio'),
+                            reps: row.reps || 0,
+                            lastRepDate: row.last_rep_date || null,
+                            diasCompletos: row.dias_completos ?? (row.stars || 0),
+                            ultimoDiaCompleto: row.ultimo_dia_completo || null,
+                            nivel_repaso: row.review_level || 0,
+                            proximo_repaso: row.next_review || null,
+                            dominada: !!row.dominada
                         };
                     });
-                    // Los datos de repaso viven en localStorage mientras
-                    // SYNC_REPASOS sea false: los mezclamos para no perderlos.
-                    if (!SYNC_REPASOS) mezclarRepasosLocales();
                     console.log('✅ Progreso cargado de Supabase');
                 } else {
                     deLocal();
@@ -1107,23 +1404,6 @@
                 console.error('Error cargando progreso:', err);
                 deLocal();
             }
-        }
-
-        function mezclarRepasosLocales() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return;
-                const local = JSON.parse(raw);
-                for (const lang in local) {
-                    for (const id in local[lang]) {
-                        const l = local[lang][id];
-                        if (l.proximo_repaso && progreso[lang] && progreso[lang][id]) {
-                            progreso[lang][id].proximo_repaso = l.proximo_repaso;
-                            progreso[lang][id].nivel_repaso = l.nivel_repaso || 0;
-                        }
-                    }
-                }
-            } catch (e) { }
         }
 
         // ============================================================
@@ -1168,7 +1448,7 @@
             localStorage.setItem(PREFS_KEY, JSON.stringify({ pareja, genero, nombre: nombreAlumno, config, vista, vistaV2: true, vistaV3: true }));
         }
 
-        const APP_VERSION = 'v2.0.0-alfa';
+        const APP_VERSION = 'v2.1.6-alfa';
         console.log('%cEri\'s LingoLab ' + APP_VERSION, 'color:#1A365D; font-weight:bold; font-size:14px;');
 
         const IDIOMAS_ACTIVOS = ['es', 'en', 'he']; // con contenido listo hoy
@@ -1329,6 +1609,7 @@
             resetOverridesFrase();
             pareja.activo = i;
             aplicarPareja();
+            refrescarTab();
             actualizarUI();
             actualizarBannerRepasos();
         }
@@ -1362,10 +1643,13 @@
             }
             nombreAlumno = nombre;
             mostrarNombre();
-            guardarPerfilNube();
             AudioEngine.reset();
             setPlayUI(false);
             pareja = { base, objetivos: [...objetivosSel], activo: 0 };
+            /* 🐛 FIX v2.0.1 — guardarPerfilNube() estaba ANTES de asignar `pareja`,
+               así que subía a Supabase los idiomas VIEJOS: el perfil en la nube
+               iba siempre con un guardado de retraso. Ahora se llama después. */
+            guardarPerfilNube();
             persistirPreferencias();
             document.getElementById('modal-usuario').style.display = 'none';
             aplicarPareja();
@@ -1417,22 +1701,33 @@
         function actualizarUI() {
             const f = frasesActivas[indice];
             if (!f) {
-                document.getElementById('contador').innerText = 'Sin frases';
-                document.getElementById('texto-obj').innerText = '—';
+                document.getElementById('contador').innerText = tabActual === 'repaso'
+                    ? 'Todavía no hay frases en repaso'
+                    : 'Todas las frases pasaron a repaso';
+                document.getElementById('texto-obj').innerText = tabActual === 'repaso'
+                    ? '—'
+                    : '¡Bloque completo!';
                 document.getElementById('texto-base').innerText = '';
+                document.getElementById('texto-obj').classList.remove('texto-oculto');
                 return;
             }
-            let etiqueta = (modoRepaso ? '📚 Repaso ' : 'Frase ') + `${indice + 1} de ${frasesActivas.length}`;
+            /* 🆕 v2.1.5 — sin emoji: los emojis no aceptan color de la paleta.
+               Se usa un icono de Font Awesome, que sí hereda currentColor. */
+            const icono = modoRepaso
+                ? '<i class="fas fa-pen-to-square" style="color:var(--color-2,#D35400);"></i> Repaso '
+                : '<i class="fas fa-headphones" style="color:var(--color-1,#1A365D);"></i> Frase ';
+            let etiqueta = icono + `${indice + 1} de ${frasesActivas.length}`;
             if (pareja.objetivos.length > 1) {
                 const nombre = (IDIOMAS_INFO[objetivoActivo()] || {}).nombre || objetivoActivo();
                 etiqueta += ` · ${nombre}`;
             }
-            document.getElementById('contador').innerText = etiqueta;
+            document.getElementById('contador').innerHTML = etiqueta;
 
             renderBloque('obj');
             renderBloque('base');
             renderBarraGlobal();
             renderBarraModulo();
+            renderPanelCoach();
         }
 
         function renderBloque(rol) {
@@ -1497,7 +1792,16 @@
             if (c.fuente) textoEl.style.fontFamily = `'${c.fuente}', sans-serif`;
 
             // Visibilidad del texto: override temporal de ESTA frase > default global
-            const textoVisibleEfectivo = overrideTexto[rol] !== null ? overrideTexto[rol] : c.textoVisible;
+            // 🆕 v2.1.0: en modo repaso el objetivo arranca OCULTO — el alumno
+            // debe producirlo antes de verlo. Se revela al comprobar.
+            let textoVisibleEfectivo;
+            if (overrideTexto[rol] !== null) {
+                textoVisibleEfectivo = overrideTexto[rol];
+            } else if (rol === 'obj' && modoFrase(lang) === 'repaso') {
+                textoVisibleEfectivo = false;
+            } else {
+                textoVisibleEfectivo = c.textoVisible;
+            }
             textoEl.classList.toggle('texto-oculto', !textoVisibleEfectivo);
             const btnPeek = document.getElementById('btn-blur-' + rol);
             if (btnPeek) btnPeek.classList.toggle('activo', textoVisibleEfectivo);
@@ -1533,13 +1837,29 @@
             const c = getConfigIdioma(lang);
             const p = getProgreso(lang);
 
-            let html = '';
-            for (let i = 1; i <= 5; i++) html += `<i class="${i <= p.stars ? 'fas' : 'far'} fa-star"></i>`;
-            starsEl.innerHTML = html;
-            repEl.innerText = `${Math.min(repsDeHoy(p), c.reps)}/${c.reps}`;
+            /* 🆕 v2.1.0 — las 5 estrellas se reemplazan por el contador de días.
+               En estudio cuenta los días cumplidos (0..7); en repaso muestra el
+               escalón de Fibonacci (1, 2, 3, 5, 8, 13, 21). */
+            starsEl.innerText = SpacedRepetition.etiquetaContador(p);
+            starsEl.className = 'contador-dia modo-' + (p.modo || 'estudio');
+            starsEl.title = p.modo === 'repaso'
+                ? 'Repaso: día ' + SpacedRepetition.fibonacciDias[Math.min(p.nivel_repaso || 0, 6)] + ' de la secuencia'
+                : p.modo === 'graduada'
+                    ? 'Frase graduada: superó los 21 días'
+                    : `Estudio: ${p.diasCompletos || 0} de ${SpacedRepetition.DIAS_ESTUDIO} días`;
 
-            btn.classList.toggle('hecha', !!p.dominada);
-            btn.innerText = p.dominada ? '✓ Dominada' : '¡Ya!';
+            if (p.modo === 'estudio') {
+                repEl.style.display = '';
+                repEl.innerText = `${Math.min(repsDeHoy(p), c.reps)}/${c.reps}`;
+                btn.innerText = 'Dominada';
+                btn.classList.remove('hecha');
+                btn.title = 'Ya me la sé: pasar esta frase a control de repaso';
+            } else {
+                repEl.style.display = 'none';
+                btn.innerText = '↺ A estudio';
+                btn.classList.add('hecha');
+                btn.title = 'Devolver esta frase a modo estudio';
+            }
         }
 
         function envolverPalabras(texto, lang, glosas, mostrarGlosas) {
@@ -1574,14 +1894,20 @@
 
             const c = getConfigIdioma(lang);
             const p = getProgreso(lang);
+            if (p.modo !== 'estudio') return;   // en repaso no se cuentan reps
+
             const hoyStr = SpacedRepetition.hoy();
             if (p.lastRepDate !== hoyStr) { p.reps = 0; p.lastRepDate = hoyStr; }
             p.reps = Math.min(p.reps + 1, c.reps);
+
+            /* 🆕 v2.1.0 — al completar las reps del día sube el contador de días.
+               A los 7 días (35 reps) la frase pasa sola a modo repaso. */
             if (p.reps === c.reps) {
-                const hoy = SpacedRepetition.hoy();
-                if (p.lastStarDate !== hoy && p.stars < 5) {
-                    p.stars++;
-                    p.lastStarDate = hoy;
+                const promovida = SpacedRepetition.registrarDiaCompleto(p);
+                if (promovida) {
+                    mostrarToast('🎓 Frase lista para producción. Mañana tendrás que escribirla.');
+                    refrescarTab();
+                    actualizarBannerRepasos();
                 }
             }
             const rol = rolDe(lang);
@@ -1589,67 +1915,418 @@
             guardarProgreso();
         }
 
+        /* Botón del bloque: alterna entre estudio y repaso.
+           En estudio → "A repaso" salta las reps que falten.
+           En repaso  → "↺ A estudio" devuelve la frase, por si el alumno
+           siente que se le está complicando. */
         function marcarDominada(rol) {
             const lang = langDe(rol);
             const p = getProgreso(lang);
-            if (!p.dominada) {
-                SpacedRepetition.programarPrimerRepaso(p);
-                console.log(`📅 Próximo repaso: ${p.proximo_repaso}`);
+            if (p.modo === 'estudio') {
+                // true = el alumno pide que lo evalúen ahora, no mañana
+                SpacedRepetition.promoverARepaso(p, true);
+                mostrarToast('🎓 A modo repaso. Ya puedes hacer el control.');
+            } else {
+                SpacedRepetition.volverAEstudio(p);
+                mostrarToast('↺ De vuelta a estudio.');
             }
-            renderProgreso(rol);
             guardarProgreso();
+            refrescarTab();
+            actualizarUI();
             actualizarBannerRepasos();
         }
+
+        // ============================================================
+        // 🆕 v2.1.2 — MODO INSTRUCTOR
+        // Corrección manual del progreso. Sirve para cuando en una sesión
+        // de clase algo se contó por error, o se hizo una repetición que
+        // no debería contar.
+        //
+        // NOTA DE SEGURIDAD: este panel solo edita el progreso del usuario
+        // que está en sesión, que es exactamente lo que RLS ya le permite
+        // tocar. Que el interruptor viva en el navegador no abre ningún
+        // hueco: un alumno no puede alcanzar datos de otro por acá. Ver
+        // el progreso de OTROS alumnos es otra cosa, necesita trabajo en
+        // la base de datos y no está en esta versión.
+        // ============================================================
+        const COACH_KEY = 'hardyglot_modo_instructor';
+        let esCoachValidado = false;   // viene de perfiles_lab.es_coach
+        let modoInstructor = false;
+
+        /* La validación vive en la base de datos: Ardy marca es_coach = true
+           en perfiles_lab cuando aprueba una solicitud por correo. El toggle
+           del modal solo aparece para perfiles validados. Nota honesta sobre
+           el alcance: este panel edita únicamente el progreso PROPIO del
+           usuario en sesión — lo que RLS ya le permite. La bandera controla
+           quién ve la herramienta, no abre acceso a datos de otros. */
+        async function consultarEsCoach() {
+            try {
+                const { data: { user } } = await window.supabase.auth.getUser();
+                if (!user) return;
+                const { data, error } = await window.supabase
+                    .from('perfiles_lab')
+                    .select('es_coach')
+                    .eq('user_id', user.id)
+                    .maybeSingle();
+                if (!error && data && data.es_coach === true) {
+                    esCoachValidado = true;
+                    modoInstructor = localStorage.getItem(COACH_KEY) === '1';
+                }
+            } catch (e) { }
+            renderFilaCoach();
+            renderPanelCoach();
+        }
+
+        function renderFilaCoach() {
+            const fila = document.getElementById('fila-coach');
+            const solicitar = document.getElementById('fila-solicitar-coach');
+            if (fila) fila.style.display = esCoachValidado ? '' : 'none';
+            if (solicitar) solicitar.style.display = esCoachValidado ? 'none' : '';
+            const btn = document.getElementById('btn-instructor');
+            const txt = document.getElementById('btn-instructor-txt');
+            if (btn) btn.classList.toggle('activo', modoInstructor);
+            if (txt) txt.innerText = modoInstructor ? 'Activado' : 'Activar';
+            const gear = document.getElementById('gear-usuario');
+            if (gear) gear.classList.toggle('gear-coach', modoInstructor);
+        }
+
+        function toggleModoInstructor() {
+            if (!esCoachValidado) return;
+            modoInstructor = !modoInstructor;
+            localStorage.setItem(COACH_KEY, modoInstructor ? '1' : '0');
+            renderFilaCoach();
+            renderPanelCoach();
+            mostrarToast(modoInstructor ? '👨‍🏫 Modo instructor activado' : 'Modo instructor desactivado');
+        }
+
+        function abrirPanelCoach() {
+            if (!esCoachValidado) return;
+            document.getElementById('panel-coach').classList.add('visible');
+            renderPanelCoach();
+        }
+
+        function cerrarPanelCoach() {
+            document.getElementById('panel-coach').classList.remove('visible');
+        }
+
+        function renderPanelCoach() {
+            const icono = document.getElementById('icono-instructor');
+            if (icono) {
+                icono.style.display = esCoachValidado ? '' : 'none';
+                icono.classList.toggle('activo', modoInstructor);
+            }
+            const panel = document.getElementById('panel-coach');
+            if (!panel || !panel.classList.contains('visible')) return;
+            const f = frasesActivas[indice];
+            if (!f) { cerrarPanelCoach(); return; }
+
+            const lang = objetivoActivo();
+            const p = progresoDe(lang, f.id);
+            const c = getConfigIdioma(lang);
+
+            document.getElementById('pc-frase').innerText =
+                'frase ' + f.id + ' · ' + ((IDIOMAS_INFO[lang] || {}).iso3 || lang);
+            document.getElementById('pc-reps').innerText =
+                Math.min(repsDeHoy(p), c.reps) + '/' + c.reps;
+            document.getElementById('pc-dias').innerText =
+                (p.diasCompletos || 0) + '/' + SpacedRepetition.DIAS_ESTUDIO;
+            document.getElementById('pc-nivel').innerText = p.modo === 'estudio'
+                ? '—'
+                : 'día ' + SpacedRepetition.fibonacciDias[Math.min(p.nivel_repaso || 0, 6)];
+
+            ['estudio', 'repaso', 'graduada'].forEach(m => {
+                const b = document.getElementById('pc-m-' + m);
+                if (b) b.classList.toggle('activo', (p.modo || 'estudio') === m);
+            });
+        }
+
+        function coachProgresoActual() {
+            const f = frasesActivas[indice];
+            if (!f) return null;
+            return progresoDe(objetivoActivo(), f.id);
+        }
+
+        function coachGuardar() {
+            guardarProgreso();
+            renderProgreso('obj');
+            renderPanelCoach();
+            actualizarBannerRepasos();
+        }
+
+        function coachAjustar(campo, delta) {
+            const p = coachProgresoActual();
+            if (!p) return;
+            const c = getConfigIdioma(objetivoActivo());
+
+            if (campo === 'reps') {
+                const hoyStr = SpacedRepetition.hoy();
+                if (p.lastRepDate !== hoyStr) { p.reps = 0; p.lastRepDate = hoyStr; }
+                p.reps = Math.max(0, Math.min((p.reps || 0) + delta, c.reps));
+            } else if (campo === 'dias') {
+                p.diasCompletos = Math.max(0, Math.min((p.diasCompletos || 0) + delta, SpacedRepetition.DIAS_ESTUDIO));
+                // Al bajar días se libera el candado de "un día cuenta una vez"
+                if (delta < 0) p.ultimoDiaCompleto = null;
+            } else if (campo === 'nivel') {
+                if (p.modo === 'estudio') return;
+                p.nivel_repaso = Math.max(0, Math.min((p.nivel_repaso || 0) + delta, SpacedRepetition.fibonacciDias.length - 1));
+                p.proximo_repaso = SpacedRepetition.proximaFecha(p.nivel_repaso);
+            }
+            coachGuardar();
+        }
+
+        function coachModo(m) {
+            const p = coachProgresoActual();
+            if (!p) return;
+            if (m === 'estudio') {
+                SpacedRepetition.volverAEstudio(p);
+                p.diasCompletos = 0;   // corrección manual: arranca limpio
+            } else if (m === 'repaso') {
+                SpacedRepetition.promoverARepaso(p, true);
+            } else {
+                p.modo = 'graduada';
+                p.dominada = true;
+                p.proximo_repaso = null;
+            }
+            /* 🐛 FIX v2.1.4 — antes esto llamaba a refrescarTab()+actualizarUI(),
+               que recalculaba la lista y saltaba a OTRA frase. El botón sí
+               cambiaba el modo, pero el panel ya estaba mostrando una frase
+               distinta y parecía que el resaltado no funcionaba. La lista se
+               recalcula sola en la próxima navegación. */
+            coachGuardar();
+        }
+
+        // Deshace la última repetición contada (el caso de "esto no debería contar")
+        function coachDeshacerRep() {
+            const p = coachProgresoActual();
+            if (!p) return;
+            if (repsDeHoy(p) > 0) {
+                p.reps = Math.max(0, p.reps - 1);
+                mostrarToast('↺ Repetición descontada');
+            } else {
+                mostrarToast('No hay repeticiones de hoy que descontar');
+            }
+            coachGuardar();
+        }
+
+        function coachReiniciarFrase() {
+            const f = frasesActivas[indice];
+            if (!f) return;
+            if (!confirm('¿Borrar TODO el progreso de esta frase en ' + objetivoActivo() + '?\n\nVuelve al día 0, con 0 repeticiones y en modo estudio.')) return;
+            progreso[objetivoActivo()][f.id] = SpacedRepetition.nuevoProgreso();
+            coachGuardar();
+            mostrarToast('Progreso de la frase borrado');
+        }
+
+        // ============================================================
+        // MOTOR DE REPASO (producción)
+        // Secuencia: materno 1× → pausa hablada → objetivo 1× → el alumno
+        // escribe la frase → se valida → se revela el texto original.
+        // ============================================================
+        const PAUSA_HABLADA_MS = 1500;
+        let repasoActivo = false;
+
+        function panelRepaso() { return document.getElementById('panel-repaso'); }
+
+        function cerrarPanelRepaso() {
+            repasoActivo = false;
+            const pr = panelRepaso();
+            if (pr) pr.style.display = 'none';
+            document.getElementById('repaso-feedback').innerHTML = '';
+            document.getElementById('repaso-input').value = '';
+        }
+
+        // ¿La frase visible está en repaso para el idioma objetivo?
+        function fraseEnRepaso() {
+            return modoFrase(objetivoActivo()) === 'repaso';
+        }
+
+        async function iniciarRepaso() {
+            const f = frasesActivas[indice];
+            if (!f || repasoActivo) return;
+            const lang = objetivoActivo();
+
+            if (secuenciaEnCurso) return;
+            secuenciaEnCurso = true;
+            repasoActivo = true;
+
+            try {
+                if (audiosProntos) { await audiosProntos; audiosProntos = null; }
+
+                // El texto del objetivo se oculta hasta que responda
+                overrideTexto.obj = false;
+                renderBloque('obj');
+
+                const pr = panelRepaso();
+                pr.style.display = 'block';
+                document.getElementById('repaso-feedback').innerHTML = '';
+                document.getElementById('repaso-input').value = '';
+                document.getElementById('repaso-input').disabled = false;
+                document.getElementById('repaso-estado').innerHTML =
+                    '<i class="fas fa-volume-high" style="color:var(--color-1,#1A365D);"></i> Escucha en ' +
+                    ((IDIOMAS_INFO[pareja.base] || {}).nombre || pareja.base);
+
+                // 1) Materno, una sola vez
+                const dBase = datosIdioma(f, pareja.base);
+                const cBase = getConfigIdioma(pareja.base);
+                await AudioEngine._playPaso(
+                    { lang: pareja.base, fuente: fuenteAudio(dBase, pareja.base) },
+                    velocidadARate(cBase.velocidad)
+                );
+                if (!repasoActivo) return;
+
+                /* 🆕 v2.1.5 — el idioma OBJETIVO ya NO suena automáticamente.
+                   Sonaba justo antes de escribir, así que el alumno terminaba
+                   copiando lo que acababa de oír en vez de producirlo él. Ahora
+                   solo escucha el materno; la frase la dice en voz alta, y si
+                   quiere comprobarse pulsa el play del bloque objetivo. */
+                document.getElementById('repaso-estado').innerHTML =
+                    '<i class="fas fa-comment" style="color:var(--color-2,#D35400);"></i> Dilo en voz alta y escríbelo';
+                await new Promise(r => setTimeout(r, PAUSA_HABLADA_MS));
+                if (!repasoActivo) return;
+
+                document.getElementById('repaso-input').focus();
+            } finally {
+                secuenciaEnCurso = false;
+            }
+        }
+
+        function validarRepaso() {
+            const f = frasesActivas[indice];
+            if (!f) return;
+            const lang = objetivoActivo();
+            const d = datosIdioma(f, lang);
+            const escrito = document.getElementById('repaso-input').value;
+            if (!escrito.trim()) return;
+
+            const r = SpacedRepetition.evaluarRespuesta(escrito, d.frase);
+            const p = progresoDe(lang, f.id);
+            const fb = document.getElementById('repaso-feedback');
+            document.getElementById('repaso-input').disabled = true;
+
+            // Se revela el texto original en ambos casos
+            overrideTexto.obj = true;
+            renderBloque('obj');
+
+            /* 🆕 v2.1.2 — solo el control VENCIDO mueve el calendario.
+               Si el alumno practica una frase que todavía no le tocaba, recibe
+               la corrección igual, pero ni sube de escalón ni baja a estudio.
+               Sin esto, repetir la misma frase diez veces seguidas la graduaría
+               en un día y el espaciado dejaría de existir. */
+            const cuenta = SpacedRepetition.vencida(p);
+
+            if (r.acierto) {
+                if (cuenta) {
+                    const enRacha = (p.nivel_repaso || 0) < SpacedRepetition.FASE_RACHA;
+                    SpacedRepetition.repasoAcierto(p);
+                    if (p.modo === 'graduada') {
+                        fb.innerHTML = '<span class="rp-ok"><i class="fas fa-award"></i> ¡Graduada! Superaste los 21 días.</span>';
+                    } else if (enRacha && p.nivel_repaso < SpacedRepetition.FASE_RACHA) {
+                        fb.innerHTML = `<span class="rp-ok">✅ ${r.exacto ? 'Exacto' : 'Correcto'}. Día ${p.nivel_repaso} de 3 seguidos — mañana el siguiente.</span>`;
+                    } else if (enRacha) {
+                        fb.innerHTML = '<span class="rp-ok">✅ ¡Tres días seguidos! El espaciado arranca: próximo control el ' + p.proximo_repaso + '.</span>';
+                    } else {
+                        fb.innerHTML = `<span class="rp-ok">✅ ${r.exacto ? 'Exacto' : 'Correcto'}. Próximo control: ${p.proximo_repaso}</span>`;
+                    }
+                } else {
+                    fb.innerHTML = `<span class="rp-ok">✅ ${r.exacto ? 'Exacto' : 'Correcto'}.</span>` +
+                        '<span class="rp-nota"> Práctica libre — el control de esta frase es el ' + (p.proximo_repaso || '—') + '.</span>';
+                }
+            } else {
+                if (cuenta) {
+                    SpacedRepetition.repasoFallo(p);
+                    fb.innerHTML = (p.modo === 'estudio'
+                        ? '<span class="rp-mal">✗ Todavía no. Vuelve a modo estudio.</span>'
+                        : '<span class="rp-mal">✗ Todavía no. La racha empieza de nuevo mañana.</span>') +
+                        `<div class="rp-esperado">${d.frase}</div>`;
+                } else {
+                    fb.innerHTML = '<span class="rp-mal">✗ Todavía no.</span>' +
+                        '<span class="rp-nota"> Práctica libre — no afecta tu progreso.</span>' +
+                        `<div class="rp-esperado">${d.frase}</div>`;
+                }
+            }
+            guardarProgreso();
+            renderProgreso('obj');
+            actualizarBannerRepasos();
+            document.getElementById('repaso-estado').innerText = '';
+        }
+
+
 
         // ============================================================
         // REPASOS (repetición espaciada)
         // ============================================================
-        function actualizarBannerRepasos() {
-            const ids = SpacedRepetition.repasosPendientes(progreso, objetivoActivo());
-            const banner = document.getElementById('banner-repasos');
-            if (ids.length > 0 && !modoRepaso) {
-                document.getElementById('banner-texto').innerText =
-                    `📚 Tienes ${ids.length} repaso${ids.length > 1 ? 's' : ''} hoy`;
-                banner.style.display = 'flex';
-            } else {
-                banner.style.display = 'none';
-            }
+        /* 🆕 v2.1.1 — PESTAÑAS DE MODO
+           Un click cambia toda la sesión. La pestaña Estudio lista las frases
+           que todavía están en shadowing; la de Repaso, las que tienen control
+           vencido hoy. El contador de cada pestaña dice cuántas hay. */
+        let tabActual = 'estudio';
+
+        /* 🆕 v2.1.2 — la vista Repaso lista TODAS las frases en repaso, no solo
+           las vencidas: el alumno puede practicar la misma cuantas veces quiera.
+           Lo que NO se repite es el avance del calendario — ver validarRepaso(). */
+        function frasesDeTab(tab) {
+            const lang = objetivoActivo();
+            return frasesTodas.filter(f => {
+                const p = progresoDe(lang, f.id);
+                const m = p.modo || 'estudio';
+                return tab === 'repaso' ? (m === 'repaso' || m === 'graduada') : m === 'estudio';
+            });
         }
 
-        function filtrarRepasos() {
-            const ids = SpacedRepetition.repasosPendientes(progreso, objetivoActivo());
-            if (!ids.length) return;
-            AudioEngine.reset();
-            setPlayUI(false);
-            frasesActivas = frasesTodas.filter(f => ids.includes(f.id));
-            indice = 0;
-            modoRepaso = true;
-            document.getElementById('banner-repasos').style.display = 'none';
-            actualizarUI();
+        function vencidasDeHoy() {
+            const lang = objetivoActivo();
+            return frasesTodas.filter(f => SpacedRepetition.vencida(progresoDe(lang, f.id))).length;
         }
 
-        function verTodas() {
+        function cambiarTab(tab) {
+            if (tab === tabActual && frasesActivas.length) return;
             AudioEngine.reset();
             setPlayUI(false);
-            frasesActivas = frasesTodas;
+            cerrarPanelRepaso();
+            tabActual = tab;
+            modoRepaso = (tab === 'repaso');
+            frasesActivas = frasesDeTab(tab);
             indice = 0;
-            modoRepaso = false;
+            resetOverridesFrase();
             actualizarUI();
             actualizarBannerRepasos();
         }
 
-        // Al completar la secuencia de una frase que estaba pendiente
-        // de repaso, se registra el repaso y se agenda el siguiente.
-        function registrarRepasoSiCorresponde() {
-            const lang = objetivoActivo();
-            const p = getProgreso(lang);
-            if (p.dominada && p.proximo_repaso && p.proximo_repaso <= SpacedRepetition.hoy()) {
-                SpacedRepetition.completarRepaso(p);
-                console.log(`✅ Repaso completado. Siguiente: ${p.proximo_repaso}`);
-                guardarProgreso();
-                actualizarBannerRepasos();
+        // Recalcula la lista de la pestaña activa sin perder de vista la frase actual
+        function refrescarTab() {
+            const f = frasesActivas[indice];
+            frasesActivas = frasesDeTab(tabActual);
+            const i = f ? frasesActivas.findIndex(x => x.id === f.id) : -1;
+            indice = i >= 0 ? i : 0;
+        }
+
+        function actualizarBannerRepasos() {
+            const nEst = frasesDeTab('estudio').length;
+            const nVencidos = vencidasDeHoy();
+            const nRep = nVencidos || frasesDeTab('repaso').length;
+            const tEst = document.getElementById('tab-num-estudio');
+            const tRep = document.getElementById('tab-num-repaso');
+            if (tEst) tEst.innerText = nEst;
+            if (tRep) tRep.innerText = nRep;
+
+            const bEst = document.getElementById('sm-estudio');
+            const bRep = document.getElementById('sm-repaso');
+            if (bEst) bEst.classList.toggle('activo', tabActual === 'estudio');
+            if (bRep) {
+                bRep.classList.toggle('activo', tabActual === 'repaso');
+                // Naranja cuando hay controles vencidos y no estás en esa vista
+                bRep.classList.toggle('pendiente', nVencidos > 0 && tabActual !== 'repaso');
             }
         }
+
+        /* 🐛 ELIMINADO v2.1.6 — registrarRepasoSiCorresponde()
+           Llamaba a SpacedRepetition.completarRepaso(), un método que dejó de
+           existir al reescribir el módulo: cualquier ruta que lo alcanzara
+           lanzaba TypeError y cortaba la reproducción en seco.
+           Y aunque no crasheara, implementaba el modelo VIEJO: dar por hecho
+           un repaso solo por haber escuchado la frase. En el modelo actual el
+           calendario únicamente avanza cuando el alumno PRODUCE la frase
+           correctamente, y de eso se encarga validarRepaso(). */
 
         // ============================================================
         // REPRODUCCIÓN
@@ -1665,6 +2342,13 @@
                 AudioEngine.sessionConfig.silenceGap[lang] = c.intervalo;
                 AudioEngine.sessionConfig.rate[lang] = velocidadARate(c.velocidad);
             });
+            /* 🐛 FIX v2.1.0 — el materno sonaba 5 veces.
+               getConfigIdioma() crea reps:5 para TODO idioma, y el materno
+               heredaba ese valor. No se puede arreglar en getConfigIdioma
+               porque un idioma puede ser materno en una sesión y objetivo en
+               otra: la config es compartida. El materno es REFERENCIA, no
+               práctica — suena una sola vez. */
+            AudioEngine.sessionConfig.reps[pareja.base] = 1;
         }
 
         // Secuencia pedagógica: materno → objetivo (una pasada por frase)
@@ -1697,23 +2381,38 @@
             const f = frasesActivas[indice];
             if (!f) { setPlayUI(false); return; }
 
-            if (audiosProntos) { await audiosProntos; audiosProntos = null; }
-
-            // 🎯 EL CONTADOR MANDA: si esta frase ya completó sus reps de hoy,
-            // se salta sin reproducir y sigue de largo
-            const restantes = repsRestantesHoy(f);
-            if (restantes === 0 && !modoRepaso) {
-                trasFraseCompleta(150); // salto rápido
+            /* 🆕 v2.1.0 — si esta frase ya está en repaso, el play no reproduce
+               la secuencia de shadowing: arranca el motor de producción. */
+            if (fraseEnRepaso()) {
+                setPlayUI(false);
+                iniciarRepaso();
                 return;
             }
 
-            sincronizarEngine();
-            // Reproducir SOLO las repeticiones que faltan hoy
-            AudioEngine.sessionConfig.reps[objetivoActivo()] = restantes;
-
+            /* 🐛 FIX v2.0.1 — RACE EN EL PRIMER PLAY.
+               El guard se LEÍA arriba pero se ESCRIBÍA después del await de
+               audiosProntos: entre ambos había un punto de suspensión por el
+               que dos invocaciones podían colarse a la vez y encimar audios.
+               La ventana solo existía en el primer play (después audiosProntos
+               queda en null y no hay await). Ahora el guard se toma ANTES de
+               cualquier await, y el finally lo libera en todas las salidas. */
             secuenciaEnCurso = true;
             let completa = false;
             try {
+                if (audiosProntos) { await audiosProntos; audiosProntos = null; }
+
+                // 🎯 EL CONTADOR MANDA: si esta frase ya completó sus reps de hoy,
+                // se salta sin reproducir y sigue de largo
+                const restantes = repsRestantesHoy(f);
+                if (restantes === 0 && !modoRepaso) {
+                    trasFraseCompleta(150); // salto rápido
+                    return;
+                }
+
+                sincronizarEngine();
+                // Reproducir SOLO las repeticiones que faltan hoy
+                AudioEngine.sessionConfig.reps[objetivoActivo()] = restantes;
+
                 completa = await AudioEngine.playSequence(
                     construirPasos(f),
                     (lang) => incrementarEstrella(lang)
@@ -1723,7 +2422,6 @@
             }
 
             if (completa && isPlaying) {
-                registrarRepasoSiCorresponde();
                 trasFraseCompleta(500);
             }
         }
@@ -1774,8 +2472,24 @@
             const f = frasesActivas[indice];
             if (!f) return;
 
+            /* 🐛 FIX v2.0.1 — este botón NO esperaba las URLs firmadas.
+               Si el alumno lo tocaba antes de que Supabase respondiera,
+               fuenteAudio() encontraba AUDIO_MONOLITICO[lang] vacío y caía
+               al fallback TTS: voz robótica en vez de la grabación real,
+               sin ningún aviso. */
+            if (audiosProntos) { await audiosProntos; audiosProntos = null; }
+
             AudioEngine.pause();
             setPlayUI(false);
+
+            /* 🐛 FIX v2.0.1 — playPhrase y toggleAudio compartían el MISMO
+               objeto Audio (audioCache reutiliza una instancia por URL) y se
+               pisaban los seeks. Tomamos el mismo guard que la secuencia
+               principal, y cedemos un tick para que la secuencia anterior
+               termine de desmontarse antes de tocar el elemento. */
+            if (secuenciaEnCurso) return;
+            secuenciaEnCurso = true;
+            await new Promise(r => setTimeout(r, 0));
 
             // Icono HardyGlot en modo "sonando" con ondas
             const icono = document.getElementById('phrase-icon-' + rol);
@@ -1784,30 +2498,44 @@
                 icono.classList.add('hg-sonando');
             }
 
-            const d = datosIdioma(f, lang);
-            const c = getConfigIdioma(lang);
-            const rate = velocidadARate(c.velocidad);
-            const fuente = fuenteAudio(d, lang);
+            try {
+                const d = datosIdioma(f, lang);
+                const c = getConfigIdioma(lang);
+                const rate = velocidadARate(c.velocidad);
+                const fuente = fuenteAudio(d, lang);
 
-            // Cuenta como una repetición manual (sube el contador, sin estrella automática)
-            const p = getProgreso(lang);
-            const hoyStr = SpacedRepetition.hoy();
-            if (p.lastRepDate !== hoyStr) { p.reps = 0; p.lastRepDate = hoyStr; }
-            p.reps = Math.min(p.reps + 1, c.reps);
-            renderProgreso(rol);
-            guardarProgreso();
+                /* 🐛 FIX v2.0.1 — el idioma MATERNO no contabiliza.
+                   Antes este bloque subía p.reps también para el idioma base,
+                   contradiciendo la regla explícita de incrementarEstrella() y
+                   ensuciando la tabla `progreso` de Supabase con filas del
+                   materno que nunca se muestran en pantalla. */
+                if (lang !== pareja.base) {
+                    const p = getProgreso(lang);
+                    const hoyStr = SpacedRepetition.hoy();
+                    if (p.lastRepDate !== hoyStr) { p.reps = 0; p.lastRepDate = hoyStr; }
+                    p.reps = Math.min(p.reps + 1, c.reps);
+                    renderProgreso(rol);
+                    guardarProgreso();
+                }
 
-            await AudioEngine._playPaso({ lang, fuente }, rate);
-
-            // La frase terminó: volver al botón de play normal
-            if (icono) {
-                icono.src = 'icons/player-ply.svg';
-                icono.classList.remove('hg-sonando');
+                await AudioEngine._playPaso({ lang, fuente }, rate);
+            } finally {
+                secuenciaEnCurso = false;
+                // La frase terminó: volver al botón de play normal
+                if (icono) {
+                    icono.src = 'icons/player-ply.svg';
+                    icono.classList.remove('hg-sonando');
+                }
             }
         }
 
         function cambiarFrase(d, mantenerPlay = false) {
             if (!frasesActivas.length) return;
+            // 🆕 v2.1.0: al cambiar de frase el panel de producción se cierra
+            // y el texto vuelve a su estado por defecto (oculto en repaso).
+            if (repasoActivo || (panelRepaso() && panelRepaso().style.display === 'block')) {
+                cerrarPanelRepaso();
+            }
             if (!mantenerPlay) {
                 AudioEngine.reset();
                 setPlayUI(false);
@@ -1973,11 +2701,54 @@
         }
 
         function togglePeekTexto(rol) {
+            /* 🆕 v2.1.2 — mirar la respuesta durante el control cuenta como
+               no saberla. Solo aplica al bloque objetivo, con el panel de
+               escritura abierto y sin haber respondido todavía. La regla es
+               la de cualquier examen: ver la solución antes de contestar es
+               contestar mal. */
+            if (rol === 'obj' && repasoActivo && !document.getElementById('repaso-input').disabled) {
+                const actual = overrideTexto.obj !== null ? overrideTexto.obj : false;
+                if (!actual) {
+                    repasoRendirse();
+                    return;
+                }
+            }
             const c = getConfigIdioma(langDe(rol));
             const actual = overrideTexto[rol] !== null ? overrideTexto[rol] : c.textoVisible;
             overrideTexto[rol] = !actual;
             document.getElementById('btn-blur-' + rol)?.classList.toggle('activo', overrideTexto[rol]);
             renderBloque(rol);
+        }
+
+        /* El alumno pidió ver el texto en medio del control: se registra como
+           fallo con las mismas reglas que una respuesta incorrecta. */
+        function repasoRendirse() {
+            const f = frasesActivas[indice];
+            if (!f) return;
+            const lang = objetivoActivo();
+            const d = datosIdioma(f, lang);
+            const p = progresoDe(lang, f.id);
+            const fb = document.getElementById('repaso-feedback');
+            document.getElementById('repaso-input').disabled = true;
+
+            overrideTexto.obj = true;
+            renderBloque('obj');
+
+            const cuenta = SpacedRepetition.vencida(p);
+            if (cuenta) {
+                SpacedRepetition.repasoFallo(p);
+                fb.innerHTML = p.modo === 'estudio'
+                    ? '<span class="rp-mal"><i class="fas fa-eye"></i> Viste la respuesta. Vuelve a modo estudio.</span>'
+                    : '<span class="rp-mal"><i class="fas fa-eye"></i> Viste la respuesta. La racha empieza de nuevo mañana.</span>';
+            } else {
+                fb.innerHTML = '<span class="rp-mal"><i class="fas fa-eye"></i> Viste la respuesta.</span>' +
+                    '<span class="rp-nota"> Práctica libre — no afecta tu progreso.</span>';
+            }
+            guardarProgreso();
+            renderProgreso('obj');
+            actualizarBannerRepasos();
+            renderPanelCoach();
+            document.getElementById('repaso-estado').innerText = '';
         }
 
         // ============================================================
@@ -2113,14 +2884,24 @@
             const huboPerfilEnNube = await cargarPerfilNube();
             const primeraVezReal = esPrimeraVez && !huboPerfilEnNube;
 
-            // Primera visita: el materno por defecto es el idioma del navegador,
-            // y el idioma de estudio por defecto, el primero activo que no sea el materno
-            if (esPrimeraVez) {
+            /* 🐛 FIX v2.0.1 — el perfil de la nube se destruía en dispositivos nuevos.
+               Antes esta condición era `if (esPrimeraVez)`. Un alumno que ya tenía
+               perfil y entraba desde otro dispositivo: localStorage vacío →
+               esPrimeraVez = true → el perfil de la nube cargaba BIEN →
+               primeraVezReal = false (el modal correctamente no se abría) → y acto
+               seguido este bloque le pisaba los idiomas cargados con el default.
+               En silencio, y en cada recarga. Ahora solo aplica si de verdad no
+               hay perfil en ningún lado. */
+            if (primeraVezReal) {
                 pareja.base = idiomaDelNavegador();
                 // Por defecto: hebreo primero, inglés segundo (sin incluir el materno);
                 // los demás idiomas los agrega el alumno a su gusto
                 pareja.objetivos = ['he', 'en'].filter(c => c !== pareja.base);
                 pareja.activo = 0;
+            } else if (huboPerfilEnNube) {
+                // 🐛 FIX v2.0.1: bajar el perfil de la nube a localStorage para que
+                // la próxima recarga ya no entre por la rama de "primera vez".
+                persistirPreferencias();
             }
             poblarSelectFuentes();
             mostrarNombre();
@@ -2142,7 +2923,18 @@
 
             // 2) Supabase en segundo plano (no bloquea la pantalla)
             audiosProntos = cargarAudiosProtegidos();
-            cargarProgreso().then(() => { actualizarUI(); actualizarBannerRepasos(); });
+            consultarEsCoach();
+            cargarProgreso().then(() => {
+                // Con el progreso ya cargado, la pestaña puede filtrar de verdad
+                /* 🐛 FIX v2.1.6 — antes, si la pestaña Estudio quedaba vacía se
+                   rellenaba con TODAS las frases, incluidas las que están en
+                   repaso. La pestaña mostraba entonces frases que no le
+                   correspondían. Mejor el estado vacío, que dice la verdad. */
+                frasesActivas = frasesDeTab(tabActual);
+                indice = 0;
+                actualizarUI();
+                actualizarBannerRepasos();
+            });
 
             syncVistaUI();
             // El modal de onboarding (si aplica) ya está abierto; refrescar sus
@@ -2165,7 +2957,7 @@
     </script>
     <script>
         document.getElementById('app-footer').innerText =
-            '© Copyright 2026 Hardyglot.com  ·  LingoLogic ' + APP_VERSION;
+            '© 2026 Hardyglot.com  ·  LingoLogic ' + APP_VERSION;
     </script>
 </body>
 

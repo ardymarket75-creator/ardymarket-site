@@ -72,22 +72,8 @@ const AudioEngine = {
         this.stepIndex = 0;
         this.repIndex = 0;
         this.isPlaying = false;
-        // 🐛 FIX v2.0.1: antes _audioActual y _resolverActual quedaban
-        // apuntando a recursos ya terminados, y pause() operaba sobre
-        // estado obsoleto.
-        this._limpiarPaso();
         window.dispatchEvent(new Event('fraseCompletada'));
         return true;
-    },
-
-    /** Limpia las referencias del paso que acaba de terminar */
-    _limpiarPaso() {
-        if (this._timerActual) {
-            clearTimeout(this._timerActual);
-            this._timerActual = null;
-        }
-        this._audioActual = null;
-        this._resolverActual = null;
     },
 
     /** Reproduce un paso individual según su tipo de fuente */
@@ -95,125 +81,49 @@ const AudioEngine = {
         const f = paso.fuente;
 
         if (f.tipo === 'archivo') {
-            /* 🐛 FIX v2.0.1 — la promesa podía quedar colgada para siempre.
-               Antes solo resolvía con onended y play().catch(). Si el MP3
-               fallaba al cargar (URL firmada vencida, red caída), el evento
-               'error' del elemento mostraba el toast pero NUNCA resolvía:
-               playSequence quedaba esperando y secuenciaEnCurso jamás
-               volvía a false — la app quedaba muerta hasta recargar.
-               Ahora resuelve también con onerror y con un timeout de red. */
+            // MP3 individual: se reproduce completo, el navegador
+            // ajusta la duración automáticamente con playbackRate.
             return new Promise(resolve => {
                 const a = f.audio;
                 this._audioActual = a;
-
-                let listo = false;
-                const acabar = () => {
-                    if (listo) return;
-                    listo = true;
-                    a.onended = null;
-                    a.onerror = null;
-                    this._limpiarPaso();
-                    resolve();
-                };
-
-                this._resolverActual = acabar;
+                this._resolverActual = resolve;
                 a.currentTime = 0;
                 a.playbackRate = rate;
-                a.onended = acabar;
-                a.onerror = acabar;
-                // Salvavidas: si el audio nunca arranca en 10s, seguimos.
-                this._timerActual = setTimeout(acabar, 10000);
-                a.play().catch(acabar);
+                a.onended = () => { a.onended = null; resolve(); };
+                a.play().catch(() => resolve());
             });
         }
 
         if (f.tipo === 'segmento') {
-            /* 🐛 FIX v2.0.1 — CORTE DEL PRIMER PLAY (causa raíz).
-               Antes el setTimeout arrancaba en el instante en que se llamaba
-               play(), no cuando el audio empezaba a sonar. En el primer play
-               todavía faltaba cargar metadatos, hacer el seek a `ini` y
-               bufferizar — tiempo real que el timer ya estaba quemando. Si
-               bufferizar tomaba 800 ms y el segmento duraba 2036 ms, el
-               alumno oía ~1236 ms y el pause() lo cortaba a mitad de frase.
-               La segunda vez el archivo ya estaba en buffer y coincidía:
-               por eso solo fallaba la primera.
-
-               Ahora el timer se ancla al evento 'playing' (dispara cuando la
-               reproducción REALMENTE comienza, ya bufferizada y posicionada),
-               con 'timeupdate' como red de seguridad por si el timer se
-               desfasa (stall de red, pestaña en segundo plano). */
+            // MP3 monolítico: cortamos con timer, AJUSTADO por velocidad
             return new Promise(resolve => {
                 const a = f.audio;
                 const [ini, fin] = f.sync;
                 this._audioActual = a;
-
-                let listo = false;
-                const acabar = () => {
-                    if (listo) return;
-                    listo = true;
-                    a.removeEventListener('playing', arrancarTimer);
-                    a.removeEventListener('timeupdate', vigilar);
-                    a.removeEventListener('error', acabar);
-                    if (this._timerActual) clearTimeout(this._timerActual);
+                this._resolverActual = resolve;
+                a.currentTime = ini;
+                a.playbackRate = rate;
+                a.play().catch(() => resolve());
+                // Margen anti-sangrado: los segmentos son contiguos (fin frase N
+                // = inicio frase N+1) y el timer del navegador se pasa unos ms,
+                // alcanzando a sonar el arranque de la frase siguiente.
+                const duracionMs = Math.max(120, ((fin - ini) * 1000) / rate - 70);
+                this._timerActual = setTimeout(() => {
                     a.pause();
-                    this._limpiarPaso();
                     resolve();
-                };
-
-                this._resolverActual = acabar;
-
-                // Red de seguridad: el reloj del propio audio corta igual
-                const vigilar = () => { if (a.currentTime >= fin) acabar(); };
-
-                const arrancarTimer = () => {
-                    /* 🐛 FIX v2.0.1 — el margen anti-sangrado de 70 ms estaba
-                       aplicado DESPUÉS de dividir por la velocidad, así que a
-                       2× recortaba 140 ms de audio real y a 0.25× solo 17 ms.
-                       Ahora el recorte es constante en contenido. */
-                    const dur = Math.max(120, ((fin - ini) * 1000 - 70) / rate);
-                    this._timerActual = setTimeout(acabar, dur);
-                };
-
-                const lanzar = () => {
-                    a.playbackRate = rate;
-                    a.addEventListener('playing', arrancarTimer, { once: true });
-                    a.addEventListener('timeupdate', vigilar);
-                    a.addEventListener('error', acabar, { once: true });
-                    a.play().catch(acabar);
-                };
-
-                // Posicionar solo cuando haya metadatos disponibles
-                if (a.readyState >= 1) {          // HAVE_METADATA o más
-                    a.currentTime = ini;
-                    lanzar();
-                } else {
-                    a.addEventListener('loadedmetadata', () => {
-                        a.currentTime = ini;
-                        lanzar();
-                    }, { once: true });
-                    // Salvavidas: si los metadatos nunca llegan, no colgar
-                    this._timerActual = setTimeout(acabar, 12000);
-                    a.load();
-                }
+                }, duracionMs);
             });
         }
 
         // Fallback: voz sintética del navegador
         return new Promise(resolve => {
             if (!('speechSynthesis' in window)) return resolve();
-            let listo = false;
-            const acabar = () => {
-                if (listo) return;
-                listo = true;
-                this._limpiarPaso();
-                resolve();
-            };
             const u = new SpeechSynthesisUtterance(f.texto);
             u.lang = f.ttsLang || 'en-US';
             u.rate = rate;
-            u.onend = acabar;
-            u.onerror = acabar;
-            this._resolverActual = acabar;
+            u.onend = () => resolve();
+            u.onerror = () => resolve();
+            this._resolverActual = resolve;
             speechSynthesis.speak(u);
         });
     },

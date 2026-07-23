@@ -12,7 +12,7 @@ window.supabase = window.supabaseLib.createClient(SUPABASE_URL, SUPABASE_KEY);
 async function testSupabaseConnection() {
     try {
         const { error } = await window.supabase
-            .from('profiles')
+            .from('perfiles_lab')
             .select('count', { count: 'exact', head: true });
         if (error) throw error;
         console.log('✅ Conexión establecida con Hardyglot!');
