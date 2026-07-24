@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hardyland — un lugar de aprendizaje.">
-    <meta property="og:title" content="Hardyland — Un lugar de aprendizaje">
+    <meta name="description" content="Hardy Land — un lugar de aprendizaje.">
+    <meta property="og:title" content="Hardy Land — Un lugar de aprendizaje">
     <meta property="og:description" content="Un lugar de aprendizaje">
     <meta property="og:type" content="website">
-    <title>Hardyland — Un lugar de aprendizaje</title>
+    <title>Hardy Land — Un lugar de aprendizaje</title>
     <link rel="icon" type="image/svg+xml" href="assets/am-fav.svg">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -19,19 +19,19 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1b7a63 0%, #6c5ce7 100%);
+            background: linear-gradient(90deg, #016c51 7%, #00afe4 180%);
             margin: 0;
         }
         .box {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
+            background: rgb(213, 226, 225);
+            padding: 70px;
+            border-radius: 10px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 90%;
-            max-width: 400px;
+            width: 100%;
+            max-width: 350px;
         }
-        h1 { color: #1b7a63; margin-bottom: 5px; font-weight: 800; font-size: 34px; }
+        h1 { color: #1b7a78; margin-bottom: 5px; font-weight: 800; font-size: 34px; }
         .tagline { color: #6c5ce7; font-weight: 600; margin-top: 0; }
         p { color: #666; }
         .btn-google {
@@ -44,7 +44,7 @@
             margin-top: 20px;
             width: 100%;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s;
             font-family: 'Urbanist', sans-serif;
         }
@@ -71,17 +71,17 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             margin-top: 10px;
             font-family: 'Urbanist', sans-serif;
         }
         .btn-magic:hover { background: #146351; }
-        .loading { color: #1b7a63; font-weight: 600; display: none; }
+        .loading { color: #1b7a63; font-weight: 700; display: none; }
     </style>
 </head>
 <body>
     <div class="box" id="loginBox">
-        <h1>Hardyland</h1>
+        <h1>Hardy Land</h1>
         <p class="tagline">Un lugar de aprendizaje</p>
 
         <button class="btn-google" onclick="iniciarConGoogle()">Acceder con Google</button>
@@ -89,7 +89,7 @@
         <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
 
         <p>O ingresa con tu correo:</p>
-        <input type="email" id="email" placeholder="tu@email.com">
+        <input type="email" id="email" placeholder="escribe_tu@email.com">
         <br>
         <button class="btn-magic" onclick="iniciarSesion()">Enviar enlace mágico</button>
 
@@ -97,7 +97,7 @@
     </div>
 
     <script>
-        // URL base compatible con GitHub Pages (incluye ruta del repo si existe)
+        // URL base compatible con Cloudflare Pages (incluye ruta del repo si existe)
         const BASE_URL = window.location.href.replace(/[^/]*(\?.*)?(#.*)?$/, '');
 
         async function iniciarConGoogle() {
